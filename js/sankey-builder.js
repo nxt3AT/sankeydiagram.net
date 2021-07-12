@@ -160,11 +160,11 @@ function calculateValue(lines, originalTarget) {
     return totalValue;
 }
 function parseInputToSankey(input) {
-    let lines = input.split("\n");
+    let lines = [...new Set(input.split("\n"))];
 
     let nodeKeys = [];
-    let nodesDict = [];
-    let linksDict = [];
+    let nodesList = [];
+    let linksList = [];
 
     let precision = sankeyPrecisionSetting.value;
 
@@ -185,19 +185,19 @@ function parseInputToSankey(input) {
 
         if (!nodeKeys.includes(source)) {
             nodeKeys.push(source);
-            nodesDict.push({"id": source});
+            nodesList.push({"id": source});
         }
 
         if (!nodeKeys.includes(target)) {
             nodeKeys.push(target);
-            nodesDict.push({"id": target});
+            nodesList.push({"id": target});
         }
 
         if (value === "?") {
             value = calculateValue(lines, target);
         }
 
-        linksDict.push({
+        linksList.push({
             "source": source,
             "target": target,
             "value": parseFloat(value).toFixed(precision),
@@ -206,8 +206,8 @@ function parseInputToSankey(input) {
     });
 
     return {
-        nodes: nodesDict,
-        links: linksDict
+        nodes: nodesList,
+        links: linksList
     };
 }
 
