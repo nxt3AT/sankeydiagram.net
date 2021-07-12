@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+@import "bulma/sass/utilities/all";
+
+@import "vars";
+@import "fonts";
+
+@import "bulma/sass/base/all";
+@import "bulma/sass/elements/all";
+@import "bulma/sass/form/all";
+@import "bulma-divider/sass/divider";
+@import "bulma/sass/components/all";
+@import "bulma/sass/grid/all";
+@import "bulma/sass/helpers/all";
+@import "bulma/sass/layout/all";
+
+html {
+  background-color: $white-ter;
+}
+
+html, body {
+  width: 100vw;
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow-y: auto;
+}
