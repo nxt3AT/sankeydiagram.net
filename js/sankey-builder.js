@@ -68,8 +68,6 @@ function generateRandomString(length) {
     }
     return result;
 }
-
-
 document.querySelectorAll(".anonymize-data-button").forEach(element => {
     element.addEventListener("click", function (e) {
         let scrubbedLines = "";
@@ -115,6 +113,15 @@ new ClipboardJS(".copy-link-button", {
     text: function(trigger) {
         return window.location.href + "?content=" + serializeData();
     }
+});
+
+document.querySelectorAll(".navbar-burger").forEach(element => {
+   element.addEventListener("click", function () {
+       const target = document.getElementById(element.dataset.target);
+
+       element.classList.toggle('is-active');
+       target.classList.toggle('is-active');
+   });
 });
 
 document.getElementById("sankey-input-tabs").addEventListener("click", function (e) {
