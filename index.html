@@ -16,33 +16,40 @@
 </head>
 <body class="is-fullwidth">
     <nav class="navbar is-fullwidth" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand ml-4">
-        <a class="navbar-item" href="/">
-            <span class="has-text-weight-bold">SankeyDiagram.net</span>
-        </a>
-    </div>
-    <div class="navbar-menu">
-        <div class="navbar-start">
-            <!--<a class="navbar-item">
-                About
-            </a>-->
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    More
-                </a>
-                <div class="navbar-dropdown">
-                    <a class="navbar-item" href="https://twitter.com/JonasDoesThings/" target="_blank" rel="nofollow">
-                        My Twitter
+        <div class="navbar-brand ml-4">
+            <a class="navbar-item" href="/">
+                <span class="has-text-weight-bold">SankeyDiagram.net</span>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-start">
+                <!--<a class="navbar-item">
+                    About
+                </a>-->
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More
                     </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item" href="mailto:jonas@sankeydiagram.net">
-                        Report an issue
-                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="https://twitter.com/JonasDoesThings/" target="_blank" rel="nofollow">
+                            My Twitter
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="mailto:jonas@sankeydiagram.net">
+                            Report an issue
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
     <main>
         <div class="columns is-desktop m-0 is-justify-content-space-between">
             <div id="sankey-input-box" class="box column is-full-tablet-landscape is-3-desktop is-full-tablet-landscape">

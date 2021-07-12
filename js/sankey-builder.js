@@ -68,8 +68,6 @@ function generateRandomString(length) {
     }
     return result;
 }
-
-
 document.querySelectorAll(".anonymize-data-button").forEach(element => {
     element.addEventListener("click", function (e) {
         let scrubbedLines = "";
@@ -117,6 +115,15 @@ new ClipboardJS(".copy-link-button", {
     }
 });
 
+document.querySelectorAll(".navbar-burger").forEach(element => {
+   element.addEventListener("click", function () {
+       const target = document.getElementById(element.dataset.target);
+
+       element.classList.toggle('is-active');
+       target.classList.toggle('is-active');
+   });
+});
+
 document.getElementById("sankey-input-tabs").addEventListener("click", function (e) {
     if(e.target.tagName !== "A") {
         return;
@@ -160,11 +167,11 @@ function calculateValue(lines, originalTarget) {
     return totalValue;
 }
 function parseInputToSankey(input) {
-    let lines = input.split("\n");
+    let lines = [...new Set(input.split("\n"))];
 
     let nodeKeys = [];
-    let nodesDict = [];
-    let linksDict = [];
+    let nodesList = [];
+    let linksList = [];
 
     let precision = sankeyPrecisionSetting.value;
 
@@ -185,19 +192,19 @@ function parseInputToSankey(input) {
 
         if (!nodeKeys.includes(source)) {
             nodeKeys.push(source);
-            nodesDict.push({"id": source});
+            nodesList.push({"id": source});
         }
 
         if (!nodeKeys.includes(target)) {
             nodeKeys.push(target);
-            nodesDict.push({"id": target});
+            nodesList.push({"id": target});
         }
 
         if (value === "?") {
             value = calculateValue(lines, target);
         }
 
-        linksDict.push({
+        linksList.push({
             "source": source,
             "target": target,
             "value": parseFloat(value).toFixed(precision),
@@ -206,8 +213,8 @@ function parseInputToSankey(input) {
     });
 
     return {
-        nodes: nodesDict,
-        links: linksDict
+        nodes: nodesList,
+        links: linksList
     };
 }
 
