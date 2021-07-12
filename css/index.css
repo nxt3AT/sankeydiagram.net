@@ -10332,17 +10332,17 @@ li {
   list-style: disc inside;
 }
 
-@media screen and (orientation: landscape) {
-  #mobile-popup {
-    display: none;
-  }
+#mobile-popup {
+  display: none;
 }
-@media screen and (orientation: portrait) {
+
+@media screen and (orientation: portrait) and (max-width: 769px) {
   #sankey-box {
     overflow: scroll;
   }
 
   #mobile-popup {
+    display: block;
     position: fixed;
     bottom: 0.5rem;
     left: 5%;
