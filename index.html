@@ -10,7 +10,9 @@
     <meta charset="UTF-8">
 
     <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="preload" as="font" href="fonts/material-icon-iconfont.woff2">
 </head>
 <body class="is-fullwidth">
     <nav class="navbar is-fullwidth" role="navigation" aria-label="main navigation">
@@ -29,7 +31,7 @@
                     More
                 </a>
                 <div class="navbar-dropdown">
-                    <a class="navbar-item" href="https://twitter.com/JonasDoesThings/" target="_blank">
+                    <a class="navbar-item" href="https://twitter.com/JonasDoesThings/" target="_blank" rel="nofollow">
                         My Twitter
                     </a>
                     <hr class="navbar-divider">
@@ -79,6 +81,8 @@ target five [15] target six [lightgreen]</textarea>
                             <option value="20b">20b</option>
                             <option value="nested">nested</option>
                         </select>
+                        <div class="divider">Debug</div>
+                        <span class="button is-dark p-1 mb-1 has-shadow anonymize-data-button is-clickable level-item"><span class="material-icons mr-1">shuffle</span> Anonymize Data</span>
                     </div>
                     <div class="is-tab">
                         <div class="divider">Share</div>
@@ -110,7 +114,7 @@ target five [15] target six [lightgreen]</textarea>
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Sankey Diagram Generator</strong> made with green tea 🍵 by <a href="https://twitter.com/JonasDoesThings">@JonasDoesThings 🤩</a> in Austria 🇦🇹. <br class="is-hidden-desktop">
+                <strong>Sankey Diagram Generator</strong> made with green tea 🍵 by <a href="https://twitter.com/JonasDoesThings" target="_blank" rel="nofollow">@JonasDoesThings 🤩</a> in Austria 🇦🇹. <br class="is-hidden-desktop">
                 <a href="/legalnotice.html" target="_blank" rel="nofollow">Legal Notice</a>, <a href="/privacypolicy.html" target="_blank" rel="nofollow">Privacy Policy</a>
             </p>
         </div>
@@ -118,7 +122,7 @@ target five [15] target six [lightgreen]</textarea>
 
     <div id="mobile-popup" class="notification is-danger">
         <button class="delete close-notification-button"></button>
-        Rotate your phone for a better experience!
+        Rotate your display for a better experience!
     </div>
 
     <script src="js/d3.v4.min.js"></script>
