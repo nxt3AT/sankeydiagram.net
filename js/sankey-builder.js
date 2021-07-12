@@ -60,6 +60,57 @@ document.querySelectorAll(".download-as-svg-button").forEach(element => {
     });
 });
 
+function generateRandomString(length) {
+    let randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let result = "";
+    for (let i = 0; i < length; i++) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    return result;
+}
+
+
+document.querySelectorAll(".anonymize-data-button").forEach(element => {
+    element.addEventListener("click", function (e) {
+        let scrubbedLines = "";
+        let scrubbingFactor = (Math.random() * (1.150 - 0.950) + 0.950).toFixed(3);
+        let replacedKeyDict = {};
+
+        sankeyInput.value.split("\n").forEach(line => {
+            if (line.startsWith("//") || line.startsWith("'")) {
+                return;
+            }
+
+            if (!lineRegex.test(line)) {
+                return;
+            }
+
+            const regexGroups = lineRegex.exec(line);
+            let source = regexGroups[1].trim();
+            let value = regexGroups[2];
+            let target = regexGroups[3].trim();
+
+            if(replacedKeyDict[source] == null) {
+                replacedKeyDict[source] = generateRandomString(source.length);
+            }
+
+            if(value !== "?") {
+                value = (value*scrubbingFactor).toFixed(0);
+            }
+
+            if(replacedKeyDict[target] == null) {
+                replacedKeyDict[target] = generateRandomString(target.length);
+            }
+
+            scrubbedLines += replacedKeyDict[source] + " [" + value + "] " + replacedKeyDict[target] + "\n";
+        });
+
+        sankeyInput.value = scrubbedLines;
+
+        redraw();
+    });
+});
+
 new ClipboardJS(".copy-link-button", {
     text: function(trigger) {
         return window.location.href + "?content=" + serializeData();
