@@ -4,3 +4,4 @@ $box-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.35), 0 0px 0 1px rgba($
 $footer-padding: 0.5rem 1.5rem 0.5rem;
 
 $desktop: 1.5 * (960px + (2 * $gap));
+$navbar-breakpoint: $tablet;
