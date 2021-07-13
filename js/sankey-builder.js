@@ -1,4 +1,4 @@
-const lineRegex = new RegExp("(.*)\\[([0-9,.?]+)\\]\\s*(.+?)(?:\\s\\[(.+)\\])?$");
+const lineRegex = new RegExp("(.*)\\[([0-9,.?]+[$€£₽¥]?)\\]\\s*(.+?)(?:\\s\\[(.+)\\])?$");
 const sankeyInput = document.getElementById("sankey-input-textarea");
 
 let sankeySvg, sankeyBox;
