@@ -10350,7 +10350,7 @@ li {
 }
 @media screen and (min-width: 769px) {
   #sankey-input-box {
-    height: 40vh;
+    height: 45vh;
   }
 
   #sankey-svg {
