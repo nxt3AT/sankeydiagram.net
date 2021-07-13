@@ -10424,12 +10424,4 @@ li {
   transform: translate3d(-50%, calc(-100% - 16px), 0);
 }
 
-/*@media screen and (max-width: 1700px){
-  //TODO
-  .column.is-full-tablet-landscape {
-    flex: none;
-    width: 100%;
-  }
-}*/
-
 /*# sourceMappingURL=index.css.map */
