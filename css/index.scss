@@ -69,6 +69,10 @@ footer {
   display: block;
 }
 
+.divider {
+  margin: 0.25rem;
+}
+
 #sankey-input-textarea {
   height: calc(100% - 2 * 0.75rem);
   resize: none;
@@ -120,7 +124,7 @@ li {
 
 @media screen and (min-width: $tablet) {
   #sankey-input-box {
-    height: 45vh;
+    height: 50vh;
   }
 
   #sankey-svg {
