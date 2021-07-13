@@ -76,11 +76,10 @@ footer {
 
 #sankey-box {
   position: relative;
-  overflow: hidden;
-  min-height: 70vh;
+  overflow-y: hidden;
+  overflow-x: auto;
 
   #sankey-svg {
-    min-height: 70vh;
     min-width: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -106,8 +105,8 @@ li {
 }
 
 @media screen and (orientation: portrait) and (max-width: $tablet) {
-  #sankey-box {
-    overflow: scroll;
+  #sankey-box, #sankey-svg {
+    min-height: 70vh;
   }
 
   #mobile-popup {
@@ -116,7 +115,16 @@ li {
     bottom: 0.5rem;
     left: 5%;
     right: 5%;
+  }
+}
 
+@media screen and (min-width: $tablet) {
+  #sankey-input-box {
+    height: 40vh;
+  }
+
+  #sankey-svg {
+    width: 100%;
   }
 }
 
