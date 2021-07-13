@@ -111,6 +111,8 @@ document.querySelectorAll(".anonymize-data-button").forEach(element => {
 
 new ClipboardJS(".copy-link-button", {
     text: function(trigger) {
+        trigger.classList.add("is-clicked");
+        setTimeout(() => trigger.classList.remove("is-clicked"), 700)
         return window.location.href + "?content=" + serializeData();
     }
 });
