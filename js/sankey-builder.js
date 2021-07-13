@@ -209,7 +209,7 @@ function parseInputToSankey(input) {
         linksList.push({
             "source": source,
             "target": target,
-            "value": parseFloat(value).toFixed(precision),
+            "value": parseFloat(value).toFixed(precision).replace(/\.00$/, ""),
             "color": color in CSS3_NAMES_TO_HEX ? CSS3_NAMES_TO_HEX[color] : (color !== undefined && color.startsWith("#")) ? color : getColor(source)
         });
     });
@@ -253,7 +253,7 @@ function processInput() {
                     incomingValue += parseFloat(incomingNode.value);
                 });
 
-                return incomingValue.toFixed(precision);
+                return incomingValue.toFixed(precision).replace(/\.00$/, "");
             } else {
                 return d.value;
             }
@@ -271,9 +271,9 @@ function processInput() {
             });
 
             if(d.outgoing.length > 0 && d.incoming.length > 0 && (Math.abs(outgoingValue) !== Math.abs(incomingValue))) {
-                return d.value.toFixed(precision) + "\ndifference: " + (parseFloat(incomingValue) - parseFloat(outgoingValue)).toFixed(precision);
+                return d.value.toFixed(precision).replace(/\.00$/, "") + "\ndifference: " + (parseFloat(incomingValue) - parseFloat(outgoingValue)).toFixed(precision);
             } else {
-                return d.value.toFixed(precision);
+                return d.value.toFixed(precision).replace(/\.00$/, "");
             }
         })
         .linkMinWidth(function (d) {
