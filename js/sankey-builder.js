@@ -261,7 +261,7 @@ function processInput() {
                 });
                 return sankeyHideZerosSetting.checked ? incomingValue.toFixed(precision).replace(zerosRegex, "") : incomingValue.toFixed(precision)
             } else {
-                return d.value;
+                return sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision)
             }
         })
         .nodeTitle(function (d) {
