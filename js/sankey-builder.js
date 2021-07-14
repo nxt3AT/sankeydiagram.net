@@ -170,7 +170,6 @@ function calculateValue(lines, originalTarget) {
             } else {
                 totalValue += parseFloat(value);
             }
-            //console.log(index + ": " + originalTarget + "->" + value + "->" + target + "=" + totalValue);
         }
     });
     return totalValue;
