@@ -1,10 +1,12 @@
 const lineRegex = new RegExp("(.*)\\[([0-9,.?]+[$€£₽¥]?)\\]\\s*(.+?)(?:\\s\\[(.+)\\])?$");
+const zerosRegex = new RegExp("(\\.0+)$");
 const sankeyInput = document.getElementById("sankey-input-textarea");
 
 let sankeySvg, sankeyBox;
 let layout, diagram;
 
 const sankeyPrecisionSetting = document.getElementById("sankey-settings-precision");
+const sankeyHideZerosSetting = document.getElementById("sankey-settings-hidezeros");
 const sankeyColorpaletteSetting = document.getElementById("sankey-settings-colorscheme");
 
 const allTabs = Array.from(document.getElementById("sankey-input-tabs").getElementsByTagName("li"));
@@ -18,6 +20,11 @@ sankeyInput.addEventListener("keyup", function (e) {
 });
 
 sankeyPrecisionSetting.addEventListener("input", function (e) {
+    processInput();
+});
+
+
+sankeyHideZerosSetting.addEventListener("input", function (e) {
     processInput();
 });
 
@@ -209,7 +216,7 @@ function parseInputToSankey(input) {
         linksList.push({
             "source": source,
             "target": target,
-            "value": parseFloat(value).toFixed(precision).replace(/\.00$/, ""),
+            "value": sankeyHideZerosSetting.checked ? parseFloat(value).toFixed(precision).replace(zerosRegex, "") : parseFloat(value).toFixed(precision),
             "color": color in CSS3_NAMES_TO_HEX ? CSS3_NAMES_TO_HEX[color] : (color !== undefined && color.startsWith("#")) ? color : getColor(source)
         });
     });
@@ -252,8 +259,7 @@ function processInput() {
                 d.incoming.forEach(incomingNode => {
                     incomingValue += parseFloat(incomingNode.value);
                 });
-
-                return incomingValue.toFixed(precision).replace(/\.00$/, "");
+                return sankeyHideZerosSetting.checked ? incomingValue.toFixed(precision).replace(zerosRegex, "") : incomingValue.toFixed(precision)
             } else {
                 return d.value;
             }
@@ -271,9 +277,9 @@ function processInput() {
             });
 
             if(d.outgoing.length > 0 && d.incoming.length > 0 && (Math.abs(outgoingValue) !== Math.abs(incomingValue))) {
-                return d.value.toFixed(precision).replace(/\.00$/, "") + "\ndifference: " + (parseFloat(incomingValue) - parseFloat(outgoingValue)).toFixed(precision);
+                return (sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision)) + "\ndifference: " + (parseFloat(incomingValue) - parseFloat(outgoingValue)).toFixed(precision);
             } else {
-                return d.value.toFixed(precision).replace(/\.00$/, "");
+                return (sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision));
             }
         })
         .linkMinWidth(function (d) {
