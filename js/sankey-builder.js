@@ -244,6 +244,12 @@ function redraw() {
         .datum(layout.scale(null))
         .transition().duration(1000).ease(d3.easeCubic)
         .call(diagram);
+
+    processInput(true);
+}
+
+function isOverflown(element) {
+    return element.scrollWidth > element.clientWidth;
 }
 
 function processInput() {
@@ -255,7 +261,7 @@ function processInput() {
     let precision = sankeyPrecisionSetting.value;
 
     layout = d3.sankey()
-        .size([1920, 1080])
+        .size([isOverflown(document.getElementById("sankey-svg")) ? 1840 : 1910, 1080])
         .linkValue(function (d) {
             return d.value;
         });
@@ -338,3 +344,7 @@ if(findGetParameter("content") !== null) {
 }
 
 processInput();
+
+if(isOverflown(document.getElementById("sankey-svg"))) {
+    processInput();
+}
