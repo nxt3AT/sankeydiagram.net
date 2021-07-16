@@ -6331,6 +6331,9 @@ var lodash$1 = createCommonjsModule(function (module, exports) {
      * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
      */
     function isKey(value, object) {
+      return true;
+      // CHANGE IDK
+
       if (isArray(value)) {
         return false;
       }
@@ -6339,6 +6342,7 @@ var lodash$1 = createCommonjsModule(function (module, exports) {
           value == null || isSymbol(value)) {
         return true;
       }
+
       return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
         (object != null && value in Object(object));
     }
@@ -18648,7 +18652,9 @@ function countBetweenCrossings (G, orderA, orderB) {
   var southSeq = [];
   north.forEach(function (u) {
     south.forEach(function (v, j) {
-      if (G.hasEdge(u, v) || G.hasEdge(v, u)) { southSeq.push(j); }
+      if (G.hasEdge(u, v) || G.hasEdge(v, u)) {
+        southSeq.push(j);
+      }
     });
   });
 
@@ -18851,6 +18857,8 @@ function sortNodes$1 (G, order, sweepDirection, includeLoops) {
  */
 function sortNodes (G, maxIterations) {
   if ( maxIterations === void 0 ) maxIterations = 25;
+
+  maxIterations = 5;
 
   var ranks = getRanks(G);
   var order = initialOrdering(G, ranks);
