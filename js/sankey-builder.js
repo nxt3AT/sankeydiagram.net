@@ -16,6 +16,7 @@ let currentTabIndex = 0;
 
 let inputTimer;
 sankeyInput.addEventListener("keyup", function (e) {
+    // check if key is a character
     if(e.key.length !== 1) {
         return;
     }
@@ -245,7 +246,7 @@ function redraw() {
         .transition().duration(1000).ease(d3.easeCubic)
         .call(diagram);
 
-    processInput(true);
+    processInput();
 }
 
 function isOverflown(element) {
@@ -257,55 +258,6 @@ function processInput() {
 
     sankeyBox = document.getElementById("sankey-box");
     sankeySvg = d3.select("#sankey-svg");
-
-    let precision = sankeyPrecisionSetting.value;
-
-    layout = d3.sankey()
-        .size([isOverflown(document.getElementById("sankey-svg")) ? 1840 : 1910, 1080])
-        .linkValue(function (d) {
-            return d.value;
-        });
-
-    diagram = d3.sankeyDiagram()
-        .nodeValue(function (d) {
-            if(d.incoming.length > 0) {
-                let incomingValue = 0.0;
-                d.incoming.forEach(incomingNode => {
-                    incomingValue += parseFloat(incomingNode.value);
-                });
-                return sankeyHideZerosSetting.checked ? incomingValue.toFixed(precision).replace(zerosRegex, "") : incomingValue.toFixed(precision)
-            } else {
-                return sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision)
-            }
-        })
-        .nodeTitle(function (d) {
-            return d.id;
-        })
-        .nodeSuffix(function (d) {
-          return sankeySuffixSetting.value;
-        })
-        .nodeTooltip(function (d) {
-            let outgoingValue = 0.0, incomingValue = 0.0;
-            d.outgoing.forEach(outgoingNode => {
-                outgoingValue += parseFloat(outgoingNode.value);
-            });
-            d.incoming.forEach(incomingNode => {
-                incomingValue += parseFloat(incomingNode.value);
-            });
-
-            if(d.outgoing.length > 0 && d.incoming.length > 0 && (Math.abs(outgoingValue) !== Math.abs(incomingValue))) {
-                return (sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision)) + "\ndifference: " + (parseFloat(incomingValue) - parseFloat(outgoingValue)).toFixed(precision);
-            } else {
-                return (sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision));
-            }
-        })
-        .linkMinWidth(function (d) {
-            return 2.5;
-        })
-        .linkColor(function (d) {
-            return d.color;
-        })
-        .margins({top: 0, right: 0, bottom: 0, left: 10});
 
     layout(graph);
 
@@ -339,12 +291,62 @@ function findGetParameter(parameterName) {
     return result;
 }
 
+let precision = sankeyPrecisionSetting.value;
+
+layout = d3.sankey()
+    .size([1840, 1080])
+    .linkValue(function (d) {
+        return d.value;
+    });
+
+diagram = d3.sankeyDiagram()
+    .nodeValue(function (d) {
+        if (d.incoming.length > 0) {
+            let incomingValue = 0.0;
+            d.incoming.forEach(incomingNode => {
+                incomingValue += parseFloat(incomingNode.value);
+            });
+            return sankeyHideZerosSetting.checked ? incomingValue.toFixed(precision).replace(zerosRegex, "") : incomingValue.toFixed(precision)
+        } else {
+            return sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision)
+        }
+    })
+    .nodeTitle(function (d) {
+        return d.id;
+    })
+    .nodeSuffix(function (d) {
+        return sankeySuffixSetting.value;
+    })
+    .nodeTooltip(function (d) {
+        let outgoingValue = 0.0, incomingValue = 0.0;
+        d.outgoing.forEach(outgoingNode => {
+            outgoingValue += parseFloat(outgoingNode.value);
+        });
+        d.incoming.forEach(incomingNode => {
+            incomingValue += parseFloat(incomingNode.value);
+        });
+
+        if (d.outgoing.length > 0 && d.incoming.length > 0 && (Math.abs(outgoingValue) !== Math.abs(incomingValue))) {
+            return (sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision)) + "\ndifference: " + (parseFloat(incomingValue) - parseFloat(outgoingValue)).toFixed(precision);
+        } else {
+            return (sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision));
+        }
+    })
+    .linkMinWidth(function (d) {
+        return 2.5;
+    })
+    .linkColor(function (d) {
+        return d.color;
+    })
+    .margins({top: 0, right: 0, bottom: 0, left: 10});
+
 if(findGetParameter("content") !== null) {
     deserializeData(findGetParameter("content"));
-}
-
-processInput();
-
-if(isOverflown(document.getElementById("sankey-svg"))) {
+} else {
     processInput();
 }
+
+
+/*if(isOverflown(document.getElementById("sankey-svg"))) {
+    processInput();
+}*/
