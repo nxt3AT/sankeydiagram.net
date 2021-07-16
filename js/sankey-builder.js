@@ -261,7 +261,7 @@ function processInput() {
     let precision = sankeyPrecisionSetting.value;
 
     layout = d3.sankey()
-        .size([isOverflown(document.getElementById("sankey-svg")) ? 1840 : 1910, 1080])
+        .size([1840, 1080])
         .linkValue(function (d) {
             return d.value;
         });
@@ -345,6 +345,6 @@ if(findGetParameter("content") !== null) {
 
 processInput();
 
-if(isOverflown(document.getElementById("sankey-svg"))) {
+/*if(isOverflown(document.getElementById("sankey-svg"))) {
     processInput();
-}
+}*/
