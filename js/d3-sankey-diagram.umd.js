@@ -20425,6 +20425,8 @@ var sankeyNode = function () {
   var nodeTitle = function (d) { return d.title !== undefined ? d.title : d.id; };
   var nodeTooltip = function (d) { return d.title !== undefined ? d.title : d.id; };
   var nodeValue = function (d) { return null; };
+  // CHANGE: ADD NODESUFFIX
+  var nodeSuffix = function (d) { return ""; };
   var nodeVisible = function (d) { return !!nodeTitle(d); };
 
   function sankeyNode (context) {
@@ -20474,8 +20476,9 @@ var sankeyNode = function () {
       //CHANGE REMOVE PARENTHESES
       //var titleText = nodeTitle(d) + ((!separateValue && nodeValue(d))
       //                                  ? ' (' + nodeValue(d) + ')' : '');
+      // CHANGE: ADD NODESUFFIX
       var titleText = nodeTitle(d) + ((!separateValue && nodeValue(d))
-                                        ? ' ' + nodeValue(d) : '');
+                                        ? ' ' + nodeValue(d) : '') + nodeSuffix(d);
       var tooltipText = nodeTooltip(d);
 
       // Update un-transitioned
@@ -20560,6 +20563,15 @@ var sankeyNode = function () {
       return sankeyNode
     }
     return nodeTitle
+  };
+
+  // CHANGE: ADD NODESUFFIX
+  sankeyNode.nodeSuffix = function (x) {
+    if (arguments.length) {
+      nodeSuffix = required$3(x);
+      return sankeyNode
+    }
+    return nodeSuffix
   };
 
   // CHANGE: nodeTooltip function
@@ -20965,6 +20977,13 @@ function sankeyDiagram () {
     if (!arguments.length) { return node.nodeTitle() }
     node.nodeTitle(_x);
     linkTitle = linkTitleGenerator(_x, function (d) { return d.type; }, fmt);
+    return this
+  };
+
+  // CHANGE: ADD NODESUFFIX
+  exports.nodeSuffix = function (_x) {
+    if (!arguments.length) { return node.nodeSuffix() }
+    node.nodeSuffix(_x);
     return this
   };
 

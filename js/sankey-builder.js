@@ -8,6 +8,7 @@ let layout, diagram;
 const sankeyPrecisionSetting = document.getElementById("sankey-settings-precision");
 const sankeyHideZerosSetting = document.getElementById("sankey-settings-hidezeros");
 const sankeyColorpaletteSetting = document.getElementById("sankey-settings-colorscheme");
+const sankeySuffixSetting = document.getElementById("sankey-settings-suffix");
 
 const allTabs = Array.from(document.getElementById("sankey-input-tabs").getElementsByTagName("li"));
 const allTabContainers = Array.from(document.getElementById("sankey-input-box").getElementsByClassName("is-tab"));
@@ -25,6 +26,10 @@ sankeyPrecisionSetting.addEventListener("input", function (e) {
 
 
 sankeyHideZerosSetting.addEventListener("input", function (e) {
+    processInput();
+});
+
+sankeySuffixSetting.addEventListener("input", function (e) {
     processInput();
 });
 
@@ -265,6 +270,9 @@ function processInput() {
         })
         .nodeTitle(function (d) {
             return d.id;
+        })
+        .nodeSuffix(function (d) {
+          return sankeySuffixSetting.value;
         })
         .nodeTooltip(function (d) {
             let outgoingValue = 0.0, incomingValue = 0.0;
