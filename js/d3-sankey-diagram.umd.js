@@ -18858,6 +18858,7 @@ function sortNodes$1 (G, order, sweepDirection, includeLoops) {
 function sortNodes (G, maxIterations) {
   if ( maxIterations === void 0 ) maxIterations = 25;
 
+  // CHANGE: LOWER MAX ITERATIONS
   maxIterations = 5;
 
   var ranks = getRanks(G);
