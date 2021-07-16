@@ -16,6 +16,10 @@ let currentTabIndex = 0;
 
 let inputTimer;
 sankeyInput.addEventListener("keyup", function (e) {
+    if(e.key.length !== 1) {
+        return;
+    }
+
     clearTimeout(inputTimer);
     inputTimer = setTimeout(redraw, 300);
 });
