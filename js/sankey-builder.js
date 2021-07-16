@@ -245,7 +245,7 @@ function redraw() {
         .transition().duration(1000).ease(d3.easeCubic)
         .call(diagram);
 
-    processInput(true);
+    processInput();
 }
 
 function isOverflown(element) {
