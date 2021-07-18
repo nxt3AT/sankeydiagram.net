@@ -61,7 +61,7 @@ document.querySelectorAll(".close-notification-button").forEach(element => {
 
 document.querySelectorAll(".download-as-png-button").forEach(element => {
     element.addEventListener("click", function (e) {
-        saveSvgAsPng(d3.select("svg").node(), "sankey-builder-export", {
+        saveSvgAsPng(d3.select("svg").node(), "sankeydiagram-net-export", {
             backgroundColor: "white",
             excludeUnusedCss: true
         });
@@ -70,7 +70,7 @@ document.querySelectorAll(".download-as-png-button").forEach(element => {
 
 document.querySelectorAll(".download-as-svg-button").forEach(element => {
     element.addEventListener("click", function (e) {
-        saveSvg(d3.select("svg").node(), "sankey-builder-export", {
+        saveSvg(d3.select("svg").node(), "sankeydiagram-net-export", {
             backgroundColor: "white",
             excludeUnusedCss: true
         });
