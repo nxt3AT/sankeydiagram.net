@@ -296,10 +296,6 @@ function findGetParameter(parameterName) {
     return result;
 }
 
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-}
-
 let precision = sankeyPrecisionSetting.value;
 
 layout = d3.sankey()
@@ -357,8 +353,3 @@ if(findGetParameter("content") !== null) {
 } else {
     processInput();
 }
-
-
-/*if(isOverflown(document.getElementById("sankey-svg"))) {
-    processInput();
-}*/
