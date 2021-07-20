@@ -135,7 +135,7 @@ new ClipboardJS(".copy-link-button", {
     text: function(trigger) {
         trigger.classList.add("is-clicked");
         setTimeout(() => trigger.classList.remove("is-clicked"), 700)
-        return window.location.href + "?content=" + serializeData();
+        return location.protocol + "//" + location.host + location.pathname + "?content=" + serializeData();
     }
 });
 
