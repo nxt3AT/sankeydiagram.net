@@ -7,6 +7,7 @@ let layout, diagram;
 
 const sankeyPrecisionSetting = document.getElementById("sankey-settings-precision");
 const sankeyHideZerosSetting = document.getElementById("sankey-settings-hidezeros");
+const sankeySeparatorSetting = document.getElementById("sankey-settings-separators");
 const sankeyColorpaletteSetting = document.getElementById("sankey-settings-colorscheme");
 const sankeySuffixSetting = document.getElementById("sankey-settings-suffix");
 
@@ -35,6 +36,10 @@ sankeyHideZerosSetting.addEventListener("input", function (e) {
 });
 
 sankeySuffixSetting.addEventListener("input", function (e) {
+    processInput();
+});
+
+sankeySeparatorSetting.addEventListener("input", function (e) {
     processInput();
 });
 
@@ -291,6 +296,10 @@ function findGetParameter(parameterName) {
     return result;
 }
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
+
 let precision = sankeyPrecisionSetting.value;
 
 layout = d3.sankey()
@@ -301,15 +310,18 @@ layout = d3.sankey()
 
 diagram = d3.sankeyDiagram()
     .nodeValue(function (d) {
+        let nodeValue;
         if (d.incoming.length > 0) {
             let incomingValue = 0.0;
             d.incoming.forEach(incomingNode => {
                 incomingValue += parseFloat(incomingNode.value);
             });
-            return sankeyHideZerosSetting.checked ? incomingValue.toFixed(precision).replace(zerosRegex, "") : incomingValue.toFixed(precision)
+            nodeValue = sankeyHideZerosSetting.checked ? incomingValue.toFixed(precision).replace(zerosRegex, "") : incomingValue.toFixed(precision);
         } else {
-            return sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision)
+            nodeValue = sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision);
         }
+
+        return sankeySeparatorSetting.checked ? Number(nodeValue).toLocaleString() : nodeValue;
     })
     .nodeTitle(function (d) {
         return d.id;
