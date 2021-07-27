@@ -10279,7 +10279,7 @@ footer {
 }
 
 #sankey-input-box {
-  height: 60vh;
+  min-height: 60vh;
   resize: vertical;
 }
 
@@ -10308,7 +10308,7 @@ footer {
 }
 
 #sankey-input-textarea {
-  height: calc(100% - 2 * 0.75rem);
+  height: calc(60vh - 2 * 0.75rem);
   resize: none;
 }
 
@@ -10355,6 +10355,10 @@ li {
 @media screen and (min-width: 769px) {
   #sankey-input-box {
     height: 50vh;
+  }
+
+  #sankey-input-textarea {
+    height: calc(100% - 2 * 0.75rem);
   }
 
   #sankey-svg {
