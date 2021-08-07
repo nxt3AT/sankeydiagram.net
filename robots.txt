@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /legalnotice.html
 Disallow: /privacypolicy.html
+Disallow: /404.html
 Disallow: /cdn-cgi/
