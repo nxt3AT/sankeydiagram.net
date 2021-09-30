@@ -32,7 +32,6 @@ sankeyPrecisionSetting.addEventListener("input", function (e) {
     processInput();
 });
 
-
 sankeyHideZerosSetting.addEventListener("input", function (e) {
     processInput();
 });
