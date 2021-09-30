@@ -11,6 +11,8 @@ const sankeySeparatorSetting = document.getElementById("sankey-settings-separato
 const sankeyColorpaletteSetting = document.getElementById("sankey-settings-colorscheme");
 const sankeySuffixSetting = document.getElementById("sankey-settings-suffix");
 
+const sankeyHideNumbersSetting = document.getElementById("sankey-settings-hidenumbers");
+
 const allTabs = Array.from(document.getElementById("sankey-input-tabs").getElementsByTagName("li"));
 const allTabContainers = Array.from(document.getElementById("sankey-input-box").getElementsByClassName("is-tab"));
 let currentTabIndex = 0;
@@ -46,6 +48,10 @@ sankeySeparatorSetting.addEventListener("input", function (e) {
 sankeyColorpaletteSetting.addEventListener("change", function (e) {
     colorIndex = 0;
     redraw();
+});
+
+sankeyHideNumbersSetting.addEventListener("input", function (e) {
+    processInput();
 });
 
 document.getElementById("sankey-settings-labelabove").addEventListener("change", function (e) {
@@ -307,6 +313,11 @@ layout = d3.sankey()
 diagram = d3.sankeyDiagram()
     .nodeValue(function (d) {
         let nodeValue;
+
+        if (sankeyHideNumbersSetting.checked) {
+            return "";
+        }
+
         if (d.incoming.length > 0) {
             let incomingValue = 0.0;
             d.incoming.forEach(incomingNode => {
