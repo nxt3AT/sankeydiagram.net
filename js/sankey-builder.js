@@ -203,13 +203,21 @@ function parseInputToSankey(input) {
 
     let precision = sankeyPrecisionSetting.value;
 
-    lines.forEach(line => {
+    let positions = undefined;
+    for (let i = 0; i < lines.length; i++) {
+        let line = lines[i];
+
         if (line.startsWith("//") || line.startsWith("'")) {
-            return;
+            continue;
+        }
+
+        if(line.startsWith("\"positions\":")) {
+            positions = JSON.parse("{" + input.split("\n").slice(i, input.split("\n").length).join('') + "}")["positions"];
+            break;
         }
 
         if (!lineRegex.test(line)) {
-            return;
+            continue;
         }
 
         const regexGroups = lineRegex.exec(line);
@@ -238,7 +246,13 @@ function parseInputToSankey(input) {
             "value": sankeyHideZerosSetting.checked ? parseFloat(value).toFixed(precision).replace(zerosRegex, "") : parseFloat(value).toFixed(precision),
             "color": color in CSS3_NAMES_TO_HEX ? CSS3_NAMES_TO_HEX[color] : (color !== undefined && color.startsWith("#")) ? color : getColor(source)
         });
-    });
+    }
+
+    if(positions !== undefined) {
+        layout.ordering(positions);
+    } else {
+        layout.ordering(null);
+    }
 
     return {
         nodes: nodesList,
