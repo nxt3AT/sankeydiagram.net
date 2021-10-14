@@ -354,7 +354,7 @@ diagram = d3.sankeyDiagram()
         return 2.5;
     })
     .linkColor(function (d) {
-        return d.color;
+        return d.value != 0 ? d.color : "#FFFFFF";
     })
     .margins({top: 0, right: 0, bottom: 0, left: 10});
 
