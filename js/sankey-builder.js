@@ -249,7 +249,9 @@ function parseInputToSankey(input) {
     }
 
     if(positions !== undefined) {
-        layout.ordering(positions);
+        if(positions.forEach) {
+            layout.ordering(positions);
+        }
     } else {
         layout.ordering(null);
     }
