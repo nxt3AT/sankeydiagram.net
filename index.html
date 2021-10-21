@@ -112,6 +112,10 @@ target five [15] target six [lightgreen]</textarea>
                         <div class="divider">Specific</div>
                         <label for="sankey-settings-hidenumbers">Hide numbers </label><input type="checkbox" id="sankey-settings-hidenumbers">
                         <br>
+                        <label for="sankey-settings-canvas-width">Canvas Width </label><input type="number" id="sankey-settings-canvas-width" value="1920">
+                        <br>
+                        <label for="sankey-settings-canvas-height">Canvas Height </label><input type="number" id="sankey-settings-canvas-height" value="1080">
+                        <br>
                         <div class="divider">Debug</div>
                         <span class="button is-dark p-1 mb-1 has-shadow anonymize-data-button is-clickable level-item"><span class="material-icons mr-1">shuffle</span> Anonymize Data</span>
                     </div>
@@ -140,7 +144,7 @@ target five [15] target six [lightgreen]</textarea>
 
             <div id="sankey-box" class="box column is-full-tablet-landscape">
                 <svg id="sankey-svg" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
-                    <text class="watermark" text-anchor="middle" x="50%" y="50" style="display: inline;">SankeyDiagram.net</text>
+                    <text class="watermark" text-anchor="middle" x="50%" y="30" style="display: inline;">SankeyDiagram.net</text>
                 </svg>
             </div>
         </div>

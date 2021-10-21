@@ -12,6 +12,8 @@ const sankeyColorpaletteSetting = document.getElementById("sankey-settings-color
 const sankeySuffixSetting = document.getElementById("sankey-settings-suffix");
 
 const sankeyHideNumbersSetting = document.getElementById("sankey-settings-hidenumbers");
+const sankeyCanvasWidthSetting = document.getElementById("sankey-settings-canvas-width");
+const sankeyCanvasHeightSetting = document.getElementById("sankey-settings-canvas-height");
 
 const allTabs = Array.from(document.getElementById("sankey-input-tabs").getElementsByTagName("li"));
 const allTabContainers = Array.from(document.getElementById("sankey-input-box").getElementsByClassName("is-tab"));
@@ -54,6 +56,18 @@ sankeyHideNumbersSetting.addEventListener("input", function (e) {
 });
 
 document.getElementById("sankey-settings-labelabove").addEventListener("change", function (e) {
+    redraw();
+});
+
+sankeyCanvasWidthSetting.addEventListener("change", function (e) {
+    document.getElementById("sankey-svg").setAttribute("viewBox", "0 0 " + sankeyCanvasWidthSetting.value + " " + sankeyCanvasHeightSetting.value);
+    layout.size([sankeyCanvasWidthSetting.value-60, sankeyCanvasHeightSetting.value]);
+    redraw();
+});
+
+sankeyCanvasHeightSetting.addEventListener("change", function (e) {
+    document.getElementById("sankey-svg").setAttribute("viewBox", "0 0 " + sankeyCanvasWidthSetting.value + " " + sankeyCanvasHeightSetting.value);
+    layout.size([sankeyCanvasWidthSetting.value-60, sankeyCanvasHeightSetting.value]);
     redraw();
 });
 
@@ -195,7 +209,7 @@ function calculateValue(lines, originalTarget) {
     return totalValue;
 }
 function parseInputToSankey(input) {
-    let lines = [...new Set(input.split("\n"))];
+    let lines = input.split("\n");
 
     let nodeKeys = [];
     let nodesList = [];
