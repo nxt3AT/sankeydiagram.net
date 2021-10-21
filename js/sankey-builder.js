@@ -195,7 +195,7 @@ function calculateValue(lines, originalTarget) {
     return totalValue;
 }
 function parseInputToSankey(input) {
-    let lines = [...new Set(input.split("\n"))];
+    let lines = input.split("\n");
 
     let nodeKeys = [];
     let nodesList = [];
