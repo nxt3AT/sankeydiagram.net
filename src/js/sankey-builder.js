@@ -1,3 +1,12 @@
+import * as d3 from "d3";
+import * as sankey from "./d3-sankey-diagram/src/index";
+
+import * as saveSvg from 'save-svg-as-png';
+import LZString from "lz-string";
+import ClipboardJS from "clipboard";
+
+import {CSS3_NAMES_TO_HEX, getColor, resetColorIndex} from "./colors";
+
 const lineRegex = new RegExp("(.*)\\[([0-9,.?]+[$€£₽¥]?)\\]\\s*(.+?)(?:\\s\\[(.+)\\])?$");
 const zerosRegex = new RegExp("(\\.0+)$");
 const sankeyInput = document.getElementById("sankey-input-textarea");
@@ -27,7 +36,7 @@ sankeyInput.addEventListener("keyup", function (e) {
     }
 
     clearTimeout(inputTimer);
-    inputTimer = setTimeout(redraw, 300);
+    inputTimer = setTimeout(processInput, 300);
 });
 
 sankeyPrecisionSetting.addEventListener("input", function (e) {
@@ -47,8 +56,8 @@ sankeySeparatorSetting.addEventListener("input", function (e) {
 });
 
 sankeyColorpaletteSetting.addEventListener("change", function (e) {
-    colorIndex = 0;
-    redraw();
+    resetColorIndex();
+    processInput();
 });
 
 sankeyHideNumbersSetting.addEventListener("input", function (e) {
@@ -56,23 +65,23 @@ sankeyHideNumbersSetting.addEventListener("input", function (e) {
 });
 
 document.getElementById("sankey-settings-labelabove").addEventListener("change", function (e) {
-    redraw();
+    processInput();
 });
 
 sankeyCanvasWidthSetting.addEventListener("change", function (e) {
     document.getElementById("sankey-svg").setAttribute("viewBox", "0 0 " + sankeyCanvasWidthSetting.value + " " + sankeyCanvasHeightSetting.value);
     layout.size([sankeyCanvasWidthSetting.value-60, sankeyCanvasHeightSetting.value]);
-    redraw();
+    processInput();
 });
 
 sankeyCanvasHeightSetting.addEventListener("change", function (e) {
     document.getElementById("sankey-svg").setAttribute("viewBox", "0 0 " + sankeyCanvasWidthSetting.value + " " + sankeyCanvasHeightSetting.value);
     layout.size([sankeyCanvasWidthSetting.value-60, sankeyCanvasHeightSetting.value]);
-    redraw();
+    processInput();
 });
 
 document.getElementById("sankey-input-box").addEventListener("resize", function (e) {
-    redraw();
+    processInput();
 });
 
 window.addEventListener("resize", processInput);
@@ -85,7 +94,7 @@ document.querySelectorAll(".close-notification-button").forEach(element => {
 
 document.querySelectorAll(".download-as-png-button").forEach(element => {
     element.addEventListener("click", function (e) {
-        saveSvgAsPng(d3.select("svg").node(), "sankeydiagram-net-export", {
+        saveSvg.saveSvgAsPng(d3.select("svg").node(), "sankeydiagram-net-export", {
             backgroundColor: "white",
             excludeUnusedCss: true
         });
@@ -94,7 +103,7 @@ document.querySelectorAll(".download-as-png-button").forEach(element => {
 
 document.querySelectorAll(".download-as-svg-button").forEach(element => {
     element.addEventListener("click", function (e) {
-        saveSvg(d3.select("svg").node(), "sankeydiagram-net-export", {
+        saveSvg.saveSvg(d3.select("svg").node(), "sankeydiagram-net-export", {
             backgroundColor: "white",
             excludeUnusedCss: true
         });
@@ -146,7 +155,7 @@ document.querySelectorAll(".anonymize-data-button").forEach(element => {
 
         sankeyInput.value = scrubbedLines;
 
-        redraw();
+        processInput();
     });
 });
 
@@ -276,19 +285,6 @@ function parseInputToSankey(input) {
     };
 }
 
-function redraw() {
-    let graph = parseInputToSankey(sankeyInput.value);
-    layout(graph);
-
-    sankeySvg
-        .datum(graph)
-        .datum(layout.scale(null))
-        .transition().duration(1000).ease(d3.easeCubic)
-        .call(diagram);
-
-    processInput();
-}
-
 function isOverflown(element) {
     return element.scrollWidth > element.clientWidth;
 }
@@ -333,13 +329,14 @@ function findGetParameter(parameterName) {
 
 let precision = sankeyPrecisionSetting.value;
 
-layout = d3.sankey()
+
+layout = sankey.sankey()
     .size([1840, 1080])
     .linkValue(function (d) {
         return d.value;
     });
 
-diagram = d3.sankeyDiagram()
+diagram = sankey.sankeyDiagram()
     .nodeValue(function (d) {
         let nodeValue;
 

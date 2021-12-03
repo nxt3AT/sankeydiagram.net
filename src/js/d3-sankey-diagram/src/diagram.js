@@ -324,6 +324,18 @@ export default function sankeyDiagram () {
     return this
   }
 
+  exports.nodeSuffix = function (_x) {
+    if (!arguments.length) return node.nodeSuffix()
+    node.nodeSuffix(_x);
+    return this
+  };
+
+  exports.nodeTooltip = function (_x) {
+    if (!arguments.length) return node.nodeTooltip()
+    node.nodeTooltip(_x);
+    return this
+  };
+
   exports.nodeValue = function (_x) {
     if (!arguments.length) return node.nodeValue()
     node.nodeValue(_x)

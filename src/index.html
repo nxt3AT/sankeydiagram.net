@@ -91,10 +91,12 @@ target five [15] target six [lightgreen]</textarea>
                         <br>
                         <label for="sankey-settings-colorscheme">Color scheme </label>
                         <select id="sankey-settings-colorscheme" name="sankey-settings-colorscheme">
-                            <option value="20c">20c (default)</option>
-                            <option value="20">20</option>
-                            <option value="10">10</option>
-                            <option value="20b">20b</option>
+                            <option value="set2">default</option>
+                            <option value="accent">accent</option>
+                            <option value="paired">paired</option>
+                            <option value="set3">set3</option>
+                            <option value="cat10">cat10</option>
+                            <option value="pastel1">pastel</option>
                             <option value="nested">nested</option>
                         </select>
                         <br>
@@ -154,12 +156,6 @@ target five [15] target six [lightgreen]</textarea>
         Rotate your display for a better experience!
     </div>-->
 
-    <script src="js/d3.v4.min.js"></script>
-    <script src="js/d3-sankey-diagram.min.js"></script>
-    <script src="js/lz-string.min.js"></script>
-    <script src="js/colors.js"></script>
-    <script src="js/saveSvgAsPng.js"></script>
-    <script src="js/clipboard.min.js"></script>
-    <script src="js/sankey-builder.js"></script>
+    <script src="js/sankey-builder.js" type="module"></script>
 </body>
 </html>

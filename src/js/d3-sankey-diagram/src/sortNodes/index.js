@@ -11,7 +11,7 @@ import sortNodesOnce from './weighted-median-sort.js'
  * @param {Graph} G - The graph. Nodes must have a `rank` attribute.
  *
  */
-export default function sortNodes (G, maxIterations = 25) {
+export default function sortNodes (G, maxIterations = 5) {
   let ranks = getRanks(G)
   let order = initialOrdering(G, ranks)
   let best = order

@@ -2,6 +2,8 @@ import { select } from 'd3-selection'
 
 export default function () {
   let nodeTitle = (d) => d.title !== undefined ? d.title : d.id
+  let nodeTooltip = (d) => d.title !== undefined ? d.title : d.id
+  let nodeSuffix = (d) => "";
   let nodeValue = (d) => null
   let nodeVisible = (d) => !!nodeTitle(d)
 
@@ -49,11 +51,12 @@ export default function () {
 
       const separateValue = (d.x1 - d.x0) > 2
       const titleText = nodeTitle(d) + ((!separateValue && nodeValue(d))
-                                        ? ' (' + nodeValue(d) + ')' : '')
+          ? ' ' + nodeValue(d) : '') + nodeSuffix(d);
+      const tooltipText = nodeTooltip(d);
 
       // Update un-transitioned
       title
-        .text(titleText)
+        .text(tooltipText);
 
       value
         .text(nodeValue)
@@ -135,6 +138,22 @@ export default function () {
     return nodeTitle
   }
 
+  sankeyNode.nodeSuffix = function (x) {
+    if (arguments.length) {
+      nodeSuffix = required(x);
+      return sankeyNode
+    }
+    return nodeSuffix
+  };
+
+  sankeyNode.nodeTooltip = function (x) {
+    if (arguments.length) {
+      nodeTooltip = required(x);
+      return sankeyNode
+    }
+    return nodeTooltip
+  };
+
   sankeyNode.nodeValue = function (x) {
     if (arguments.length) {
       nodeValue = required(x)
@@ -151,25 +170,7 @@ function nodeTransform (d) {
 }
 
 function titlePosition (d) {
-  let titleAbove = false
-  let right = false
-
-  // If thin, and there's enough space, put above
-  if (d.spaceAbove > 20 && d.style !== 'type') {
-    titleAbove = true
-  } else {
-    titleAbove = false
-  }
-
-  if (d.incoming.length === 0) {
-    right = true
-    titleAbove = false
-  } else if (d.outgoing.length === 0) {
-    right = false
-    titleAbove = false
-  }
-
-  return {titleAbove, right}
+  return {titleAbove: document.getElementById("sankey-settings-labelabove").checked, right: d.incoming.length !== 0}
 }
 
 function wrap (d, width) {

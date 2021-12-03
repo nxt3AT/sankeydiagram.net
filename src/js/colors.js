@@ -1,4 +1,7 @@
-CSS3_NAMES_TO_HEX = {
+import * as d3 from 'd3';
+import {pair} from "d3-array/src/pairs";
+
+export const CSS3_NAMES_TO_HEX = {
     "aliceblue": "#f0f8ff",
     "antiquewhite": "#faebd7",
     "aqua": "#00ffff",
@@ -148,12 +151,15 @@ CSS3_NAMES_TO_HEX = {
     "yellowgreen": "#9acd32",
 }
 
-const palette_20c = d3.scaleOrdinal(d3.schemeCategory20c);
-const palette_20b = d3.scaleOrdinal(d3.schemeCategory20b);
-const palette_20 = d3.scaleOrdinal(d3.schemeCategory20);
-const palette_10 = d3.scaleOrdinal(d3.schemeCategory10);
+export const palette_paired = d3.scaleOrdinal(d3.schemePaired);
+export const palette_cat10 = d3.scaleOrdinal(d3.schemeCategory10);
+export const palette_pastel1 = d3.scaleOrdinal(d3.schemePastel1);
+export const palette_set3 = d3.scaleOrdinal(d3.schemeSet3);
 
-const palette_nested = [
+export const palette_accent = d3.scaleOrdinal(d3.schemeAccent);
+export const palette_set2 = d3.scaleOrdinal(d3.schemeSet2);
+
+export const palette_nested = [
     "#3182bd",
     "#48d1cc",
     "#6baed6",
@@ -195,20 +201,34 @@ function colors(s) {
     });
 }
 
+let sankeyColorpaletteSetting = document.getElementById("sankey-settings-colorscheme");
 let colorIndex = 0;
-function getColor(key) {
+
+export function resetColorIndex() {
+    colorIndex = 0;
+}
+
+export function getColor(key) {
+    if(sankeyColorpaletteSetting === undefined) {
+        sankeyColorpaletteSetting = document.getElementById("sankey-settings-colorscheme");
+    }
+
     switch (sankeyColorpaletteSetting.value) {
-        case "20c":
-            return palette_20c(key);
-        case "20b":
-            return palette_20b(key);
-        case "20":
-            return palette_20(key);
-        case "10":
-            return palette_10(key);
+        case "paired":
+            return palette_paired(key);
+        case "cat10":
+            return palette_cat10(key);
+        case "pastel1":
+            return palette_pastel1(key);
+        case "set3":
+            return palette_set3(key);
+        case "accent":
+            return palette_accent(key);
+        case "set2":
+            return palette_set2(key);
         case "nested":
             return palette_nested[++colorIndex];
         default:
-            return palette_20c(key);
+            return palette_set2(key);
     }
 }
