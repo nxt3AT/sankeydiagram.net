@@ -1,0 +1,3 @@
+[submodule "src/js/d3-sankey-diagram"]
+	path = src/js/d3-sankey-diagram
+	url = https://github.com/ricklupton/d3-sankey-diagram

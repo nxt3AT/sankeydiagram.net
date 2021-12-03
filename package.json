@@ -1,0 +1,21 @@
+{
+  "name": "sankeydiagram.net",
+  "version": "1.0.0",
+  "private": true,
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build src/*.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.1",
+    "parcel-reporter-static-files-copy": "^1.3.0"
+  },
+  "dependencies": {
+  },
+  "staticFiles": {
+    "staticPath": "src/static",
+    "watcherGlob": "**"
+  }
+}

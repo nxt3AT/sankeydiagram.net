@@ -1,0 +1,73 @@
+@charset "utf-8"
+
+$divider-background-color: $border !default
+$divider-font-size: $size-7 !default
+$divider-margin-inner-size: 10px !default
+$divider-margin-size: 25px !default
+
+.divider
+  position: relative
+  display: flex
+  align-items: center
+  text-transform: uppercase
+  color: $grey
+  font-size: $divider-font-size
+  font-weight: $weight-semibold
+  letter-spacing: .5px
+  margin: $divider-margin-size 0
+
+  &::after,
+  &::before
+    content: ''
+    display: block
+    flex: 1
+    height: 1px
+    background-color: $divider-background-color
+
+  &:not(.is-right)
+    &::after
+      margin-left: $divider-margin-inner-size
+
+  &:not(.is-left)
+    &::before
+      margin-right: $divider-margin-inner-size
+
+  &.is-left
+    &::before
+      display: none
+
+  &.is-right
+    &::after
+      display: none
+
+  &.is-vertical
+    flex-direction: column
+    margin: 0 $divider-margin-size
+
+    &::after,
+    &::before
+      height: auto
+      width: 1px
+
+    &::after
+      margin-left: 0
+      margin-top: $divider-margin-inner-size
+
+    &::before
+      margin-right: 0
+      margin-bottom: $divider-margin-inner-size
+
+  @each $name, $pair in $colors
+    $color: nth($pair, 1)
+    &.is-#{$name}
+      &::after,
+      &::before
+        background-color: $color
+
+      // If light and dark colors are provided
+      @if length($pair) >= 4
+        $color-light: nth($pair, 3)
+        &.is-light
+          &::after,
+          &::before
+            background-color: $color-light
