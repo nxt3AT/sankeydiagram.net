@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import * as sankey from "./d3-sankey-diagram/src/index";
 
-import * as saveSvg from 'save-svg-as-png';
+import * as saveSvg from "save-svg-as-png";
 import LZString from "lz-string";
 import ClipboardJS from "clipboard";
 
@@ -39,28 +39,14 @@ sankeyInput.addEventListener("keyup", function (e) {
     inputTimer = setTimeout(processInput, 300);
 });
 
-sankeyPrecisionSetting.addEventListener("input", function (e) {
-    processInput();
-});
-
-sankeyHideZerosSetting.addEventListener("input", function (e) {
-    processInput();
-});
-
-sankeySuffixSetting.addEventListener("input", function (e) {
-    processInput();
-});
-
-sankeySeparatorSetting.addEventListener("input", function (e) {
-    processInput();
-});
+[sankeyPrecisionSetting, sankeyHideZerosSetting, sankeySuffixSetting, sankeySeparatorSetting, sankeyHideNumbersSetting].forEach(setting => {
+    setting.addEventListener("input", function (e) {
+        processInput();
+    });
+})
 
 sankeyColorpaletteSetting.addEventListener("change", function (e) {
     resetColorIndex();
-    processInput();
-});
-
-sankeyHideNumbersSetting.addEventListener("input", function (e) {
     processInput();
 });
 
@@ -111,7 +97,7 @@ document.querySelectorAll(".download-as-svg-button").forEach(element => {
 });
 
 function generateRandomString(length) {
-    let randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let randomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let result = "";
     for (let i = 0; i < length; i++) {
         result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
@@ -171,8 +157,8 @@ document.querySelectorAll(".navbar-burger").forEach(element => {
    element.addEventListener("click", function () {
        const target = document.getElementById(element.dataset.target);
 
-       element.classList.toggle('is-active');
-       target.classList.toggle('is-active');
+       element.classList.toggle("is-active");
+       target.classList.toggle("is-active");
    });
 });
 
@@ -235,7 +221,7 @@ function parseInputToSankey(input) {
         }
 
         if(line.startsWith("\"positions\":")) {
-            positions = JSON.parse("{" + input.split("\n").slice(i, input.split("\n").length).join('') + "}")["positions"];
+            positions = JSON.parse("{" + input.split("\n").slice(i, input.split("\n").length).join("") + "}")["positions"];
             break;
         }
 
@@ -285,10 +271,6 @@ function parseInputToSankey(input) {
     };
 }
 
-function isOverflown(element) {
-    return element.scrollWidth > element.clientWidth;
-}
-
 function processInput() {
     let graph = parseInputToSankey(sankeyInput.value);
 
@@ -328,7 +310,6 @@ function findGetParameter(parameterName) {
 }
 
 let precision = sankeyPrecisionSetting.value;
-
 
 layout = sankey.sankey()
     .size([1840, 1080])
