@@ -35,3 +35,5 @@ This is project is provided for free by my company [nxt3.at](https://nxt3.at). I
 
 This piece of software is licensed under the MIT with a Common Clause. That basically means, that you are allowed to view, edit, fork, this project, but not sell it.
 (No legal advice)
+
+If you want to use this project and need special licensing, contact me.
