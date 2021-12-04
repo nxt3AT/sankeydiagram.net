@@ -24,7 +24,7 @@
     "d3-color": "^3.0.1",
     "d3-dispatch": "^3.0.1",
     "d3-ease": "^3.0.1",
-    "d3-format": "^1.4.5",
+    "d3-format": "^3.0.1",
     "d3-interpolate": "^3.0.1",
     "d3-scale": "^4.0.2",
     "d3-scale-chromatic": "^3.0.0",
