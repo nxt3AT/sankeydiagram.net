@@ -6,7 +6,7 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build src/*.html"
+    "build": "parcel build src/*.html --no-scope-hoist"
   },
   "devDependencies": {
     "@parcel/packager-raw-url": "^2.0.1",

@@ -19,6 +19,9 @@ This is project is provided for free by my company [nxt3.at](https://nxt3.at). I
 * run dev-server: `npm run start`
 * build: `npm run build`
 
+### Known Issues
+* Due to issues with parceljs ([issue#7274](https://github.com/parcel-bundler/parcel/issues/7274) [pr#7288](https://github.com/parcel-bundler/parcel/pull/7288)) scope hoisting had to be disabled in the build script until parcel releases a fix. 
+
 ## Credits
 ### Major Libraries
 * Sankey Diagram based on https://github.com/ricklupton/d3-sankey-diagram
