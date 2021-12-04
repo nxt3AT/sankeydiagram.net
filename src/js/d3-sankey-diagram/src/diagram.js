@@ -4,7 +4,7 @@ import sankeyLink from './linkPath.js'
 import sankeyNode from './node.js'
 import positionGroup from './positionGroup.js'
 
-import {select, event} from 'd3-selection'
+import {select} from 'd3-selection'
 import {transition} from 'd3-transition'
 import {dispatch} from 'd3-dispatch'
 import {format} from 'd3-format'
@@ -282,13 +282,13 @@ export default function sankeyDiagram () {
   }
 
   function selectLink (d) {
-    event.stopPropagation()
+    d.stopPropagation()
     var el = select(this).node()
     listeners.call('selectLink', el, d)
   }
 
   function selectNode (d) {
-    event.stopPropagation()
+    d.stopPropagation()
     var el = select(this).node()
     listeners.call('selectNode', el, d)
   }
