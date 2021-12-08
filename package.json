@@ -2,11 +2,10 @@
   "name": "sankeydiagram.net",
   "version": "1.0.0",
   "private": true,
-  "source": "src/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build src/*.html --no-scope-hoist"
+    "build": "parcel build --no-scope-hoist ./src/index.html ./src/404.html ./src/privacypolicy.html ./src/legalnotice.html"
   },
   "devDependencies": {
     "@creativebulma/bulma-divider": "^1.1.0",
