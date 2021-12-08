@@ -9,6 +9,7 @@
     "build": "parcel build src/*.html --no-scope-hoist"
   },
   "devDependencies": {
+    "@creativebulma/bulma-divider": "^1.1.0",
     "@parcel/packager-raw-url": "^2.0.1",
     "@parcel/transformer-sass": "^2.0.1",
     "@parcel/transformer-webmanifest": "^2.0.1",
@@ -18,6 +19,7 @@
     "sharp": "^0.29.3"
   },
   "dependencies": {
+    "bulma": "^0.9.3",
     "clipboard": "^2.0.8",
     "d3": "^7.1.1",
     "d3-array": "^3.1.1",

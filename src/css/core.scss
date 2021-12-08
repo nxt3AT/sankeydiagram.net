@@ -1,17 +1,17 @@
 @charset "utf-8";
 
-@import "bulma/sass/utilities/all";
+@import "node_modules/bulma/sass/utilities/all";
 
 @import "vars";
 
-@import "bulma/sass/base/all";
-@import "bulma/sass/elements/all";
-@import "bulma/sass/form/all";
-@import "bulma-divider/sass/divider";
-@import "bulma/sass/components/all";
-@import "bulma/sass/grid/all";
-@import "bulma/sass/helpers/all";
-@import "bulma/sass/layout/all";
+@import "node_modules/bulma/sass/base/all";
+@import "node_modules/bulma/sass/elements/all";
+@import "node_modules/bulma/sass/form/all";
+@import "node_modules/@creativebulma/bulma-divider/src/sass/index";
+@import "node_modules/bulma/sass/components/all";
+@import "node_modules/bulma/sass/grid/all";
+@import "node_modules/bulma/sass/helpers/all";
+@import "node_modules/bulma/sass/layout/all";
 
 html {
   background-color: $white-ter;
