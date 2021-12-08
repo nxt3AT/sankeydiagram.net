@@ -4,7 +4,7 @@
   "private": true,
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "parcel",
+    "start": "parcel ./src/*.html",
     "build": "parcel build --no-scope-hoist ./src/index.html ./src/404.html ./src/privacypolicy.html ./src/legalnotice.html"
   },
   "devDependencies": {
