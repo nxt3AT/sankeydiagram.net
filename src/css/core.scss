@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+@import "node_modules/bulma/sass/utilities/all";
+
+@import "vars";
+
+@import "node_modules/bulma/sass/base/all";
+@import "node_modules/bulma/sass/elements/all";
+@import "node_modules/bulma/sass/form/all";
+@import "node_modules/@creativebulma/bulma-divider/src/sass/index";
+@import "node_modules/bulma/sass/components/all";
+@import "node_modules/bulma/sass/grid/all";
+@import "node_modules/bulma/sass/helpers/all";
+@import "node_modules/bulma/sass/layout/all";
+
+html {
+  background-color: $white-ter;
+}
+
+html, body {
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+}

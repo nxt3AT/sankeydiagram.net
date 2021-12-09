@@ -1,0 +1,9 @@
+{
+  "name": "SankeyDiagram.net",
+  "theme_color": "#3273dc",
+  "background_color": "#f5f5f5",
+  "display": "standalone",
+  "orientation": "landscape",
+  "scope": "/",
+  "start_url": "/"
+}
