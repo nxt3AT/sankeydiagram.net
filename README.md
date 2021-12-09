@@ -13,7 +13,7 @@ This is project is provided for free by my company [nxt3.at](https://nxt3.at). I
 * german portfolio: [nxt3.at](https://nxt3.at)
 * mail: [jonas@nxt3.at](mailto:jonas@nxt3.at) 
 * twitter: [@JonasDoesThings](https://twitter.com/jonasdoesthings) 
-* english portfolio: [english portfolio: jonasdoesthings.com](https://jonasdoesthings.com/)
+* english portfolio: [jonasdoesthings.com](https://jonasdoesthings.com/)
 
 ## Develop
 * run dev-server: `npm run start`
