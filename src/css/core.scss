@@ -4,14 +4,35 @@
 
 @import "vars";
 
-@import "node_modules/bulma/sass/base/all";
+@import "node_modules/bulma/sass/base/minireset";
+@import "node_modules/bulma/sass/base/generic";
+
 @import "node_modules/bulma/sass/elements/all";
-@import "node_modules/bulma/sass/form/all";
+
+@import "node_modules/bulma/sass/form/shared";
+@import "node_modules/bulma/sass/form/input-textarea";
+@import "node_modules/bulma/sass/form/checkbox-radio";
+@import "node_modules/bulma/sass/form/select";
+@import "node_modules/bulma/sass/form/tools";
+
 @import "node_modules/@creativebulma/bulma-divider/src/sass/index";
-@import "node_modules/bulma/sass/components/all";
-@import "node_modules/bulma/sass/grid/all";
-@import "node_modules/bulma/sass/helpers/all";
-@import "node_modules/bulma/sass/layout/all";
+
+@import "node_modules/bulma/sass/components/dropdown";
+@import "node_modules/bulma/sass/components/level";
+@import "node_modules/bulma/sass/components/modal";
+@import "node_modules/bulma/sass/components/navbar";
+@import "node_modules/bulma/sass/components/tabs";
+
+@import "node_modules/bulma/sass/grid/columns";
+
+@import "node_modules/bulma/sass/helpers/color";
+@import "node_modules/bulma/sass/helpers/flexbox";
+@import "node_modules/bulma/sass/helpers/other";
+@import "node_modules/bulma/sass/helpers/spacing";
+@import "node_modules/bulma/sass/helpers/typography";
+@import "node_modules/bulma/sass/helpers/visibility";
+
+@import "node_modules/bulma/sass/layout/footer";
 
 html {
   background-color: $white-ter;
