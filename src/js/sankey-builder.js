@@ -8,7 +8,6 @@ import ClipboardJS from "clipboard";
 import {CSS3_NAMES_TO_HEX, getColor, resetColorIndex} from "./colors";
 
 const lineRegex = new RegExp("(.*)\\[([0-9,.?]+[$€£₽¥]?)\\]\\s*(.+?)(?:\\s\\[(.+)\\])?$");
-const zerosRegex = new RegExp("(\\.0+)$");
 const sankeyInput = document.getElementById("sankey-input-textarea");
 
 let sankeySvg, sankeyBox;
@@ -252,7 +251,7 @@ function parseInputToSankey(input) {
         linksList.push({
             "source": source,
             "target": target,
-            "value": sankeyHideZerosSetting.checked ? parseFloat(value).toFixed(precision).replace(zerosRegex, "") : parseFloat(value).toFixed(precision),
+            "value": sankeyHideZerosSetting.checked ? Number(parseFloat(value).toFixed(precision)) : parseFloat(value).toFixed(precision),
             "color": color in CSS3_NAMES_TO_HEX ? CSS3_NAMES_TO_HEX[color] : (color !== undefined && color.startsWith("#")) ? color : getColor(source)
         });
     }
@@ -309,8 +308,6 @@ function findGetParameter(parameterName) {
     return result;
 }
 
-let precision = sankeyPrecisionSetting.value;
-
 layout = sankey.sankey()
     .size([1840, 1080])
     .linkValue(function (d) {
@@ -319,6 +316,7 @@ layout = sankey.sankey()
 
 diagram = sankey.sankeyDiagram()
     .nodeValue(function (d) {
+        let precision = sankeyPrecisionSetting.value;
         let nodeValue;
 
         if (sankeyHideNumbersSetting.checked) {
@@ -330,9 +328,9 @@ diagram = sankey.sankeyDiagram()
             d.incoming.forEach(incomingNode => {
                 incomingValue += parseFloat(incomingNode.value);
             });
-            nodeValue = sankeyHideZerosSetting.checked ? incomingValue.toFixed(precision).replace(zerosRegex, "") : incomingValue.toFixed(precision);
+            nodeValue = sankeyHideZerosSetting.checked ? Number(incomingValue.toFixed(precision)) : incomingValue.toFixed(precision);
         } else {
-            nodeValue = sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision);
+            nodeValue = sankeyHideZerosSetting.checked ? Number(d.value.toFixed(precision)) : d.value.toFixed(precision);
         }
 
         return sankeySeparatorSetting.checked ? Number(nodeValue).toLocaleString() : nodeValue;
@@ -344,6 +342,7 @@ diagram = sankey.sankeyDiagram()
         return sankeySuffixSetting.value;
     })
     .nodeTooltip(function (d) {
+        let precision = sankeyPrecisionSetting.value;
         let outgoingValue = 0.0, incomingValue = 0.0;
         d.outgoing.forEach(outgoingNode => {
             outgoingValue += parseFloat(outgoingNode.value);
@@ -353,9 +352,9 @@ diagram = sankey.sankeyDiagram()
         });
 
         if (d.outgoing.length > 0 && d.incoming.length > 0 && (Math.abs(outgoingValue) !== Math.abs(incomingValue))) {
-            return (sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision)) + "\ndifference: " + (parseFloat(incomingValue) - parseFloat(outgoingValue)).toFixed(precision);
+            return (sankeyHideZerosSetting.checked ? Number(d.value.toFixed(precision)) : d.value.toFixed(precision)) + "\ndifference: " + (parseFloat(incomingValue) - parseFloat(outgoingValue)).toFixed(precision);
         } else {
-            return (sankeyHideZerosSetting.checked ? d.value.toFixed(precision).replace(zerosRegex, "") : d.value.toFixed(precision));
+            return (sankeyHideZerosSetting.checked ? Number(d.value.toFixed(precision)) : d.value.toFixed(precision));
         }
     })
     .linkMinWidth(function (d) {
