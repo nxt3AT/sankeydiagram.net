@@ -333,7 +333,10 @@ diagram = sankey.sankeyDiagram()
             nodeValue = sankeyHideZerosSetting.checked ? Number(d.value.toFixed(precision)) : d.value.toFixed(precision);
         }
 
-        return sankeySeparatorSetting.checked ? Number(nodeValue).toLocaleString() : nodeValue;
+        return sankeySeparatorSetting.checked ? Number(nodeValue).toLocaleString(undefined, {
+            minimumFractionDigits: sankeyHideZerosSetting.checked ? undefined : precision,
+            minimumSignificantDigits: sankeyHideZerosSetting.ch ? precision : undefined,
+        }) : nodeValue;
     })
     .nodeTitle(function (d) {
         return d.id;
