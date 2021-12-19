@@ -76,7 +76,8 @@
                         </ul>
                     </div>
                     <div class="is-tab is-active">
-<textarea id="sankey-input-textarea" class="input" placeholder="SOURCE [AMOUNT] TARGET ([COLOR])" >
+
+                            <textarea id="sankey-input-textarea" class="input" placeholder="SOURCE [AMOUNT] TARGET ([COLOR])" >
 // SOURCE [VALUE (can be a '?')] TARGET ([COLOR])
 source [100] target
 source two [30] target
@@ -85,7 +86,12 @@ target [80] follow me on twitter [pink]
 target two [5] target three
 target two [25] target four
 target two [20] target five
-target five [15] target six [lightgreen]</textarea>
+target five [15] target six [lightgreen]
+</textarea>
+                            <label for="import-text-input">
+                                <span class="button is-dark p-1 mb-1 has-shadow import-txt-button is-clickable level-item" data-tooltip="Copied!"><span class="material-icons mr-1">file_upload</span> Import from TXT</span>
+                                <input type="file" id="import-text-input" accept=".txt" style="display:none" />
+                            </label>
                     </div>
                     <div class="is-tab">
                         <div class="divider">General</div>
@@ -123,7 +129,8 @@ target five [15] target six [lightgreen]</textarea>
                         <div class="divider">Share</div>
                         <span class="button is-dark p-1 mb-1 has-shadow download-as-png-button is-clickable level-item"><span class="material-icons mr-1">get_app</span> Download as PNG</span>
                         <span class="button is-dark p-1 mb-1 has-shadow download-as-svg-button is-clickable level-item"><span class="material-icons mr-1">get_app</span> Download as SVG</span>
-                        <span class="button is-dark p-1 has-shadow copy-link-button is-clickable level-item" data-tooltip="Copied!"><span class="material-icons mr-1">content_copy</span> Get Share Link</span>
+                        <span class="button is-dark p-1 mb-1 has-shadow copy-link-button is-clickable level-item" data-tooltip="Copied!"><span class="material-icons mr-1">content_copy</span> Get Share Link</span>
+                        <span class="button is-dark p-1 has-shadow export-txt-button is-clickable level-item"><span class="material-icons mr-1">file_download</span> Export as TXT file</span>
                     </div>
                     <div class="is-tab">
                         <div class="divider">What are Sankey Diagrams?</div>
