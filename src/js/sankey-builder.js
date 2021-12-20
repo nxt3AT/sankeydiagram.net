@@ -98,6 +98,10 @@ document.querySelectorAll('.download-as-svg-button').forEach((element) => {
 document.querySelector('.export-txt-button').addEventListener('click', downloadCurrentInputAsTxt);
 document.querySelector('#import-text-input').addEventListener('change', handleFileImport);
 
+/**
+ * imports the given text file, puts its content in the inputfield and renders the diagram
+ * @param {Event} event the event of the file upload form element
+ */
 function handleFileImport(event) {
   const {files} = event.target;
   const reader = new FileReader();
@@ -109,6 +113,9 @@ function handleFileImport(event) {
   reader.readAsText(files[0]);
 }
 
+/**
+ * downloads the current input in the sankeyInput field as a text file
+ */
 function downloadCurrentInputAsTxt() {
   const {value} = sankeyInput;
   const downloadElement = document.createElement('a');
@@ -120,6 +127,11 @@ function downloadCurrentInputAsTxt() {
   document.body.removeChild(downloadElement);
 }
 
+/**
+ * generates a random string with the given length and returns it
+ * @param {number} length length of the string to generate
+ * @return {string} the generated string
+ */
 function generateRandomString(length) {
   const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   let result = '';
@@ -201,6 +213,12 @@ document.getElementById('sankey-input-tabs').addEventListener('click', function(
   currentTabIndex = newTabIndex;
 });
 
+/**
+ * recursively generates the value of an auto-sum connection
+ * @param {string[]} lines
+ * @param {string} originalTarget
+ * @return {number} the calculated value
+ */
 function calculateValue(lines, originalTarget) {
   let totalValue = 0.0;
   lines.forEach((line, index) => {
@@ -227,6 +245,12 @@ function calculateValue(lines, originalTarget) {
   });
   return totalValue;
 }
+
+/**
+ * parses the given input to a sankey diagram
+ * @param {string} input
+ * @return {{nodes: *[], links: *[]}}
+ */
 function parseInputToSankey(input) {
   const lines = input.split('\n');
 
@@ -295,6 +319,9 @@ function parseInputToSankey(input) {
   };
 }
 
+/**
+ * processes the current input in the sankeyInput field and renders it
+ */
 function processInput() {
   const graph = parseInputToSankey(sankeyInput.value);
 
@@ -309,9 +336,19 @@ function processInput() {
       .call(diagram);
 }
 
+/**
+ * serializes the user input and returns it as a compressed string in base64 representation
+ * @return {string}
+ */
 function serializeData() {
   return LZString.compressToBase64(sankeyInput.value);
 }
+
+/**
+ * takes the given compressed string in base64 representation, puts it into user input, and returns and decompressed string
+ * @param {string} rawData the compressed string in base64 representation
+ * @return {string}
+ */
 function deserializeData(rawData) {
   const decompressedData = LZString.decompressFromBase64(rawData);
   sankeyInput.value = decompressedData;
@@ -319,6 +356,11 @@ function deserializeData(rawData) {
   return decompressedData;
 }
 
+/**
+ * finds a get parameter from the url and returns it
+ * @param {string|number} parameterName the name of the parameter to look for
+ * @return {string|null} the found get parameter or null if not present
+ */
 function findGetParameter(parameterName) {
   let result = null;
   let tmp = [];

@@ -195,19 +195,21 @@ export const palette_nested = [
   '#d9d9d9',
 ];
 
-function colors(s) {
-  return s.match(/.{6}/g).map(function(x) {
-    return '#' + x;
-  });
-}
-
 let sankeyColorpaletteSetting = document.getElementById('sankey-settings-colorscheme');
 let colorIndex = 0;
 
+/**
+ * resets the variable colorIndex to zero
+ */
 export function resetColorIndex() {
   colorIndex = 0;
 }
 
+/**
+ * returns the palette with the given name
+ * @param {string} key
+ * @return {any}
+ */
 export function getColor(key) {
   if (sankeyColorpaletteSetting === undefined) {
     sankeyColorpaletteSetting = document.getElementById('sankey-settings-colorscheme');
