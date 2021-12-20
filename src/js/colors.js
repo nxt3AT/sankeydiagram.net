@@ -1,5 +1,4 @@
 import * as d3 from 'd3';
-import {pair} from 'd3-array/src/pairs';
 
 export const CSS3_NAMES_TO_HEX = {
   'aliceblue': '#f0f8ff',
@@ -151,15 +150,15 @@ export const CSS3_NAMES_TO_HEX = {
   'yellowgreen': '#9acd32',
 };
 
-export const palette_paired = d3.scaleOrdinal(d3.schemePaired);
-export const palette_cat10 = d3.scaleOrdinal(d3.schemeCategory10);
-export const palette_pastel1 = d3.scaleOrdinal(d3.schemePastel1);
-export const palette_set3 = d3.scaleOrdinal(d3.schemeSet3);
+export const palettePaired = d3.scaleOrdinal(d3.schemePaired);
+export const paletteCat10 = d3.scaleOrdinal(d3.schemeCategory10);
+export const palettePastel1 = d3.scaleOrdinal(d3.schemePastel1);
+export const paletteSet3 = d3.scaleOrdinal(d3.schemeSet3);
 
-export const palette_accent = d3.scaleOrdinal(d3.schemeAccent);
-export const palette_set2 = d3.scaleOrdinal(d3.schemeSet2);
+export const paletteAccent = d3.scaleOrdinal(d3.schemeAccent);
+export const paletteSet2 = d3.scaleOrdinal(d3.schemeSet2);
 
-export const palette_nested = [
+export const paletteNested = [
   '#3182bd',
   '#48d1cc',
   '#6baed6',
@@ -217,20 +216,20 @@ export function getColor(key) {
 
   switch (sankeyColorpaletteSetting.value) {
     case 'paired':
-      return palette_paired(key);
+      return palettePaired(key);
     case 'cat10':
-      return palette_cat10(key);
+      return paletteCat10(key);
     case 'pastel1':
-      return palette_pastel1(key);
+      return palettePastel1(key);
     case 'set3':
-      return palette_set3(key);
+      return paletteSet3(key);
     case 'accent':
-      return palette_accent(key);
+      return paletteAccent(key);
     case 'set2':
-      return palette_set2(key);
+      return paletteSet2(key);
     case 'nested':
-      return palette_nested[++colorIndex];
+      return paletteNested[++colorIndex];
     default:
-      return palette_set2(key);
+      return paletteSet2(key);
   }
 }

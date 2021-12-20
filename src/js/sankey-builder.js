@@ -7,11 +7,10 @@ import ClipboardJS from 'clipboard';
 
 import {CSS3_NAMES_TO_HEX, getColor, resetColorIndex} from './colors';
 
-const lineRegex = /(.*)\[([0-9,.?]+[$€£₽¥]?)\]\s*(.+?)(?:\s\[(.+)\])?$'/;
+const lineRegex = /(.*)\[([0-9,.?]+[$€£₽¥]?)]\s*(.+?)(?:\s\[(.+)])?$/;
 const sankeyInput = document.getElementById('sankey-input-textarea');
 
 let sankeySvg;
-let layout; let diagram;
 
 const sankeyPrecisionSetting = document.getElementById('sankey-settings-precision');
 const sankeyHideZerosSetting = document.getElementById('sankey-settings-hidezeros');
@@ -39,46 +38,46 @@ sankeyInput.addEventListener('keyup', function(e) {
 });
 
 [sankeyPrecisionSetting, sankeyHideZerosSetting, sankeySuffixSetting, sankeySeparatorSetting, sankeyHideNumbersSetting].forEach((setting) => {
-  setting.addEventListener('input', function(e) {
+  setting.addEventListener('input', function() {
     processInput();
   });
 });
 
-sankeyColorpaletteSetting.addEventListener('change', function(e) {
+sankeyColorpaletteSetting.addEventListener('change', function() {
   resetColorIndex();
   processInput();
 });
 
-document.getElementById('sankey-settings-labelabove').addEventListener('change', function(e) {
+document.getElementById('sankey-settings-labelabove').addEventListener('change', function() {
   processInput();
 });
 
-sankeyCanvasWidthSetting.addEventListener('change', function(e) {
+sankeyCanvasWidthSetting.addEventListener('change', function() {
   document.getElementById('sankey-svg').setAttribute('viewBox', '0 0 ' + sankeyCanvasWidthSetting.value + ' ' + sankeyCanvasHeightSetting.value);
   layout.size([sankeyCanvasWidthSetting.value-60, sankeyCanvasHeightSetting.value]);
   processInput();
 });
 
-sankeyCanvasHeightSetting.addEventListener('change', function(e) {
+sankeyCanvasHeightSetting.addEventListener('change', function() {
   document.getElementById('sankey-svg').setAttribute('viewBox', '0 0 ' + sankeyCanvasWidthSetting.value + ' ' + sankeyCanvasHeightSetting.value);
   layout.size([sankeyCanvasWidthSetting.value-60, sankeyCanvasHeightSetting.value]);
   processInput();
 });
 
-document.getElementById('sankey-input-box').addEventListener('resize', function(e) {
+document.getElementById('sankey-input-box').addEventListener('resize', function() {
   processInput();
 });
 
 window.addEventListener('resize', processInput);
 
 document.querySelectorAll('.close-notification-button').forEach((element) => {
-  element.addEventListener('click', function(e) {
+  element.addEventListener('click', function() {
     element.parentElement.remove();
   });
 });
 
 document.querySelectorAll('.download-as-png-button').forEach((element) => {
-  element.addEventListener('click', function(e) {
+  element.addEventListener('click', function() {
     saveSvg.saveSvgAsPng(d3.select('svg').node(), 'sankeydiagram-net-export', {
       backgroundColor: 'white',
       excludeUnusedCss: true,
@@ -87,7 +86,7 @@ document.querySelectorAll('.download-as-png-button').forEach((element) => {
 });
 
 document.querySelectorAll('.download-as-svg-button').forEach((element) => {
-  element.addEventListener('click', function(e) {
+  element.addEventListener('click', function() {
     saveSvg.saveSvg(d3.select('svg').node(), 'sankeydiagram-net-export', {
       backgroundColor: 'white',
       excludeUnusedCss: true,
@@ -141,7 +140,7 @@ function generateRandomString(length) {
   return result;
 }
 document.querySelectorAll('.anonymize-data-button').forEach((element) => {
-  element.addEventListener('click', function(e) {
+  element.addEventListener('click', function() {
     let scrubbedLines = '';
     const scrubbingFactor = (Math.random() * (1.150 - 0.950) + 0.950).toFixed(3);
     const replacedKeyDict = {};
@@ -221,7 +220,7 @@ document.getElementById('sankey-input-tabs').addEventListener('click', function(
  */
 function calculateValue(lines, originalTarget) {
   let totalValue = 0.0;
-  lines.forEach((line, index) => {
+  lines.forEach((line) => {
     if (line.startsWith('//') || line.startsWith('\'')) {
       return;
     }
@@ -374,13 +373,13 @@ function findGetParameter(parameterName) {
   return result;
 }
 
-layout = sankey.sankey()
+const layout = sankey.sankey()
     .size([1840, 1080])
     .linkValue(function(d) {
       return d.value;
     });
 
-diagram = sankey.sankeyDiagram()
+const diagram = sankey.sankeyDiagram()
     .nodeValue(function(d) {
       const precision = sankeyPrecisionSetting.value;
       let nodeValue;
@@ -409,7 +408,7 @@ diagram = sankey.sankeyDiagram()
     .nodeTitle(function(d) {
       return d.id;
     })
-    .nodeSuffix(function(d) {
+    .nodeSuffix(function() {
       return sankeySuffixSetting.value;
     })
     .nodeTooltip(function(d) {
@@ -429,7 +428,7 @@ diagram = sankey.sankeyDiagram()
         return (sankeyHideZerosSetting.checked ? Number(d.value.toFixed(precision)) : d.value.toFixed(precision));
       }
     })
-    .linkMinWidth(function(d) {
+    .linkMinWidth(function() {
       return 2.5;
     })
     .linkColor(function(d) {
