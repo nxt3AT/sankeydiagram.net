@@ -95,6 +95,31 @@ document.querySelectorAll(".download-as-svg-button").forEach(element => {
     });
 });
 
+document.querySelector(".export-txt-button").addEventListener("click", downloadCurrentInputAsTxt);
+document.querySelector("#import-text-input").addEventListener("change", handleFileImport);
+
+function handleFileImport(event) {
+    const { files } = event.target;
+    const reader = new FileReader();
+    reader.addEventListener('load', (readerEvent) => {
+      const { result } = readerEvent.target;
+      sankeyInput.value = result;
+      processInput();
+    });
+    reader.readAsText(files[0]);
+}
+
+function downloadCurrentInputAsTxt() {
+    const { value } = sankeyInput;
+    const downloadElement = document.createElement('a');
+    downloadElement.setAttribute("href", `data:text/plain;charset=utf-8,${encodeURIComponent(value)}`);
+    downloadElement.setAttribute("download", "sankeydiagram.txt");
+    downloadElement.style.display = "none";
+    document.body.appendChild(downloadElement);
+    downloadElement.click();
+    document.body.removeChild(downloadElement);
+}
+
 function generateRandomString(length) {
     let randomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let result = "";
