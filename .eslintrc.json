@@ -1,0 +1,19 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "google"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 13,
+        "sourceType": "module"
+    },
+    "ignorePatterns": ["src/js/d3-sankey-diagram"],
+    "rules": {
+        "max-len": ["error", {
+            "code": 150
+        }]
+    }
+}
