@@ -5,3 +5,4 @@ dist/
 *.css
 *.min.css
 *.css.map
+.DS_STORE
