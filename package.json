@@ -5,7 +5,7 @@
   "browserslist": ["defaults"],
   "scripts": {
     "start": "parcel ./src/*.html",
-    "build": "parcel build ./src/index.html ./src/404.html ./src/privacypolicy.html ./src/legalnotice.html",
+    "build": "parcel build ./src/index.html ./src/404.html ./src/privacypolicy.html",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint --fix src/**/*.js"
   },
