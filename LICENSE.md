@@ -10,7 +10,7 @@ Software: SankeyDiagram.net
 
 License: MIT with Commons Clause
 
-Licensor: Jonas Lorenz (nxt3)
+Licensor: Jonas Lorenz
 
 MIT License
 

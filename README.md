@@ -15,12 +15,10 @@ Example Diagram: [https://sankeydiagram.net/?content=PTAEGUHkFUCUGECioD...](http
 
 Live version of the dev branch: https://dev.sankeydiagram-net.pages.dev/
 
-## Need a Website / Developer?
-This is project is provided for free by me. I'm open for work.
-### Contact:
-* german portfolio: [nxt3.at](https://nxt3.at)
-* english portfolio: [jonasdoesthings.com](https://jonasdoesthings.com/)
-* mail: [jonas@nxt3.at](mailto:jonas@nxt3.at)
+## Contact
+If you have any questions, need help, a special license, or something else, you can contact me via GitHub Issues, or using the following methods:
+* mail: [jonas@jonasdoesthings.com](mailto:jonas@jonasdoesthings.com)
+* web: [jonasdoesthings.com](https://jonasdoesthings.com/)
 
 ## Credits
 ### Major Libraries Used
