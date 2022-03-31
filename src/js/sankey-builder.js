@@ -4,6 +4,7 @@ import * as sankey from './d3-sankey-diagram/src/index';
 import * as saveSvg from 'save-svg-as-png';
 import LZString from 'lz-string';
 import ClipboardJS from 'clipboard';
+import './modal';
 
 import {CSS3_NAMES_TO_HEX, getColor, resetColorIndex} from './colors';
 
@@ -139,44 +140,57 @@ function generateRandomString(length) {
   }
   return result;
 }
+
+/**
+ * anonymize the input by replacing strings with random gibberish and multiplying all numbers with the same random factor
+ */
+function anonymizeData() {
+  let scrubbedLines = '';
+  const scrubbingFactor = (Math.random() * (1.150 - 0.950) + 0.950).toFixed(3);
+  const replacedKeyDict = {};
+
+  sankeyInput.value.split('\n').forEach((line) => {
+    if (line.startsWith('//') || line.startsWith('\'')) {
+      return;
+    }
+
+    if (!lineRegex.test(line)) {
+      return;
+    }
+
+    const regexGroups = lineRegex.exec(line);
+    const source = regexGroups[1].trim();
+    let value = regexGroups[2];
+    const target = regexGroups[3].trim();
+
+    if (replacedKeyDict[source] == null) {
+      replacedKeyDict[source] = generateRandomString(source.length);
+    }
+
+    if (value !== '?') {
+      value = (value*scrubbingFactor).toFixed(0);
+    }
+
+    if (replacedKeyDict[target] == null) {
+      replacedKeyDict[target] = generateRandomString(target.length);
+    }
+
+    scrubbedLines += replacedKeyDict[source] + ' [' + value + '] ' + replacedKeyDict[target] + '\n';
+  });
+
+  sankeyInput.value = scrubbedLines;
+
+  processInput();
+}
+
 document.querySelectorAll('.anonymize-data-button').forEach((element) => {
   element.addEventListener('click', function() {
-    let scrubbedLines = '';
-    const scrubbingFactor = (Math.random() * (1.150 - 0.950) + 0.950).toFixed(3);
-    const replacedKeyDict = {};
-
-    sankeyInput.value.split('\n').forEach((line) => {
-      if (line.startsWith('//') || line.startsWith('\'')) {
-        return;
-      }
-
-      if (!lineRegex.test(line)) {
-        return;
-      }
-
-      const regexGroups = lineRegex.exec(line);
-      const source = regexGroups[1].trim();
-      let value = regexGroups[2];
-      const target = regexGroups[3].trim();
-
-      if (replacedKeyDict[source] == null) {
-        replacedKeyDict[source] = generateRandomString(source.length);
-      }
-
-      if (value !== '?') {
-        value = (value*scrubbingFactor).toFixed(0);
-      }
-
-      if (replacedKeyDict[target] == null) {
-        replacedKeyDict[target] = generateRandomString(target.length);
-      }
-
-      scrubbedLines += replacedKeyDict[source] + ' [' + value + '] ' + replacedKeyDict[target] + '\n';
-    });
-
-    sankeyInput.value = scrubbedLines;
-
-    processInput();
+    document.getElementById('anonymize-data-modal').classList.add('is-active');
+  });
+});
+document.querySelectorAll('.anonymize-data-confirmation-button').forEach((element) => {
+  element.addEventListener('click', function() {
+    anonymizeData();
   });
 });
 

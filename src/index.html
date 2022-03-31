@@ -166,6 +166,25 @@ target five [15] target six [lightgreen]
         </div>
     </footer>
 
+    <div id="anonymize-data-modal" class="modal p-3">
+        <div class="modal-background"></div>
+
+        <div class="modal-card">
+            <div class="modal-card-head">
+                <p class="modal-card-title">Warning!</p>
+                <button class="delete" aria-label="close"></button>
+            </div>
+            <div class="modal-card-body">
+                <p>Anonymizing your data will replace your input with random text and change all numbers.</p>
+                <p class="has-text-weight-bold has-text-danger">This is not reversible. Use with caution.</p>
+            </div>
+            <div class="modal-card-foot">
+                <button class="button is-success">Cancel</button>
+                <button class="button is-danger anonymize-data-confirmation-button">Anonymize Data</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/sankey-builder.js" type="module"></script>
 </body>
 </html>
