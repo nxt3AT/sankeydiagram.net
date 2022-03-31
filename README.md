@@ -27,8 +27,8 @@ Live version of the dev branch: https://dev.sankeydiagram-net.pages.dev/
 * Due to issues with parceljs ([issue#7274](https://github.com/parcel-bundler/parcel/issues/7274) [pr#7288](https://github.com/parcel-bundler/parcel/pull/7288)) scope hoisting had to be disabled in the build script until parcel releases a fix. 
 
 ## Credits
-### Major Libraries
-* Sankey Diagram based on https://github.com/ricklupton/d3-sankey-diagram
+### Major Libraries Used
+* The Sankey Diagram D3 extension is based on https://github.com/ricklupton/d3-sankey-diagram
 * D3 - https://github.com/d3/d3
 * For exporting images - https://github.com/exupero/saveSvgAsPng
 * For copying to the user's clipboard - https://github.com/zenorocha/clipboard.js
