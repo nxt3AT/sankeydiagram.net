@@ -18,8 +18,8 @@ This is project is provided for free by my company [nxt3.at](https://nxt3.at). I
 ## Develop
 * run dev-server: `npm run start`
 * build: `npm run build`
-* lint: `npm run lint```
-* fix codestyle: `npm run lint:fix```
+* lint: `npm run lint`
+* fix codestyle: `npm run lint:fix`
 
 Live version of the dev branch: https://dev.sankeydiagram-net.pages.dev/
 
