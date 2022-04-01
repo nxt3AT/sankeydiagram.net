@@ -1,6 +1,6 @@
 {
   "name": "sankeydiagram.net",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "private": true,
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
