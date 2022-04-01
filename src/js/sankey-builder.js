@@ -1,8 +1,6 @@
 import * as d3 from 'd3';
 import * as sankey from './d3-sankey-diagram/src/index';
 
-import * as saveSvg from 'save-svg-as-png';
-
 import {CSS3_NAMES_TO_HEX, getColor, resetColorIndex} from './colors';
 
 let sankeySvg;
@@ -25,6 +23,7 @@ import {lineRegex, sankeyInput} from './constants';
 import './modal';
 import './input-anonymizer';
 import './input-sharing';
+import './image-exporter';
 
 let inputTimer;
 sankeyInput.addEventListener('keyup', function(e) {
@@ -73,24 +72,6 @@ window.addEventListener('resize', processInput);
 document.querySelectorAll('.close-notification-button').forEach((element) => {
   element.addEventListener('click', function() {
     element.parentElement.remove();
-  });
-});
-
-document.querySelectorAll('.download-as-png-button').forEach((element) => {
-  element.addEventListener('click', function() {
-    saveSvg.saveSvgAsPng(d3.select('svg').node(), 'sankeydiagram-net-export', {
-      backgroundColor: 'white',
-      excludeUnusedCss: true,
-    });
-  });
-});
-
-document.querySelectorAll('.download-as-svg-button').forEach((element) => {
-  element.addEventListener('click', function() {
-    saveSvg.saveSvg(d3.select('svg').node(), 'sankeydiagram-net-export', {
-      backgroundColor: 'white',
-      excludeUnusedCss: true,
-    });
   });
 });
 
