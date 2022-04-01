@@ -2,12 +2,6 @@ import * as d3 from 'd3';
 import * as sankey from './d3-sankey-diagram/src/index';
 
 import * as saveSvg from 'save-svg-as-png';
-import LZString from 'lz-string';
-import ClipboardJS from 'clipboard';
-
-import {lineRegex, sankeyInput} from './constants';
-import './modal';
-import './input-anonymizer';
 
 import {CSS3_NAMES_TO_HEX, getColor, resetColorIndex} from './colors';
 
@@ -26,6 +20,11 @@ const sankeyCanvasHeightSetting = document.getElementById('sankey-settings-canva
 const allTabs = Array.from(document.getElementById('sankey-input-tabs').getElementsByTagName('li'));
 const allTabContainers = Array.from(document.getElementById('sankey-input-box').getElementsByClassName('is-tab'));
 let currentTabIndex = 0;
+
+import {lineRegex, sankeyInput} from './constants';
+import './modal';
+import './input-anonymizer';
+import './input-sharing';
 
 let inputTimer;
 sankeyInput.addEventListener('keyup', function(e) {
@@ -93,46 +92,6 @@ document.querySelectorAll('.download-as-svg-button').forEach((element) => {
       excludeUnusedCss: true,
     });
   });
-});
-
-document.querySelector('.export-txt-button').addEventListener('click', downloadCurrentInputAsTxt);
-document.querySelector('#import-text-input').addEventListener('change', handleFileImport);
-
-/**
- * imports the given text file, puts its content in the inputfield and renders the diagram
- * @param {Event} event the event of the file upload form element
- */
-function handleFileImport(event) {
-  const {files} = event.target;
-  const reader = new FileReader();
-  reader.addEventListener('load', (readerEvent) => {
-    const {result} = readerEvent.target;
-    sankeyInput.value = result;
-    processInput();
-  });
-  reader.readAsText(files[0]);
-}
-
-/**
- * downloads the current input in the sankeyInput field as a text file
- */
-function downloadCurrentInputAsTxt() {
-  const {value} = sankeyInput;
-  const downloadElement = document.createElement('a');
-  downloadElement.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(value)}`);
-  downloadElement.setAttribute('download', 'sankeydiagram.txt');
-  downloadElement.style.display = 'none';
-  document.body.appendChild(downloadElement);
-  downloadElement.click();
-  document.body.removeChild(downloadElement);
-}
-
-new ClipboardJS('.copy-link-button', {
-  text: function(trigger) {
-    trigger.classList.add('is-clicked');
-    setTimeout(() => trigger.classList.remove('is-clicked'), 700);
-    return location.protocol + '//' + location.host + location.pathname + '?content=' + serializeData();
-  },
 });
 
 document.querySelectorAll('.navbar-burger').forEach((element) => {
@@ -282,44 +241,6 @@ export function processInput() {
       .call(diagram);
 }
 
-/**
- * serializes the user input and returns it as a compressed string in base64 representation
- * @return {string}
- */
-function serializeData() {
-  return LZString.compressToBase64(sankeyInput.value);
-}
-
-/**
- * takes the given compressed string in base64 representation, puts it into user input, and returns and decompressed string
- * @param {string} rawData the compressed string in base64 representation
- * @return {string}
- */
-function deserializeData(rawData) {
-  const decompressedData = LZString.decompressFromBase64(rawData);
-  sankeyInput.value = decompressedData;
-  processInput();
-  return decompressedData;
-}
-
-/**
- * finds a get parameter from the url and returns it
- * @param {string|number} parameterName the name of the parameter to look for
- * @return {string|null} the found get parameter or null if not present
- */
-function findGetParameter(parameterName) {
-  let result = null;
-  let tmp = [];
-  location.search
-      .substr(1)
-      .split('&')
-      .forEach(function(item) {
-        tmp = item.split('=');
-        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-      });
-  return result;
-}
-
 const layout = sankey.sankey()
     .size([1840, 1080])
     .linkValue(function(d) {
@@ -382,9 +303,3 @@ const diagram = sankey.sankeyDiagram()
       return d.value != 0 ? d.color : '#FFFFFF';
     })
     .margins({top: 0, right: 0, bottom: 0, left: 10});
-
-if (findGetParameter('content') !== null) {
-  deserializeData(findGetParameter('content'));
-} else {
-  processInput();
-}
