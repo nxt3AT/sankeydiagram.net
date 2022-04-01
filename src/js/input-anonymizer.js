@@ -1,6 +1,8 @@
 import {lineRegex, sankeyInput} from './constants';
 import {processInput} from './sankey-builder';
 
+const anonymizeDataWarningModal = document.getElementById('anonymize-data-modal');
+
 /**
  * generates a random string with the given length and returns it
  * @param {number} length length of the string to generate
@@ -59,7 +61,7 @@ function anonymizeData() {
 
 document.querySelectorAll('.anonymize-data-button').forEach((element) => {
   element.addEventListener('click', function() {
-    document.getElementById('anonymize-data-modal').classList.add('is-active');
+    anonymizeDataWarningModal.classList.add('is-active');
   });
 });
 document.querySelectorAll('.anonymize-data-confirmation-button').forEach((element) => {
