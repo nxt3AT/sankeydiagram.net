@@ -14,6 +14,7 @@
     "rules": {
         "max-len": ["error", {
             "code": 150
-        }]
+        }],
+        "linebreak-style": 0
     }
 }
