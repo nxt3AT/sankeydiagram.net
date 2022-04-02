@@ -15,11 +15,8 @@ const sankeyHideNumbersSetting = document.getElementById('sankey-settings-hidenu
 const sankeyCanvasWidthSetting = document.getElementById('sankey-settings-canvas-width');
 const sankeyCanvasHeightSetting = document.getElementById('sankey-settings-canvas-height');
 
-const allTabs = Array.from(document.getElementById('sankey-input-tabs').getElementsByTagName('li'));
-const allTabContainers = Array.from(document.getElementById('sankey-input-box').getElementsByClassName('is-tab'));
-let currentTabIndex = 0;
-
 import {lineRegex, sankeyInput} from './constants';
+import './gui';
 import './modal';
 import './input-anonymizer';
 import './input-sharing';
@@ -61,42 +58,6 @@ sankeyCanvasHeightSetting.addEventListener('change', function() {
   document.getElementById('sankey-svg').setAttribute('viewBox', '0 0 ' + sankeyCanvasWidthSetting.value + ' ' + sankeyCanvasHeightSetting.value);
   layout.size([sankeyCanvasWidthSetting.value-60, sankeyCanvasHeightSetting.value]);
   processInput();
-});
-
-document.getElementById('sankey-input-box').addEventListener('resize', function() {
-  processInput();
-});
-
-window.addEventListener('resize', processInput);
-
-document.querySelectorAll('.close-notification-button').forEach((element) => {
-  element.addEventListener('click', function() {
-    element.parentElement.remove();
-  });
-});
-
-document.querySelectorAll('.navbar-burger').forEach((element) => {
-  element.addEventListener('click', function() {
-    const target = document.getElementById(element.dataset.target);
-
-    element.classList.toggle('is-active');
-    target.classList.toggle('is-active');
-  });
-});
-
-document.getElementById('sankey-input-tabs').addEventListener('click', function(e) {
-  if (e.target.tagName !== 'A') {
-    return;
-  }
-
-  allTabs[currentTabIndex].classList.remove('is-active');
-  allTabContainers[currentTabIndex].classList.remove('is-active');
-
-  const newTabIndex = allTabs.indexOf(e.target.parentElement);
-  allTabs[newTabIndex].classList.add('is-active');
-  allTabContainers[newTabIndex].classList.add('is-active');
-
-  currentTabIndex = newTabIndex;
 });
 
 /**
