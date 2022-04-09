@@ -15,7 +15,7 @@
     "@parcel/packager-raw-url": "^2.3.2",
     "@parcel/transformer-sass": "^2.3.2",
     "@parcel/transformer-webmanifest": "^2.3.2",
-    "eslint": "^8.11.0",
+    "eslint": "^8.13.0",
     "eslint-config-google": "^0.14.0",
     "graphlib": "^2.1.8",
     "parcel": "^2.3.2",
