@@ -116,7 +116,7 @@ function parseInputToSankey(input) {
     }
 
     if (line.startsWith('"positions":')) {
-      positions = JSON.parse('{' + input.split('\n').slice(i, input.split('\n').length).join('') + '}')['positions'];
+      positions = JSON.parse(`{${input.split('\n').slice(i, input.split('\n').length).join('')}}`)['positions'];
       break;
     }
 
