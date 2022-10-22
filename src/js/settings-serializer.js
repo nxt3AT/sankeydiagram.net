@@ -63,6 +63,11 @@ export function deserializeSettings() {
     if (key in defaultSettings) {
       const element = document.getElementById(key);
 
+      // IMPORTANT: double check if the parameter really represents a setting we want to be modifiable
+      if (!element.classList.contains('settings-input')) {
+        return;
+      }
+
       if (element instanceof HTMLSelectElement) {
         element.selectedIndex = val;
         return;
