@@ -18,9 +18,11 @@ const sankeyCanvasHeightSetting = document.getElementById('sankey-settings-canva
 import {lineRegex, sankeyInput} from './constants';
 import './gui';
 import './modal';
+import './settings-serializer';
 import './input-anonymizer';
 import './input-sharing';
 import './image-exporter';
+
 
 let inputTimer;
 sankeyInput.addEventListener('keyup', function(e) {

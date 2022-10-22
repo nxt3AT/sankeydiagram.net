@@ -4,6 +4,7 @@ import LZString from 'lz-string';
 import {sankeyInput} from './constants';
 import {processInput} from './sankey-builder';
 import {findGetParameter} from './utils';
+import {deserializeSettings, serializeSettings} from './settings-serializer';
 
 document.querySelector('.export-txt-button').addEventListener('click', downloadCurrentInputAsTxt);
 document.querySelector('#import-text-input').addEventListener('change', handleFileImport);
@@ -61,12 +62,13 @@ new ClipboardJS('.copy-link-button', {
   text: function(trigger) {
     trigger.classList.add('is-clicked');
     setTimeout(() => trigger.classList.remove('is-clicked'), 700);
-    return location.protocol + '//' + location.host + location.pathname + '?content=' + serializeData();
+    return location.protocol + '//' + location.host + location.pathname + '?content=' + serializeData() + '&' + serializeSettings().toString();
   },
 });
 
 document.addEventListener('DOMContentLoaded', () => {
   if (findGetParameter('content') !== null) {
+    deserializeSettings();
     deserializeData(findGetParameter('content'));
   } else {
     processInput();
