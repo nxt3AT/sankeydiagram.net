@@ -1,6 +1,6 @@
 const defaultSettings = {};
 document.querySelectorAll('.settings-input').forEach((element) => {
-  if (!!element.defaultValue) {
+  if (element.hasAttribute('defaultValue')) {
     defaultSettings[element.id] = element.defaultValue;
     return;
   }
