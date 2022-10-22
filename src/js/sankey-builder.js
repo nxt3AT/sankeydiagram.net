@@ -185,8 +185,9 @@ export function processInput() {
       .call(diagram);
 }
 
+document.getElementById('sankey-svg').setAttribute('viewBox', '0 0 ' + sankeyCanvasWidthSetting.value + ' ' + sankeyCanvasHeightSetting.value);
 const layout = sankey.sankey()
-    .size([1840, 1080])
+    .size([sankeyCanvasWidthSetting.value-60, sankeyCanvasHeightSetting.value])
     .linkValue(function(d) {
       return d.value;
     });
