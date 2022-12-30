@@ -26,11 +26,6 @@ import './image-exporter';
 
 let inputTimer;
 sankeyInput.addEventListener('keyup', function(e) {
-  // check if key is a character
-  if (e.key.length !== 1) {
-    return;
-  }
-
   clearTimeout(inputTimer);
   inputTimer = setTimeout(processInput, 300);
 });
