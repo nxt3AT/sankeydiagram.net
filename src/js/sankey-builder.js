@@ -82,7 +82,7 @@ function calculateValue(lines, originalTarget) {
     if (source === originalTarget) {
       if (value === '?') {
         totalValue += parseFloat(calculateValue(lines, target));
-      } else if (value === '%') {
+      } else if (value === 'fill') {
         totalValue += 0;
       } else {
         totalValue += parseFloat(value);
@@ -178,7 +178,7 @@ function parseInputToSankey(input) {
       value = calculateValue(lines, target);
     }
 
-    if (value === '%') {
+    if (value === 'fill') {
       value = calculateInputs(lines, source) - calculateValue(lines, source);
       cachedLines[line] = value;
     }
