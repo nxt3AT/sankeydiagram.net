@@ -82,6 +82,43 @@ function calculateValue(lines, originalTarget) {
     if (source === originalTarget) {
       if (value === '?') {
         totalValue += parseFloat(calculateValue(lines, target));
+      } else if (value === '%') {
+        totalValue += 0;
+      } else {
+        totalValue += parseFloat(value);
+      }
+    }
+  });
+  return totalValue;
+}
+
+const cachedLines = {};
+
+/**
+ * calculates all inputs for a given node
+ * @param {string[]} lines
+ * @param {string} originalTarget
+ * @return {number} the calculated value
+ */
+function calculateInputs(lines, originalTarget) {
+  let totalValue = 0.0;
+  lines.forEach((line) => {
+    if (line.startsWith('//') || line.startsWith('\'')) {
+      return;
+    }
+
+    if (!lineRegex.test(line)) {
+      return;
+    }
+
+    const regexGroups = lineRegex.exec(line);
+    const source = regexGroups[1].trim();
+    const value = regexGroups[2];
+    const target = regexGroups[3].trim();
+
+    if (target === originalTarget) {
+      if (Object.keys(cachedLines).includes(line)) {
+        totalValue += cachedLines[line];
       } else {
         totalValue += parseFloat(value);
       }
@@ -139,6 +176,11 @@ function parseInputToSankey(input) {
 
     if (value === '?') {
       value = calculateValue(lines, target);
+    }
+
+    if (value === '%') {
+      value = calculateInputs(lines, source) - calculateValue(lines, source);
+      cachedLines[line] = value;
     }
 
     linksList.push({
