@@ -13,7 +13,10 @@ Example Diagram: [https://sankeydiagram.net/?content=PTAEGUHkFUCUGECioD...](http
 * lint: `npm run lint`
 * fix codestyle: `npm run lint:fix`
 
-Live version of the dev branch: https://dev.sankeydiagram-net.pages.dev/
+Live version of the dev branch: https://dev.sankeydiagram-net.pages.dev/  
+  
+There is also a Dockerfile available for local testing. Please mind that the Dockerfile is not (yet) production ready, since it runs a local parcel server.  
+Use `docker build -t sankeydiagramnet . && docker run -p 1234:1234 sankeydiagramnet` to start your a docker container at port 1234.
 
 ## Contact
 If you have any questions, need help, a special license, or something else, you can contact me via GitHub Issues, or using the following methods:
