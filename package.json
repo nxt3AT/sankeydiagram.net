@@ -3,6 +3,15 @@
   "version": "1.2.1",
   "private": true,
   "browserslist": ["defaults"],
+  "homepage": "https://sankeydiagram.net/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nxt3AT/sankeydiagram.net.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nxt3AT/sankeydiagram.net/issues"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
   "scripts": {
     "start": "parcel ./src/*.html",
     "build": "parcel build ./src/index.html ./src/404.html ./src/privacypolicy.html",
