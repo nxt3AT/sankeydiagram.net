@@ -12,6 +12,7 @@ Example Diagram: [https://sankeydiagram.net/?content=PTAEGUHkFUCUGECioD...](http
 * build: `npm run build`
 * lint: `npm run lint`
 * fix codestyle: `npm run lint:fix`
+* update dependency(if needed): `npm i [dependencyName]@[version]` (use can use `@latest` for the latest version)
 
 Live version of the dev branch: https://dev.sankeydiagram-net.pages.dev/  
   
