@@ -2,7 +2,9 @@
   "name": "sankeydiagram.net",
   "version": "1.2.2",
   "private": true,
-  "browserslist": ["defaults"],
+  "browserslist": [
+    "defaults"
+  ],
   "homepage": "https://sankeydiagram.net/",
   "repository": {
     "type": "git",
@@ -21,15 +23,15 @@
   "devDependencies": {
     "@babel/core": "^7.22.11",
     "@creativebulma/bulma-divider": "^1.1.0",
-    "@parcel/packager-raw-url": "^2.9.3",
-    "@parcel/transformer-sass": "^2.9.3",
-    "@parcel/transformer-webmanifest": "^2.9.3",
+    "@parcel/packager-raw-url": "2.7.0",
+    "@parcel/transformer-sass": "2.7.0",
+    "@parcel/transformer-webmanifest": "2.7.0",
     "eslint": "^8.48.0",
     "eslint-config-google": "^0.14.0",
     "graphlib": "^2.1.8",
-    "parcel": "^2.9.3",
+    "parcel": "2.7.0",
     "parcel-reporter-static-files-copy": "^1.5.2",
-    "sharp": "^0.31.1"
+    "sharp": "^0.29.1"
   },
   "dependencies": {
     "bulma": "^0.9.4",
