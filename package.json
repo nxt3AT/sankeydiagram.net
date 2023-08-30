@@ -19,23 +19,23 @@
     "lint:fix": "eslint --fix src/**/*.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.6",
+    "@babel/core": "^7.22.11",
     "@creativebulma/bulma-divider": "^1.1.0",
-    "@parcel/packager-raw-url": "^2.7.0",
-    "@parcel/transformer-sass": "^2.7.0",
-    "@parcel/transformer-webmanifest": "^2.7.0",
-    "eslint": "^8.26.0",
+    "@parcel/packager-raw-url": "^2.9.3",
+    "@parcel/transformer-sass": "^2.9.3",
+    "@parcel/transformer-webmanifest": "^2.9.3",
+    "eslint": "^8.48.0",
     "eslint-config-google": "^0.14.0",
     "graphlib": "^2.1.8",
-    "parcel": "^2.7.0",
-    "parcel-reporter-static-files-copy": "^1.4.0",
-    "sharp": "^0.29.1"
+    "parcel": "^2.9.3",
+    "parcel-reporter-static-files-copy": "^1.5.2",
+    "sharp": "^0.31.1"
   },
   "dependencies": {
     "bulma": "^0.9.4",
     "clipboard": "^2.0.11",
-    "d3": "^7.6.1",
-    "d3-array": "^3.2.0",
+    "d3": "^7.8.5",
+    "d3-array": "^3.2.4",
     "d3-collection": "^1.0.7",
     "d3-color": "^3.1.0",
     "d3-dispatch": "^3.0.1",
@@ -47,7 +47,7 @@
     "d3-selection": "^3.0.0",
     "d3-timer": "^3.0.1",
     "d3-transition": "^3.0.1",
-    "lz-string": "^1.4.4",
+    "lz-string": "^1.5.0",
     "save-svg-as-png": "^1.4.17"
   },
   "staticFiles": {
