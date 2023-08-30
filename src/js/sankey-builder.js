@@ -85,8 +85,15 @@ function calculateValue(lines, originalTarget) {
       } else {
         totalValue += parseFloat(value);
       }
+    } else if(target === originalTarget) {
+      if (value === '?') {
+        // todo, we should probably handle this as well.
+      } else {
+        totalValue -= parseFloat(value);
+      }
     }
   });
+
   return totalValue;
 }
 
