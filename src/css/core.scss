@@ -48,3 +48,14 @@ html, body {
 .navbar-item-unimportant {
   opacity: 0.5;
 }
+
+.buy-me-a-coffee-button {
+  background-color: #F1337F;
+  color: white;
+  transition: 300ms;
+}
+
+.buy-me-a-coffee-button:hover {
+  filter: brightness(125%);
+  color: white;
+}
