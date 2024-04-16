@@ -15,7 +15,8 @@
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "scripts": {
-    "start": "parcel ./src/*.html",
+    "start": "npm run dev",
+    "dev": "parcel ./src/*.html",
     "build": "parcel build ./src/index.html ./src/404.html ./src/privacypolicy.html",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint --fix src/**/*.js"
