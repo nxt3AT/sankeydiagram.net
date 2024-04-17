@@ -79,6 +79,7 @@ export function deserializeSettings() {
       }
 
       document.getElementById(key).value = val;
+      element.dispatchEvent(new Event('change'));
     }
   });
 }
