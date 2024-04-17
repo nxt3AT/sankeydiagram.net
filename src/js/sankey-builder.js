@@ -14,6 +14,7 @@ const sankeySuffixSetting = document.getElementById('sankey-settings-suffix');
 const sankeyHideNumbersSetting = document.getElementById('sankey-settings-hidenumbers');
 const sankeyCanvasWidthSetting = document.getElementById('sankey-settings-canvas-width');
 const sankeyCanvasHeightSetting = document.getElementById('sankey-settings-canvas-height');
+const sankeyFontSizeSetting = document.getElementById('sankey-settings-font-size');
 
 import {lineRegex, sankeyInput} from './constants';
 import './gui';
@@ -57,6 +58,13 @@ sankeyCanvasHeightSetting.addEventListener('change', function() {
   processInput();
 });
 
+sankeyFontSizeSetting.addEventListener('input', () => {
+  document.documentElement.style.setProperty(
+      '--node-font-size',
+      `${sankeyFontSizeSetting.value.trim().length > 0 ? sankeyFontSizeSetting.value.trim() : '20'}px`,
+  );
+});
+
 /**
  * recursively generates the value of an auto-sum connection
  * @param {string[]} lines
@@ -85,7 +93,7 @@ function calculateValue(lines, originalTarget) {
       } else {
         totalValue += parseFloat(value);
       }
-    } else if(target === originalTarget) {
+    } else if (target === originalTarget) {
       if (value === '?') {
         // todo, we should probably handle this as well.
       } else {
