@@ -58,8 +58,11 @@ sankeyCanvasHeightSetting.addEventListener('change', function() {
   processInput();
 });
 
-sankeyFontSizeSetting.addEventListener('change', () => {
-  document.documentElement.style.setProperty('--node-font-size', `${sankeyFontSizeSetting.value}px`);
+sankeyFontSizeSetting.addEventListener('input', () => {
+  document.documentElement.style.setProperty(
+      '--node-font-size',
+      `${sankeyFontSizeSetting.value.trim().length > 0 ? sankeyFontSizeSetting.value.trim() : '20'}px`,
+  );
 });
 
 /**
