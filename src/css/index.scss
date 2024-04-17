@@ -1,5 +1,9 @@
 @import "core";
 
+:root {
+  --node-font-size: 20px;
+}
+
 .watermark {
   font-family: 'Open Sans', 'Arial', sans-serif;
   font-size: 12pt;
@@ -13,7 +17,7 @@
 .nodes text {
   font-weight: 600;
   font-family: 'Open Sans', 'Arial', sans-serif;
-  font-size: 15pt;
+  font-size: var(--node-font-size);
 }
 
 .nodes rect {
