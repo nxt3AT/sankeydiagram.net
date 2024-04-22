@@ -26,7 +26,7 @@ import './image-exporter';
 
 
 let inputTimer;
-sankeyInput.addEventListener('keyup', function(e) {
+sankeyInput.addEventListener('keyup', function() {
   clearTimeout(inputTimer);
   inputTimer = setTimeout(processInput, 300);
 });
