@@ -1,4 +1,5 @@
-@import "core";
+@use "core";
+@use "node_modules/bulma/sass/utilities";
 
 :root {
   --node-font-size: 20px;
@@ -112,7 +113,7 @@ li {
   display: none;
 }
 
-@media screen and (orientation: portrait) and (max-width: $tablet) {
+@media screen and (orientation: portrait) and (max-width: utilities.$tablet) {
   #sankey-box, #sankey-svg {
     min-height: 70vh;
   }
@@ -126,7 +127,7 @@ li {
   }
 }
 
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: utilities.$tablet) {
   #sankey-input-box {
     height: 50vh;
   }
@@ -140,7 +141,7 @@ li {
   }
 }
 
-@media screen and (min-width: $desktop) {
+@media screen and (min-width: utilities.$desktop) {
   main {
     min-height: 85vh;
     display: flex;

@@ -16,14 +16,13 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "scripts": {
     "start": "npm run dev",
-    "dev": "parcel ./src/*.html",
+    "dev": "parcel ./src/index.html",
     "build": "parcel build ./src/index.html ./src/404.html ./src/privacypolicy.html",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint --fix src/**/*.js"
   },
   "devDependencies": {
     "@babel/core": "^7.23.9",
-    "@creativebulma/bulma-divider": "^1.1.0",
     "@parcel/packager-raw-url": "2.11.0",
     "@parcel/transformer-sass": "2.11.0",
     "@parcel/transformer-webmanifest": "2.11.0",
@@ -35,7 +34,7 @@
     "sharp": "0.31.1"
   },
   "dependencies": {
-    "bulma": "^0.9.4",
+    "bulma": "^1.0.1",
     "clipboard": "^2.0.11",
     "d3": "^7.8.5",
     "d3-array": "^3.2.4",

@@ -1,41 +1,49 @@
 @charset "utf-8";
 
-@import "node_modules/bulma/sass/utilities/all";
+$font-family: "system-ui", -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-@import "vars";
+@use "node_modules/bulma/sass/utilities"with (
+  $desktop: 1433px,
+);
+@use "node_modules/bulma/sass/base"with (
+  $body-family: $font-family,
+  $body-weight: 400,
+);
+@use "node_modules/bulma/sass/themes";
 
-@import "node_modules/bulma/sass/base/minireset";
-@import "node_modules/bulma/sass/base/generic";
+@use "node_modules/bulma/sass/elements";
 
-@import "node_modules/bulma/sass/elements/all";
+@use "node_modules/bulma/sass/form/shared";
+@use "node_modules/bulma/sass/form/input-textarea";
+@use "node_modules/bulma/sass/form/checkbox-radio";
+@use "node_modules/bulma/sass/form/select";
+@use "node_modules/bulma/sass/form/tools";
 
-@import "node_modules/bulma/sass/form/shared";
-@import "node_modules/bulma/sass/form/input-textarea";
-@import "node_modules/bulma/sass/form/checkbox-radio";
-@import "node_modules/bulma/sass/form/select";
-@import "node_modules/bulma/sass/form/tools";
+@use "_divider";
 
-@import "node_modules/@creativebulma/bulma-divider/src/sass/index";
+@use "node_modules/bulma/sass/components/dropdown";
+@use "node_modules/bulma/sass/components/modal";
+@use "node_modules/bulma/sass/components/navbar"with (
+  $navbar-breakpoint: utilities.$tablet,
+);
+@use "node_modules/bulma/sass/components/tabs";
 
-@import "node_modules/bulma/sass/components/dropdown";
-@import "node_modules/bulma/sass/components/level";
-@import "node_modules/bulma/sass/components/modal";
-@import "node_modules/bulma/sass/components/navbar";
-@import "node_modules/bulma/sass/components/tabs";
+@use "node_modules/bulma/sass/grid/columns";
 
-@import "node_modules/bulma/sass/grid/columns";
+@use "node_modules/bulma/sass/helpers/color";
+@use "node_modules/bulma/sass/helpers/flexbox";
+@use "node_modules/bulma/sass/helpers/other";
+@use "node_modules/bulma/sass/helpers/spacing";
+@use "node_modules/bulma/sass/helpers/typography";
+@use "node_modules/bulma/sass/helpers/visibility";
 
-@import "node_modules/bulma/sass/helpers/color";
-@import "node_modules/bulma/sass/helpers/flexbox";
-@import "node_modules/bulma/sass/helpers/other";
-@import "node_modules/bulma/sass/helpers/spacing";
-@import "node_modules/bulma/sass/helpers/typography";
-@import "node_modules/bulma/sass/helpers/visibility";
-
-@import "node_modules/bulma/sass/layout/footer";
+@use "node_modules/bulma/sass/layout/footer"with (
+  $footer-padding: 0.5rem 1.5rem 0.5rem,
+);
+@use "node_modules/bulma/sass/layout/level";
 
 html {
-  background-color: $white-ter;
+  background-color: utilities.$white-ter;
 }
 
 html, body {
@@ -45,7 +53,7 @@ html, body {
   overflow-y: auto;
 }
 
-.navbar-item-unimportant {
+.navbar-item-unuseant {
   opacity: 0.5;
 }
 
