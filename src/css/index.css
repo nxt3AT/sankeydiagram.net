@@ -1,0 +1,94 @@
+@import "core.css";
+
+:root {
+    --node-font-size: 20px;
+}
+
+.watermark {
+    font-family: 'Open Sans', 'Arial', sans-serif;
+    font-size: 12pt;
+    opacity: 0.85;
+}
+
+.links path {
+    opacity: 0.8;
+}
+
+.nodes text {
+    font-weight: 600;
+    font-family: 'Open Sans', 'Arial', sans-serif;
+    font-size: var(--node-font-size);
+}
+
+.nodes rect {
+    width: 2pt;
+    opacity: 0.85;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.copy-link-button {
+    &:before {
+        content: "";
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+        left: 50%;
+        transform: translate3d(-50%,0%,0);
+        transition: all 0.5s ease;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 10px 0 10px;
+        border-color: #282828 transparent transparent transparent;
+    }
+
+    &:after {
+        text-transform: none;
+        content: attr(data-tooltip);
+        position: absolute;
+        color: #fff;
+        background: #282828;
+        width: 5rem;
+        opacity: 0;
+        pointer-events: none;
+        left: 50%;
+        top: 0;
+        border-radius: 4px;
+        transform: translate3d(-50%,0%,0);
+        transition: all 0.5s ease;
+    }
+    &.is-clicked {
+        &:before, &:after {
+            opacity: 1;
+        }
+        &:before {
+            transform: translate3d(-50%,calc(-100% - 18px),0);
+        }
+        &:after {
+            transform: translate3d(-50%,calc(-100% - 16px),0);
+        }
+    }
+}
+
+.divider {
+    margin: 0.3rem;
+    @apply uppercase font-semibold tracking-wider text-neutral-400 text-xs;
+    @apply relative flex items-center;
+
+    &:before, &:after {
+        content: "";
+        @apply block flex-1 h-[1px] bg-neutral-400;
+    }
+
+    &:before {
+        @apply mr-1.5;
+    }
+    &:after {
+        @apply ml-1.5;
+    }
+}
+
