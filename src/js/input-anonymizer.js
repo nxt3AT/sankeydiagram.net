@@ -61,7 +61,7 @@ function anonymizeData() {
 
 document.querySelectorAll('.anonymize-data-button').forEach((element) => {
   element.addEventListener('click', function() {
-    anonymizeDataWarningModal.classList.add('is-active');
+    anonymizeDataWarningModal.showModal();
   });
 });
 document.querySelectorAll('.anonymize-data-confirmation-button').forEach((element) => {
@@ -69,3 +69,8 @@ document.querySelectorAll('.anonymize-data-confirmation-button').forEach((elemen
     anonymizeData();
   });
 });
+document.querySelectorAll("#anonymize-data-modal button").forEach((element) => {
+  element.addEventListener("click", function(){
+    anonymizeDataWarningModal.close();
+  })
+})

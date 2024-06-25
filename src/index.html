@@ -23,64 +23,66 @@
     <meta charset="UTF-8">
 
     <link rel="manifest" href="./manifest.json">
-    <link rel="stylesheet" href="css/fonts.scss">
-    <link rel="stylesheet" href="css/index.scss">
-    <link rel="preload" as="font" href="fonts/material-icon-iconfont.woff2">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="preload" as="font" href="./fonts/material-icon-iconfont.woff2">
     <link rel="icon" type="image/png" href="./static/favicon.png">
 </head>
-<body class="is-fullwidth">
-    <nav class="navbar is-fullwidth" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand ml-4">
-            <a class="navbar-item" href="/">
-                <picture class="mr-1 is-inline-flex">
-                    <source srcset="logo.png?as=webp" type="image/webp">
-                    <img src="logo.png" width="28" height="28" alt="sankeydiagram.net logo">
-                </picture>
-                <h1 class="has-text-weight-bold">SankeyDiagram.net</h1>
-            </a>
-
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarMenu" class="navbar-menu">
-            <div class="navbar-start">
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
+<body class="min-w-full bg-neutral-200">
+    <nav class="bg-white flex flex-row items-stretch px-6 gap-5 min-w-full relative drop-shadow" role="navigation" aria-label="main navigation">
+        <a class="flex flex-row flex-nowrap items-center py-2" href="/">
+            <picture class="h-7 aspect-square mr-1">
+                <source srcset="logo.png?as=webp" type="image/webp">
+                <img src="logo.png" alt="sankeydiagram.net logo">
+            </picture>
+            <h1 class="font-semibold">SankeyDiagram.net</h1>
+        </a>
+        <button type="button" class="navbar-burger peer group -mr-6 ml-auto inline-flex w-11 items-center justify-center text-sm text-gray-500 md:hidden aria-expanded:bg-neutral-200" aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-5 h-5 group-aria-expanded:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
+                <svg class="w-6 h-6 hidden group-aria-expanded:block" mlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+        </button>
+        <div class="hidden peer-aria-expanded:block md:flex flex-col md:flex-row absolute top-full left-0 md:relative bg-white w-full shadow md:shadow-none">
+            <div class="relative cursor-pointer flex flex-col md:flex-row md:items-center">
+                <div class="peer hover:bg-gray-100 h-full flex items-center px-4">
+                    <span class="cursor-pointer py-2">
                         About
-                    </a>
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item" href="https://github.com/nxt3AT/sankeydiagram.net" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <a class="navbar-item" href="https://jonasdoesthings.com/" target="_blank">@JonasDoesThings</a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item" href="mailto:jonas@jonasdoesthings.com">Report an issue</a>
-                        <a class="navbar-item navbar-item-unimportant" href="./privacypolicy.html" target="_blank" rel="nofollow">Privacy Policy</a>
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 ml-1.5 text-accent"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                </div>
+                <div class="block md:hidden peer-hover:block hover:block relative md:absolute z-20 bg-white top-full left-0 rounded-b md:shadow md:border py-2.5 font-light text-sm">
+                    <div class="p-2 px-6 hover:bg-gray-100">
+                        <a href="https://github.com/nxt3AT/sankeydiagram.net" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    </div>
+                    <div class="p-2 px-6 hover:bg-gray-100">
+                        <a href="https://jonasdoesthings.com/" target="_blank">@JonasDoesThings</a>
+                    </div>
+                    <hr class="navbar-divider hidden md:block">
+                    <div class="p-2 px-6 hover:bg-gray-100">
+                        <a href="mailto:jonas@jonasdoesthings.com">Report an issue</a>
+                    </div>
+                    <div class="p-2 px-6 hover:bg-gray-100">
+                        <a class="text-gray-400" href="./privacypolicy.html" target="_blank" rel="nofollow">Privacy Policy</a>
                     </div>
                 </div>
-                <a class="navbar-item" href="https://www.buymeacoffee.com/jonasdoesthings" target="_blank" rel="nofollow" title="Support my Work">
-                    <button class="button buy-me-a-coffee-button has-text-weight-bold"><span class="mr-2">🍵</span>Buy Me A Coffee</button>
+            </div>
+            <div class="py-3 px-3 flex items-center">
+                <a class="py-2 px-3 rounded buy-me-a-coffee-button font-bold" href="https://www.buymeacoffee.com/jonasdoesthings" target="_blank" rel="nofollow" title="Support my Work">
+                    <span class="mr-2">🍵</span>Buy Me A Coffee
                 </a>
             </div>
         </div>
     </nav>
-    <main>
-        <div class="columns is-desktop m-0 is-justify-content-space-between">
-            <div id="sankey-input-box" class="box column is-full-tablet-landscape is-3-desktop is-full-tablet-landscape">
-                <div id="sankey-input-box-container">
-                    <div id="sankey-input-tabs" class="tabs mb-0">
-                        <ul>
-                            <li class="is-active"><a>Input</a></li>
-                            <li><a>Settings</a></li>
-                            <li><a>Export</a></li>
-                            <li><a>About</a></li>
-                        </ul>
-                    </div>
-                    <div class="is-tab is-active">
-
-                            <textarea id="sankey-input-textarea" class="input" placeholder="SOURCE [AMOUNT] TARGET ([COLOR])" >
+    <main class="m-0 flex flex-col xl:flex-row xl:items-stretch w-full p-3 gap-3 min-h-[90vh]">
+        <div id="sankey-input-box" class="bg-white shadow rounded p-5 flex flex-col xl:w-1/3">
+            <ul id="sankey-input-tabs" class="flex flex-row *:list-none gap-3 font-light border-b">
+                <li class="aria-selected:border-b border-accent" aria-selected="true"><button class="px-2 py-1 cursor-pointer">Input</button></li>
+                <li class="aria-selected:border-b border-accent"><button class="px-2 py-1 cursor-pointer">Settings</button></li>
+                <li class="aria-selected:border-b border-accent"><button class="px-2 py-1 cursor-pointer">Export</button></li>
+                <li class="aria-selected:border-b border-accent"><button class="px-2 py-1 cursor-pointer">About</button></li>
+            </ul>
+            <div class="hidden aria-expanded:flex flex-col is-tab py-2 flex-grow min-h-[30rem]" aria-expanded="true">
+                <textarea id="sankey-input-textarea" class="border flex-grow resize-none lg:resize-y p-2 rounded shadow text-neutral-600" placeholder="SOURCE [AMOUNT] TARGET ([COLOR])" >
 // SOURCE [VALUE (can be a '?')] TARGET ([COLOR])
 source [100] target
 source two [30] target
@@ -91,111 +93,106 @@ target two [25] target four
 target two [20] target five
 target five [15] target six [lightgreen]
 </textarea>
-                            <label for="import-text-input">
-                                <span class="button is-dark mb-1 has-shadow import-txt-button is-clickable level-item"><span class="material-icons mr-1">file_upload</span> Import from Text File</span>
-                                <input type="file" id="import-text-input" accept=".txt" style="display:none" />
-                            </label>
-                    </div>
-                    <div class="is-tab">
-                        <div class="divider">General</div>
-                        <label for="sankey-settings-precision">Decimal Precision </label><input type="number" class="settings-input" id="sankey-settings-precision" min="0" max="3" value="1">
-                        <br>
-                        <label for="sankey-settings-hidezeros">Hide zero decimals </label><input type="checkbox" class="settings-input" id="sankey-settings-hidezeros" checked>
-                        <br>
-                        <label for="sankey-settings-separators">Add thousands separators (5.000.000) </label><input type="checkbox" class="settings-input" id="sankey-settings-separators">
-                        <br>
-                        <label for="sankey-settings-labelabove">Display label above nodes </label><input type="checkbox" class="settings-input" id="sankey-settings-labelabove">
-                        <br>
-                        <label for="sankey-settings-colorscheme">Color scheme </label>
-                        <select class="settings-input" id="sankey-settings-colorscheme" name="sankey-settings-colorscheme">
-                            <option value="set2">default</option>
-                            <option value="accent">accent</option>
-                            <option value="paired">paired</option>
-                            <option value="set3">set3</option>
-                            <option value="cat10">cat10</option>
-                            <option value="pastel1">pastel</option>
-                            <option value="nested">nested</option>
-                        </select>
-                        <br>
-                        <label for="sankey-settings-suffix">Value Suffix </label><input type="text" class="settings-input" id="sankey-settings-suffix" placeholder="€, $, etc.">
-                        <div class="divider">Specific</div>
-                        <label for="sankey-settings-hidenumbers">Hide numbers </label><input type="checkbox" class="settings-input" id="sankey-settings-hidenumbers">
-                        <br>
-                        <label for="sankey-settings-canvas-width">Canvas Width </label><input type="number" class="settings-input" id="sankey-settings-canvas-width" value="1920">
-                        <br>
-                        <label for="sankey-settings-canvas-height">Canvas Height </label><input type="number" class="settings-input" id="sankey-settings-canvas-height" value="1080">
-                        <br>
-                        <label for="sankey-settings-font-size">Font Size (px) </label><input type="number" class="settings-input" id="sankey-settings-font-size" value="20" placeholder="20">
-                        <br>
-                        <div class="divider">Debug</div>
-                        <span class="button is-dark mb-1 has-shadow anonymize-data-button is-clickable level-item"><span class="material-icons mr-1">shuffle</span> Anonymize Data</span>
-                    </div>
-                    <div class="is-tab">
-                        <div class="divider">Share</div>
-                        <span class="button is-dark mb-1 has-shadow download-as-png-button is-clickable level-item"><span class="material-icons mr-1">get_app</span> Download as PNG</span>
-                        <span class="button is-dark mb-1 has-shadow download-as-svg-button is-clickable level-item"><span class="material-icons mr-1">get_app</span> Download as SVG</span>
-                        <span class="button is-dark mb-1 has-shadow copy-link-button is-clickable level-item" data-tooltip="Copied!"><span class="material-icons mr-1">content_copy</span> Get Share Link</span>
-                        <span class="button is-dark has-shadow export-txt-button is-clickable level-item"><span class="material-icons mr-1">file_download</span> Export as Text File</span>
-                    </div>
-                    <div class="is-tab">
-                        <div class="divider mt-2">What are Sankey Diagrams?</div>
-                        <p>
-                            Sankey diagrams are a type of flow diagram. One of their most fitting uses is for visualizing the flow of money in budgets and thus are a valuable tool for personal finance budget planning.
-                        </p>
-                        <div class="divider mt-2">Examples</div>
-                        <ul>
-                            <li><a href="/?content=PTAEGUHkFUCUGECioDaA1AggGWsgFAMYCGAdqAEYCmoRoA5APx0CUAuqACoawDiiHoPCniQskWK2YAoAO5EA5tRQBmAAyr2AFyIAPSgGdZCpQ3YAbAJYA3CyXlTLNu6gDs69gCdKJTQ+u35VAAmd1AAV00LS0iDPydAlQ1QW01KDxJKXzlFVFNkkisDSLspW0L9YoS8/gAxQ1r9VABGAFYk8AAyAAU21SkG5rb2RDCPAHtwTTGdHTbSgqKA3PYKsYIAa0NVjcaUIdAAEg5wLAwjHJQ871SPbVsAW2upa7S7kkefZdB7sfIo6nkREehh+fzMAKBBkGSQIZiI+gAFqAxgAzUCw0gg37/UCA4GofbEEgAEwAnuiPGFEc8fK8iA9rs1QpRCp9IhtMoZsiYVmFyPoCB4LAAHSJjEhbPkCoWiizi3ZNJJAogAL3FoGFQseUn0UsFIrFEqZ7AymhRlh0Or1MsNCqS+mFY0iKNJVv5+tl8q+moMhh9+l2IS0COolAI4rG9wsFXOPNAiLGwuFAR1CMTyecKFaSRRYzGxNT6aWexhZidCJTCaTxcVSQ8pGJkeSqXu+iAA=">Simple Budget Example</a></li>
-                        </ul>
-                        <div class="divider mt-2">Attribution</div>
-                        <p>
-                            You may use diagrams generated with this tool in any way. While not required, placing a link back to my tool is highly appreciated and helps me a lot!
-                        </p>
-                        <div class="divider mt-2">Support SankeyDiagram.net</div>
-                        <p>
-                            <b>I am maintaining this free open-source tool in my free time.</b>
-                            If it helped you, and you feel generous, <a href="https://www.buymeacoffee.com/jonasdoesthings" target="_blank" rel="nofollow" title="Support my Work">you can buy me a coffee (or green tea 🍵)</a>
-                            <a class="navbar-item" href="https://www.buymeacoffee.com/jonasdoesthings" target="_blank" rel="nofollow" title="Support my Work">
-                                <button class="button buy-me-a-coffee-button has-text-weight-bold"><span class="mr-2">🍵</span>Buy Me A Coffee</button>
-                            </a>
-                        </p>
-                    </div>
+                <label for="import-text-input">
+                    <span class="py-2 flex flex-row items-center justify-center rounded bg-dark text-white w-full cursor-pointer import-txt-button"><span class="material-icons mr-1">file_upload</span> Import from Text File</span>
+                    <input type="file" id="import-text-input" accept=".txt" style="display:none" />
+                </label>
+            </div>
+            <div class="hidden aria-expanded:block is-tab py-2">
+                <div class="divider">General</div>
+                <label for="sankey-settings-precision">Decimal Precision </label><input type="number" class="settings-input" id="sankey-settings-precision" min="0" max="3" value="1">
+                <br>
+                <label for="sankey-settings-hidezeros">Hide zero decimals </label><input type="checkbox" class="settings-input" id="sankey-settings-hidezeros" checked>
+                <br>
+                <label for="sankey-settings-separators">Add thousands separators (5.000.000) </label><input type="checkbox" class="settings-input" id="sankey-settings-separators">
+                <br>
+                <label for="sankey-settings-labelabove">Display label above nodes </label><input type="checkbox" class="settings-input" id="sankey-settings-labelabove">
+                <br>
+                <label for="sankey-settings-colorscheme">Color scheme </label>
+                <select class="settings-input" id="sankey-settings-colorscheme" name="sankey-settings-colorscheme">
+                    <option value="set2">default</option>
+                    <option value="accent">accent</option>
+                    <option value="paired">paired</option>
+                    <option value="set3">set3</option>
+                    <option value="cat10">cat10</option>
+                    <option value="pastel1">pastel</option>
+                    <option value="nested">nested</option>
+                </select>
+                <br>
+                <label for="sankey-settings-suffix">Value Suffix </label><input type="text" class="settings-input" id="sankey-settings-suffix" placeholder="€, $, etc.">
+                <div class="divider">Specific</div>
+                <label for="sankey-settings-hidenumbers">Hide numbers </label><input type="checkbox" class="settings-input" id="sankey-settings-hidenumbers">
+                <br>
+                <label for="sankey-settings-canvas-width">Canvas Width </label><input type="number" class="settings-input" id="sankey-settings-canvas-width" value="1920">
+                <br>
+                <label for="sankey-settings-canvas-height">Canvas Height </label><input type="number" class="settings-input" id="sankey-settings-canvas-height" value="1080">
+                <br>
+                <label for="sankey-settings-font-size">Font Size (px) </label><input type="number" class="settings-input" id="sankey-settings-font-size" value="20" placeholder="20">
+                <br>
+                <div class="divider">Debug</div>
+                <button class="relative py-2 bg-dark text-white flex items-center justify-center w-full cursor-pointer anonymize-data-button"><span class="material-icons mr-1">shuffle</span> Anonymize Data</button>
+            </div>
+            <div class="hidden aria-expanded:block is-tab py-2">
+                <div class="divider">Share</div>
+                <div class="space-y-1">
+                    <button class="relative py-2 bg-dark text-white flex items-center justify-center w-full cursor-pointer download-as-png-button"><span class="material-icons mr-1">get_app</span> Download as PNG</button>
+                    <button class="relative py-2 bg-dark text-white flex items-center justify-center w-full cursor-pointer download-as-svg-button"><span class="material-icons mr-1">get_app</span> Download as SVG</button>
+                    <button class="relative py-2 bg-dark text-white flex items-center justify-center w-full cursor-pointer copy-link-button" data-tooltip="Copied!"><span class="material-icons mr-1">content_copy</span> Get Share Link</button>
+                    <button class="relative py-2 bg-dark text-white flex items-center justify-center w-full cursor-pointer export-txt-button"><span class="material-icons mr-1">file_download</span> Export as Text File</button>
                 </div>
             </div>
-
-            <div id="sankey-box" class="box column is-full-tablet-landscape">
-                <svg id="sankey-svg" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
-                    <text class="watermark" text-anchor="middle" x="50%" y="30" style="display: inline;">SankeyDiagram.net</text>
-                </svg>
+            <div class="hidden aria-expanded:block is-tab py-2 font-light">
+                <div class="divider mt-2">What are Sankey Diagrams?</div>
+                <p>
+                    Sankey diagrams are a type of flow diagram. One of their most fitting uses is for visualizing the flow of money in budgets and thus are a valuable tool for personal finance budget planning.
+                </p>
+                <div class="divider mt-2">Examples</div>
+                <ul class="list-disc list-inside">
+                    <li><a class="text-accent" href="/?content=PTAEGUHkFUCUGECioDaA1AggGWsgFAMYCGAdqAEYCmoRoA5APx0CUAuqACoawDiiHoPCniQskWK2YAoAO5EA5tRQBmAAyr2AFyIAPSgGdZCpQ3YAbAJYA3CyXlTLNu6gDs69gCdKJTQ+u35VAAmd1AAV00LS0iDPydAlQ1QW01KDxJKXzlFVFNkkisDSLspW0L9YoS8/gAxQ1r9VABGAFYk8AAyAAU21SkG5rb2RDCPAHtwTTGdHTbSgqKA3PYKsYIAa0NVjcaUIdAAEg5wLAwjHJQ871SPbVsAW2upa7S7kkefZdB7sfIo6nkREehh+fzMAKBBkGSQIZiI+gAFqAxgAzUCw0gg37/UCA4GofbEEgAEwAnuiPGFEc8fK8iA9rs1QpRCp9IhtMoZsiYVmFyPoCB4LAAHSJjEhbPkCoWiizi3ZNJJAogAL3FoGFQseUn0UsFIrFEqZ7AymhRlh0Or1MsNCqS+mFY0iKNJVv5+tl8q+moMhh9+l2IS0COolAI4rG9wsFXOPNAiLGwuFAR1CMTyecKFaSRRYzGxNT6aWexhZidCJTCaTxcVSQ8pGJkeSqXu+iAA=">Simple Budget Example</a></li>
+                </ul>
+                <div class="divider mt-2">Attribution</div>
+                <p>
+                    You may use diagrams generated with this tool in any way. While not required, placing a link back to my tool is highly appreciated and helps me a lot!
+                </p>
+                <div class="divider mt-2">Support SankeyDiagram.net</div>
+                <p>
+                    <b>I am maintaining this free open-source tool in my free time.</b>
+                    If it helped you, and you feel generous, <a class="underline text-accent" href="https://www.buymeacoffee.com/jonasdoesthings" target="_blank" rel="nofollow" title="Support my Work">you can buy me a coffee (or green tea 🍵)</a>
+                </p>
+                <a class="inline-block w-auto mt-1.5 py-2 px-3 rounded buy-me-a-coffee-button font-bold" href="https://www.buymeacoffee.com/jonasdoesthings" target="_blank" rel="nofollow" title="Support my Work">
+                    <button class="button buy-me-a-coffee-button has-text-weight-bold"><span class="mr-2">🍵</span>Buy Me A Coffee</button>
+                </a>
             </div>
+        </div>
+        <div id="sankey-box" class="bg-white shadow rounded flex-grow w-full overflow-x-auto overflow-y-hidden relative min-h-[70vh]">
+            <svg id="sankey-svg" class="px-4 min-h-[70vh] lg:w-full lg:h-full" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+                <text class="watermark" text-anchor="middle" x="50%" y="30" style="display: inline;">SankeyDiagram.net</text>
+            </svg>
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                <strong>Sankey Diagram Generator</strong> provided by <a href="https://jonasdoesthings.com/" target="_blank"><strong>JonasDoesThings</strong></a> and <a href="https://github.com/nxt3AT/sankeydiagram.net/" target="_blank" rel="nofollow">Open Source contributions</a>.
-            </p>
-        </div>
+    <footer class="text-center">
+        <p>
+            <strong>Sankey Diagram Generator</strong> provided by <a class="text-accent" href="https://jonasdoesthings.com/" target="_blank"><strong>JonasDoesThings</strong></a> and <a class="text-accent" href="https://github.com/nxt3AT/sankeydiagram.net/" target="_blank" rel="nofollow">Open Source contributions</a>.
+        </p>
     </footer>
 
-    <div id="anonymize-data-modal" class="modal p-3">
-        <div class="modal-background"></div>
-
-        <div class="modal-card">
-            <div class="modal-card-head">
-                <p class="modal-card-title">Warning!</p>
-                <button class="delete" aria-label="close"></button>
-            </div>
-            <div class="modal-card-body">
-                <p>Anonymizing your data will replace your input with random text and change all numbers.</p>
-                <p class="has-text-weight-bold has-text-danger">This is not reversible. Use with caution.</p>
-            </div>
-            <div class="modal-card-foot buttons">
-                <button class="button is-success is-color-light">Cancel</button>
-                <button class="button is-danger is-color-light anonymize-data-confirmation-button">Anonymize Data</button>
-            </div>
+    <dialog id="anonymize-data-modal" class="bg-neutral-100 rounded">
+        <div class="px-3 py-4 flex flex-row justify-between items-center">
+            <p class="text-2xl font-bold">Warning!</p>
+            <button aria-label="close" class="bg-gray-300 rounded-full w-5 h-5 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="size-4 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+            </button>
         </div>
-    </div>
+        <div class="bg-white px-4 py-6 border-y">
+            <p>Anonymizing your data will replace your input with random text and change all numbers.</p>
+            <p class="text-red-400 font-bold">This is not reversible. Use with caution.</p>
+        </div>
+        <div class="space-x-2 px-3 py-4">
+            <button class="inline-block relative rounded px-4 py-2 bg-green-500 text-white items-center justify-center cursor-pointer" autofocus>Cancel</button>
+            <button class="inline-block relative rounded px-4 py-2 text-white items-center justify-center cursor-pointer bg-red-600 anonymize-data-confirmation-button">Anonymize Data</button>
+        </div>
+    </dialog>
 
     <script src="js/sankey-builder.js" type="module"></script>
 </body>

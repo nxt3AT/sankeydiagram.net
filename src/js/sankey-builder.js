@@ -18,7 +18,6 @@ const sankeyFontSizeSetting = document.getElementById('sankey-settings-font-size
 
 import {lineRegex, sankeyInput} from './constants';
 import './gui';
-import './modal';
 import './settings-serializer';
 import './input-anonymizer';
 import './input-sharing';
@@ -29,6 +28,12 @@ let inputTimer;
 sankeyInput.addEventListener('keyup', function() {
   clearTimeout(inputTimer);
   inputTimer = setTimeout(processInput, 300);
+});
+
+window.addEventListener('resize', processInput);
+
+document.getElementById('sankey-input-box').addEventListener('resize', function() {
+  processInput();
 });
 
 [sankeyPrecisionSetting, sankeyHideZerosSetting, sankeySuffixSetting, sankeySeparatorSetting, sankeyHideNumbersSetting].forEach((setting) => {

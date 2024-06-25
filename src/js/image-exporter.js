@@ -10,7 +10,7 @@ const modifyStyle = (value) => {
 
 document.querySelectorAll('.download-as-png-button').forEach((element) => {
   element.addEventListener('click', function() {
-    saveSvg.saveSvgAsPng(d3.select('svg').node(), 'sankeydiagram-net-export', {
+    saveSvg.saveSvgAsPng(d3.select('#sankey-svg').node(), 'sankeydiagram-net-export', {
       backgroundColor: 'white',
       excludeUnusedCss: true,
       modifyStyle: modifyStyle,
@@ -20,7 +20,7 @@ document.querySelectorAll('.download-as-png-button').forEach((element) => {
 
 document.querySelectorAll('.download-as-svg-button').forEach((element) => {
   element.addEventListener('click', function() {
-    saveSvg.saveSvg(d3.select('svg').node(), 'sankeydiagram-net-export', {
+    saveSvg.saveSvg(d3.select('#sankey-svg').node(), 'sankeydiagram-net-export', {
       backgroundColor: 'white',
       excludeUnusedCss: true,
       modifyStyle: modifyStyle,
