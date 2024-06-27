@@ -17,7 +17,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "parcel ./src/*.html",
-    "build": "parcel build ./src/index.html ./src/404.html ./src/privacypolicy.html",
+    "build": "parcel build ./src/index.html ./src/404.html ./src/privacypolicy.html ./src/how-to/*.html",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint --fix src/**/*.js"
   },
