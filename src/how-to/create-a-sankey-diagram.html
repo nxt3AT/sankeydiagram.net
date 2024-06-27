@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>How to create a Sankey Diagram | SankeyDiagram.net</title>
+    <meta name="description" content="Your one-stop tool for generating sankey diagrams! Visualize flows with ease.">
+    <meta property="og:description" content="How can I create a Sankey Diagram? Find out how to visualize your data with ease directly in your browser without sign-up.">
+    <meta property="og:title" content="How to create a Sankey Diagram | SankeyDiagram.net" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2024-06-27" />
+    <meta property="og:url" content="https://sankeydiagram.net/how-to/create-a-sankey-diagram" />
+    <meta property="og:image" content="https://sankeydiagram.net/banner.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:title" content="How to create a Sankey Diagram | SankeyDiagram.net" />
+    <meta property="twitter:description" content="How can I create a Sankey Diagram? Find out how to visualize your data with ease directly in your browser without sign-up." />
+    <meta property="twitter:creator" content="@JonasDoesThings" />
+    <meta property="twitter:image" content="https://sankeydiagram.net/banner_square.png" />
+
+    <link rel="canonical" href="https://sankeydiagram.net/how-to/create-a-sankey-diagram" />
+
+    <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
+
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="preload" as="font" href="../fonts/material-icon-iconfont.woff2">
+    <link rel="icon" type="image/png" href="../static/favicon.png">
+</head>
+<body class="min-w-full bg-neutral-100">
+<nav class="bg-white flex flex-row items-stretch px-6 gap-5 min-w-full relative drop-shadow z-10" role="navigation" aria-label="main navigation">
+    <a class="flex flex-row flex-nowrap items-center py-1.5" href="/">
+        <picture class="h-7 aspect-square mr-1">
+            <source srcset="../logo.png?as=webp" type="image/webp">
+            <img src="../logo.png" alt="sankeydiagram.net logo">
+        </picture>
+        <h1 class="font-semibold">SankeyDiagram.net</h1>
+    </a>
+    <button type="button" class="navbar-burger peer group -mr-6 ml-auto inline-flex w-11 items-center justify-center text-sm text-gray-500 md:hidden aria-expanded:bg-neutral-200" aria-controls="navbar-default" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5 group-aria-expanded:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
+        <svg class="w-6 h-6 hidden group-aria-expanded:block" mlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+    </button>
+    <div class="hidden peer-aria-expanded:block md:flex flex-col md:flex-row absolute top-full left-0 md:relative bg-white w-full shadow md:shadow-none">
+        <div class="relative cursor-pointer flex flex-col md:flex-row md:items-center">
+            <div class="peer hover:bg-gray-100 h-full flex items-center px-4">
+                    <span class="cursor-pointer py-1.5">
+                        About
+                    </span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 ml-1.5 text-accent"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+            </div>
+            <div class="block md:hidden peer-hover:block hover:block relative md:absolute bg-white top-full left-0 rounded-b md:shadow md:border py-2.5 font-light text-sm">
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full" href="https://github.com/nxt3AT/sankeydiagram.net" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full" href="https://jonasdoesthings.com/" target="_blank">@JonasDoesThings</a>
+                <hr class="navbar-divider hidden md:block">
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full" href="mailto:jonas@jonasdoesthings.com">Report an issue</a>
+                <a class="text-gray-400 p-2 px-6 hover:bg-gray-100 inline-block w-full" href="../privacypolicy.html" target="_blank" rel="nofollow">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="relative cursor-pointer flex flex-col md:flex-row md:items-center">
+            <div class="peer hover:bg-gray-100 h-full flex items-center px-4">
+                    <span class="cursor-pointer py-1.5">
+                        How To
+                    </span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 ml-1.5 text-accent"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+            </div>
+            <div class="block md:hidden peer-hover:block hover:block relative md:absolute bg-white top-full left-0 rounded-b md:shadow md:border py-2.5 font-light text-sm">
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full text-nowrap" href="./what-is-a-sankey-diagram.html">What is a Sankey Diagram?</a>
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full text-nowrap" href="./create-a-sankey-diagram.html">How To create a Sankey Diagram</a>
+            </div>
+        </div>
+        <div class="py-1.5 px-3 flex items-center">
+            <a class="py-1.5 px-3 rounded buy-me-a-coffee-button font-bold" href="https://www.buymeacoffee.com/jonasdoesthings" target="_blank" rel="nofollow" title="Support my Work">
+                <span class="mr-2">🍵</span>Buy Me A Coffee
+            </a>
+        </div>
+    </div>
+</nav>
+<main class="m-0 flex flex-col w-full p-3 gap-3 min-h-[90vh]">
+    <div class="border border-collapse border-neutral-400 [&>div]:grid [&>div]:grid-cols-1 [&>div]:md:grid-cols-2 [&>div]:border [&>div]:px-4 [&>div]:py-2 [&_pre]:inline-block [&_pre]:max-w-full [&_pre]:overflow-scroll [&_pre]:text-sm [&_pre]:font-mono [&_pre]:text-neutral-600 [&_pre]:border [&_pre]:border-black [&_pre]:p-1 [&_img]:max-h-[500px] [&_img]:mt-2 [&_img]:md:mt-auto">
+        <div class="!hidden md:!grid">
+            <p class="font-bold">Example Input</p>
+            <p class="font-bold">Example Output</p>
+        </div>
+        <div>
+            <div>
+                <p class="font-bold text-3xl mb-2">1. Basic Sankey Diagram</p>
+                <pre>
+// this is a comment and completely ignored
+// each diagram-flow is specified in the format:
+// "SOURCE [AMOUNT] TARGET"
+source [100] target
+source two [30] target
+target [65] target two</pre>
+                <ul class="mt-2 list-disc list-inside">
+                    <li><b>You can specify one flow per line.</b></li>
+                    <li><b>SOURCE_NODE [AMOUNT] TARGET_NODE</b> is the basic syntax for a flow / link.</li>
+                    <li><b>Lines starting with a "//" are treated as comments and completely ignored in the output.</b></li>
+                    <li>Names are case-sensitive. ("a" is treated different as "A")</li>
+                </ul>
+            </div>
+            <div>
+                <img src="./create-a-sankey-diagram-example-general-0.svg" alt="example output sankey diagram for the left-hand input" />
+                <a class="underline text-accent text-sm" target="_blank" href="/?content=PTAEBcAsEsGdTqAhqAxgewLaYKYDtxk8ATNLABwBsdwdKBPBAcz3QCcdTo8JIdR0AV3DlhAKBCgcSVJFDFoSJmySYAtJW4BrBPFjkcqaADNonBDyj9j7TEkIAiAMoB5AKoAlAMIBRUAG0AQQBZdwA5ABUAXVAIwI8AcR8IhzFYITZUfn8ARgAGPJjwJDYmGjSMrIgAd3QAgGZCiBKy8DFi0poAgDYAViKWrvBaoA&">Open Example Diagram</a>
+            </div>
+        </div>
+        <div>
+            <div>
+                <p class="font-bold text-3xl mb-2">2. Auto-Calculating Flow Amounts ([?]-operator)</p>
+                <pre>
+salary [20] budget
+// the "?" operator automatically sums-up all outgoing values
+budget [?] groceries
+groceries [3] vegetables
+groceries [?] fruits
+fruits [10] apples
+fruits [5] bananas</pre>
+                <ul class="mt-2 list-disc list-inside">
+                    <li><b>You can use "[?]" as the amount to automatically sum-up all the outgoing amounts of this flow.</b></li>
+                    <li>You can chain multiple "[?]" as long as there are some numeric values to sum-up in the end.</li>
+                </ul>
+            </div>
+            <div>
+                <img src="./create-a-sankey-diagram-example-automatic-calculation.svg" alt="example output sankey diagram for the left-hand input" />
+                <a class="underline text-accent text-sm" target="_blank" href="/?content=M4QwNiBOCeAEDaAmADAXVgIwK4BMDmApgC4BQA9GbEQBYGwBEA/PbAPYAOBkIRrksILLwC2PAJYBjcGDjAsw4AFos7AWDBsheVmIB2eWADdwWAsBLZ8xBI3R5IrCVzFmS9x87MIAzOkMFCIhAMMFd3J0gXYBt0ADNILDEic3jE5IQARjQBdnZQlISk6PgAVnQMEF1KkGAgA=&">Open Example Diagram</a>
+            </div>
+        </div>
+        <div>
+            <div>
+                <p class="font-bold text-3xl mb-2">3. Sankey Diagram with Custom Colors</p>
+                <pre>
+source red1 [100] target [red]
+source red2 [10] target [red]
+source red3 [10] target [red]
+source green [30] target [green]
+target [65] target orange [orange]
+target [20] target pink [#f1337f]</pre>
+                <ul class="mt-2 list-disc list-inside">
+                    <li><b>You can optionally specify a custom color for each flow.</b></li>
+                    <li><b>Colors are specified at the end of each line inside square-brackets.</b></li>
+                    <li>You can use a set of common pre-defined color names like "red", "blue", "green", or even enter custom hex-color-codes like "#FF0000".</li>
+                </ul>
+            </div>
+            <div>
+                <img src="./create-a-sankey-diagram-example-colors.svg" alt="example colored output sankey diagram for the left-hand input" />
+                <a class="underline text-accent text-sm" target="_blank" href="/?content=M4ewrgTgxgpgBBGATAjHA2igDFgunAFwEMIBzGAjRJXAKFElgWQCYNt9iyKrk6Ho8agGZ2eQiXKV01fuEFxSiGADsMw8VykYlMVXS090ANgCsnSTxAQiK8hmu3yBy9JabXcAA4BLFQGsMAGIAMxRhYQB2ENwgA==&">Open Example Diagram</a>
+            </div>
+        </div>
+        <div>
+            <div>
+                <p class="font-bold text-3xl mb-2">4. Sankey Diagram with Loops</p>
+                <pre>
+// sankeys may have loops
+a [10] b
+b [10] c
+c [5] b
+c [5] d</pre>
+                <ul class="mt-2 list-disc list-inside">
+                    <li><b>Loops referencing previous nodes are allowed.</b></li>
+                </ul>
+            </div>
+            <div>
+                <img src="./create-a-sankey-diagram-example-loops.svg" alt="example output sankey diagram with loops for the left-hand input" />
+                <a class="underline text-accent text-sm" target="_blank" href="/?content=PTAEGcEMDsGsFMCe5QFtKNAC0gN3qADYD2xADuAFCSgDaAjAAwC6oARpW3U6wMaW86AVlYdBtEaAAmQA&">Open Example Diagram</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="text-center">
+    <p>
+        <strong>Sankey Diagram Generator</strong> provided by <a class="text-accent" href="https://jonasdoesthings.com/" target="_blank"><strong>JonasDoesThings</strong></a> and <a class="text-accent" href="https://github.com/nxt3AT/sankeydiagram.net/" target="_blank" rel="nofollow">Open Source contributions</a>.
+    </p>
+</footer>
+
+<script src="../js/gui.js" type="module"></script>
+</body>
+</html>
