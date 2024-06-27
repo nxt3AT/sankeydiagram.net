@@ -1,0 +1,34 @@
+@import "./fonts.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    overflow-y: auto;
+}
+
+.buy-me-a-coffee-button {
+    background-color: #F1337F;
+    color: white;
+    transition: 300ms;
+}
+
+.buy-me-a-coffee-button:hover {
+    filter: brightness(125%);
+    color: white;
+}
+
+.settings-input[type="text"], .settings-input[type="number"] {
+    @apply border border-black text-sm;
+    padding: 0 0.15rem;
+}
+select.settings-input {
+    @apply border border-black;
+}
+
+::backdrop {
+    backdrop-filter: blur(15px) brightness(50%);
+}

@@ -1,41 +1,31 @@
-import {processInput} from './sankey-builder';
+addEventListener("DOMContentLoaded", () => {
+  const allTabs = Array.from((document.getElementById('sankey-input-tabs')?.getElementsByTagName('li')) ?? []);
+  const allTabContainers = Array.from((document.getElementById('sankey-input-box')?.getElementsByClassName('is-tab') ?? []));
+  let currentTabIndex = 0;
 
-const allTabs = Array.from(document.getElementById('sankey-input-tabs').getElementsByTagName('li'));
-const allTabContainers = Array.from(document.getElementById('sankey-input-box').getElementsByClassName('is-tab'));
-let currentTabIndex = 0;
-
-document.querySelectorAll('.close-notification-button').forEach((element) => {
-  element.addEventListener('click', function() {
-    element.parentElement.remove();
+  document.querySelectorAll('.close-notification-button').forEach((element) => {
+    element.addEventListener('click', function() {
+      element.parentElement.remove();
+    });
   });
-});
 
-document.querySelectorAll('.navbar-burger').forEach((element) => {
-  element.addEventListener('click', function() {
-    const target = document.getElementById(element.dataset.target);
-
-    element.classList.toggle('is-active');
-    target.classList.toggle('is-active');
+  document.querySelectorAll('.navbar-burger').forEach((element) => {
+    element.addEventListener('click', function() {
+      element.setAttribute("aria-expanded", element.getAttribute("aria-expanded") === "true" ? "false" : "true")
+    });
   });
-});
 
-document.getElementById('sankey-input-tabs').addEventListener('click', function(e) {
-  if (e.target.tagName !== 'A') {
-    return;
-  }
+  document.getElementById('sankey-input-tabs')?.addEventListener('click', function(e) {
+    if (e.target.tagName.toLowerCase() !== 'button') {
+      return;
+    }
+    allTabs[currentTabIndex].setAttribute("aria-selected", "false");
+    allTabContainers[currentTabIndex].setAttribute("aria-expanded", "false");
 
-  allTabs[currentTabIndex].classList.remove('is-active');
-  allTabContainers[currentTabIndex].classList.remove('is-active');
+    const newTabIndex = allTabs.indexOf(e.target.parentElement);
+    allTabs[newTabIndex].setAttribute("aria-selected", "true");
+    allTabContainers[newTabIndex].setAttribute("aria-expanded", "true");
 
-  const newTabIndex = allTabs.indexOf(e.target.parentElement);
-  allTabs[newTabIndex].classList.add('is-active');
-  allTabContainers[newTabIndex].classList.add('is-active');
-
-  currentTabIndex = newTabIndex;
-});
-
-window.addEventListener('resize', processInput);
-
-document.getElementById('sankey-input-box').addEventListener('resize', function() {
-  processInput();
+    currentTabIndex = newTabIndex;
+  });
 });
