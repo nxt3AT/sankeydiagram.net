@@ -18,8 +18,8 @@ Example Diagram: [https://sankeydiagram.net/?content=PTAEGUHkFUCUGECioD...](http
 
 Live version of the dev branch: https://dev.sankeydiagram-net.pages.dev/  
   
-There is also a Dockerfile available for local testing. Please mind that the Dockerfile is not (yet) production ready, since it runs a local parcel server.  
-Use `docker build -t sankeydiagramnet . && docker run -p 1234:1234 sankeydiagramnet` to start your a docker container at port 1234.
+There is also a Dockerfile available for running. It builds the app and runs a nginx server to serve the static files.  
+Use `docker build -t sankeydiagramnet . && docker run -p 80:1234 sankeydiagramnet` to start you a docker container at local port 1234.
 
 ## Contact
 If you have any questions, need help, a special license, or something else, you can contact me via GitHub Issues, or using the following methods:

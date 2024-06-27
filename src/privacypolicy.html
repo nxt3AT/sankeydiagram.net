@@ -7,50 +7,60 @@
     <meta name="robots" content="noindex,nofollow">
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="css/legal.scss">
+    <link rel="stylesheet" href="./css/core.css">
     <link rel="icon" type="image/png" href="static/favicon.png">
 </head>
-<body class="is-fullwidth">
-    <nav class="navbar is-fullwidth" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand ml-4">
-            <a class="navbar-item" href="/">
-                <picture class="mr-1 is-inline-flex">
-                    <source srcset="logo.png?as=webp" type="image/webp">
-                    <img src="logo.png" width="28" height="28" alt="sankeydiagram.net logo">
-                </picture>
-                <h1 class="has-text-weight-bold">SankeyDiagram.net</h1>
-            </a>
-
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
+<body class="w-full">
+    <nav class="bg-white flex flex-row items-stretch px-6 gap-5 min-w-full relative" role="navigation" aria-label="main navigation">
+    <a class="flex flex-row flex-nowrap items-center py-2" href="/">
+        <picture class="h-7 aspect-square mr-1">
+            <source srcset="logo.png?as=webp" type="image/webp">
+            <img src="logo.png" alt="sankeydiagram.net logo" width="32" height="32">
+        </picture>
+        <h1 class="font-semibold">SankeyDiagram.net</h1>
+    </a>
+    <button type="button" class="navbar-burger peer group -mr-6 ml-auto inline-flex w-11 items-center justify-center text-sm text-gray-500 md:hidden aria-expanded:bg-neutral-200" aria-controls="navbar-default" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5 group-aria-expanded:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
+        <svg class="w-6 h-6 hidden group-aria-expanded:block" mlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+    </button>
+    <div class="hidden peer-aria-expanded:block md:flex flex-col md:flex-row absolute top-full left-0 md:relative bg-white w-full shadow md:shadow-none">
+        <div class="py-3 px-3 flex items-center">
+            <a href="/">Home</a>
         </div>
-
-        <div id="navbarMenu" class="navbar-menu">
-            <div class="navbar-start">
-                <a href="/" class="navbar-item">
-                    Home
-                </a>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
+        <div class="relative cursor-pointer flex flex-col md:flex-row md:items-center">
+            <div class="peer hover:bg-gray-100 h-full flex items-center px-4">
+                    <span class="cursor-pointer py-2">
                         About
-                    </a>
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item" href="https://github.com/nxt3AT/sankeydiagram.net" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <a class="navbar-item" href="https://jonasdoesthings.com/" target="_blank">@JonasDoesThings</a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item" href="mailto:jonas@jonasdoesthings.com">Report an issue</a>
-                        <a class="navbar-item navbar-item-unimportant" href="./privacypolicy.html" target="_blank" rel="nofollow">Privacy Policy</a>
-                    </div>
+                    </span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 ml-1.5 text-accent"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+            </div>
+            <div class="block md:hidden peer-hover:block hover:block relative md:absolute z-20 bg-white top-full left-0 rounded-b md:shadow md:border py-2.5 font-light text-sm">
+                <div class="p-2 px-6 hover:bg-gray-100">
+                    <a href="https://github.com/nxt3AT/sankeydiagram.net" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+                <div class="p-2 px-6 hover:bg-gray-100">
+                    <a href="https://jonasdoesthings.com/" target="_blank">@JonasDoesThings</a>
+                </div>
+                <hr class="navbar-divider hidden md:block">
+                <div class="p-2 px-6 hover:bg-gray-100">
+                    <a href="mailto:jonas@jonasdoesthings.com">Report an issue</a>
+                </div>
+                <div class="p-2 px-6 hover:bg-gray-100">
+                    <a class="text-gray-400" href="./privacypolicy.html" target="_blank" rel="nofollow">Privacy Policy</a>
                 </div>
             </div>
         </div>
-    </nav>
+        <div class="py-3 px-3 flex items-center">
+            <a class="py-2 px-3 rounded buy-me-a-coffee-button font-bold" href="https://www.buymeacoffee.com/jonasdoesthings" target="_blank" rel="nofollow" title="Support my Work">
+                <span class="mr-2">🍵</span>Buy Me A Coffee
+            </a>
+        </div>
+    </div>
+</nav>
     <main>
         <div class="p-6">
-            <h1 class="is-size-1">Privacy Policy</h1>
+            <h1 class="text-2xl">Privacy Policy</h1>
             <p>
                 This website is currently hosted on CloudFlare.
                 <br>
@@ -68,12 +78,12 @@
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                <strong>Sankey Diagram Generator</strong> provided by <a href="https://jonasdoesthings.com/" target="_blank"><strong>JonasDoesThings</strong></a> and <a href="https://github.com/nxt3AT/sankeydiagram.net/" target="_blank" rel="nofollow">Open Source contributions</a>.
-            </p>
-        </div>
+    <footer class="text-center">
+        <p>
+            <strong>Sankey Diagram Generator</strong> provided by <a class="text-accent" href="https://jonasdoesthings.com/" target="_blank"><strong>JonasDoesThings</strong></a> and <a class="text-accent" href="https://github.com/nxt3AT/sankeydiagram.net/" target="_blank" rel="nofollow">Open Source contributions</a>.
+        </p>
     </footer>
+
+    <script src="./js/gui.js" type="module"></script>
 </body>
 </html>

@@ -27,7 +27,7 @@ export function serializeSettings() {
   const changedSettings = {};
 
   document.querySelectorAll('.settings-input').forEach((element) => {
-    if (!element.id in defaultSettings) {
+    if (!(element.id in defaultSettings)) {
       return;
     }
 
