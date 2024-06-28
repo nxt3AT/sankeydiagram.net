@@ -32,3 +32,21 @@ select.settings-input {
 ::backdrop {
     backdrop-filter: blur(15px) brightness(50%);
 }
+
+.divider {
+    @apply m-1.5;
+    @apply uppercase font-semibold tracking-wider text-neutral-400 text-xs;
+    @apply relative flex items-center;
+
+    &:before, &:after {
+        content: "";
+        @apply block flex-1 h-[1px] bg-neutral-400;
+    }
+
+    &:before {
+        @apply mr-1.5;
+    }
+    &:after {
+        @apply ml-1.5;
+    }
+}
