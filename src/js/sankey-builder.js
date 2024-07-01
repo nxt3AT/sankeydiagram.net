@@ -22,6 +22,7 @@ import './settings-serializer';
 import './input-anonymizer';
 import './input-sharing';
 import './image-exporter';
+import {parseFloatWithPrecision} from './utils';
 
 
 let inputTimer;
@@ -164,7 +165,7 @@ function parseInputToSankey(input) {
     linksList.push({
       'source': source,
       'target': target,
-      'value': sankeyHideZerosSetting.checked ? Number(parseFloat(value).toFixed(precision)) : parseFloat(value).toFixed(precision),
+      'value': parseFloatWithPrecision(value, precision, sankeyHideZerosSetting.checked),
       'color': color in CSS3_NAMES_TO_HEX ? CSS3_NAMES_TO_HEX[color] : (color !== undefined && color.startsWith('#')) ? color : getColor(source),
     });
   }
@@ -221,11 +222,9 @@ const diagram = sankey.sankeyDiagram()
         d.incoming.forEach((incomingNode) => {
           incomingValue += parseFloat(incomingNode.value);
         });
-        nodeValue = sankeyHideZerosSetting.checked ?
-          Number(incomingValue.toFixed(precision)) : incomingValue.toFixed(precision);
+        nodeValue = parseFloatWithPrecision(incomingValue, precision, sankeyHideZerosSetting.checked);
       } else {
-        nodeValue = sankeyHideZerosSetting.checked ?
-          Number(d.value.toFixed(precision)) : d.value.toFixed(precision);
+        nodeValue = parseFloatWithPrecision(d.value, precision, sankeyHideZerosSetting.checked);
       }
 
       return sankeySeparatorSetting.checked ? Number(nodeValue).toLocaleString(undefined, {
@@ -250,10 +249,10 @@ const diagram = sankey.sankeyDiagram()
       });
 
       if (d.outgoing.length > 0 && d.incoming.length > 0 && (Math.abs(outgoingValue) !== Math.abs(incomingValue))) {
-        return (sankeyHideZerosSetting.checked ? Number(d.value.toFixed(precision)) :
-          d.value.toFixed(precision)) + '\ndifference: ' + (parseFloat(incomingValue) - parseFloat(outgoingValue)).toFixed(precision);
+        return parseFloatWithPrecision(d.value, precision, sankeyHideZerosSetting.checked)
+          + '\ndifference: ' + (parseFloat(incomingValue) - parseFloat(outgoingValue)).toFixed(precision);
       } else {
-        return (sankeyHideZerosSetting.checked ? Number(d.value.toFixed(precision)) : d.value.toFixed(precision));
+        return parseFloatWithPrecision(d.value, precision, sankeyHideZerosSetting.checked);
       }
     })
     .linkMinWidth(function() {
