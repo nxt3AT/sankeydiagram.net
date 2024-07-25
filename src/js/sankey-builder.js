@@ -16,6 +16,7 @@ const sankeyCanvasWidthSetting = document.getElementById('sankey-settings-canvas
 const sankeyCanvasHeightSetting = document.getElementById('sankey-settings-canvas-height');
 const sankeyFontSizeSetting = document.getElementById('sankey-settings-font-size');
 const sankeyNodeWidthSetting = document.getElementById('sankey-settings-node-width');
+const sankeyDisableWatermarkSetting = document.getElementById('sankey-settings-disable-watermark');
 
 import {lineRegex, sankeyInput} from './constants';
 import './gui';
@@ -78,6 +79,11 @@ sankeyNodeWidthSetting.addEventListener('input', () => {
       `${(isNaN(sankeyNodeWidthSetting.value) || isNaN(parseFloat(sankeyNodeWidthSetting.value))) ? '3' : sankeyNodeWidthSetting.value.trim()}px`,
   );
 });
+
+sankeyDisableWatermarkSetting.addEventListener('change', () => {
+  document.getElementById('disable-watermark-notice').style['display'] = sankeyDisableWatermarkSetting.checked ? 'inline-block' : 'none';
+  document.getElementById('sankey-svg-watermark').style['display'] = sankeyDisableWatermarkSetting.checked ? 'none' : 'inline';
+})
 
 /**
  * recursively generates the value of an auto-sum connection

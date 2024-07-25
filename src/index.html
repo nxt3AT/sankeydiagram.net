@@ -139,6 +139,12 @@ target five [15] target six [lightgreen]
                     <input type="number" class="settings-input sankey-settings-flow-opacity" id="sankey-settings-flow-opacity" value="50" placeholder="50" min="0" max="100">
                     <input type="range" class="sankey-settings-flow-opacity" value="50" placeholder="50" min="0" max="100">
                 </div>
+                <label for="sankey-settings-disable-watermark">Disable Watermark </label><input type="checkbox" class="settings-input" id="sankey-settings-disable-watermark">
+                <br>
+                <p class="text-xs p-2 bg-orange-400/30 hidden" id="disable-watermark-notice">
+                    enabling the optional watermark helps us spread the word for this free and open source tool, <br>
+                    consider enabling it if you want :)
+                </p>
                 <br>
                 <div class="divider">Debug</div>
                 <button class="relative py-2 bg-dark text-white flex items-center justify-center w-full cursor-pointer anonymize-data-button"><span class="material-icons mr-1">shuffle</span> Anonymize Data</button>
@@ -182,7 +188,7 @@ target five [15] target six [lightgreen]
         </div>
         <div id="sankey-box" class="bg-white shadow rounded flex-grow w-full overflow-x-auto overflow-y-hidden relative">
             <svg id="sankey-svg" class="px-4 min-h-[70vh] lg:min-h-[50vh] lg:w-full lg:h-full" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
-                <text class="watermark" text-anchor="middle" x="50%" y="30" style="display: inline;">SankeyDiagram.net</text>
+                <text class="watermark" id="sankey-svg-watermark" text-anchor="middle" x="50%" y="30" style="display: inline;">SankeyDiagram.net</text>
             </svg>
         </div>
     </main>
