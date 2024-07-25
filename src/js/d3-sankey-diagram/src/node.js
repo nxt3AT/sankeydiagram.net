@@ -92,6 +92,7 @@ export default function () {
       body
         .attr('width', function (d) { return d.x1 - d.x0 })
         .attr('height', function (d) { return layoutData.dy })
+        .attr('fill', d.color)
 
       text
         .attr('transform', textTransform)

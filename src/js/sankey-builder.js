@@ -16,6 +16,7 @@ const sankeyCanvasWidthSetting = document.getElementById('sankey-settings-canvas
 const sankeyCanvasHeightSetting = document.getElementById('sankey-settings-canvas-height');
 const sankeyFontSizeSetting = document.getElementById('sankey-settings-font-size');
 const sankeyNodeWidthSetting = document.getElementById('sankey-settings-node-width');
+const sankeyNodeUseColorsSetting = document.getElementById('sankey-settings-node-use-colors');
 const sankeyDisableWatermarkSetting = document.getElementById('sankey-settings-disable-watermark');
 
 import {lineRegex, sankeyInput} from './constants';
@@ -39,7 +40,7 @@ document.getElementById('sankey-input-box').addEventListener('resize', function(
   processInput();
 });
 
-[sankeyPrecisionSetting, sankeyHideZerosSetting, sankeySuffixSetting, sankeySeparatorSetting, sankeyHideNumbersSetting].forEach((setting) => {
+[sankeyPrecisionSetting, sankeyHideZerosSetting, sankeySuffixSetting, sankeySeparatorSetting, sankeyHideNumbersSetting, sankeyNodeUseColorsSetting].forEach((setting) => {
   setting.addEventListener('input', function() {
     processInput();
   });
@@ -164,12 +165,12 @@ function parseInputToSankey(input) {
 
     if (!nodeKeys.includes(source)) {
       nodeKeys.push(source);
-      nodesList.push({'id': source});
+      nodesList.push({'id': source, 'color': sankeyNodeUseColorsSetting.checked ? getColor(source) : undefined});
     }
 
     if (!nodeKeys.includes(target)) {
       nodeKeys.push(target);
-      nodesList.push({'id': target});
+      nodesList.push({'id': target, 'color': sankeyNodeUseColorsSetting.checked ? getColor(target) : undefined});
     }
 
     if (value === '?') {
