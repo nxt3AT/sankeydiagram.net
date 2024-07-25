@@ -195,6 +195,8 @@ export const paletteNested = [
 ];
 
 let sankeyColorpaletteSetting = document.getElementById('sankey-settings-colorscheme');
+const sankeyFlowOpacitySettings = document.getElementsByClassName('sankey-settings-flow-opacity');
+
 let colorIndex = 0;
 
 /**
@@ -202,6 +204,21 @@ let colorIndex = 0;
  */
 export function resetColorIndex() {
   colorIndex = 0;
+}
+
+for (const sankeyFlowOpacitySetting of sankeyFlowOpacitySettings) {
+  sankeyFlowOpacitySetting.addEventListener('input', (evt) => {
+    // keep the slider and number input both in-sync
+    for (let sankeyFlowOpacitySettings2 of sankeyFlowOpacitySettings) {
+      if(sankeyFlowOpacitySetting === sankeyFlowOpacitySettings2) continue;
+      sankeyFlowOpacitySettings2.value = evt.target.value;
+    }
+
+    document.documentElement.style.setProperty(
+      '--flow-opacity',
+      `${(isNaN(evt.target.value) || isNaN(parseFloat(evt.target.value))) ? '0.5' : evt.target.value/100}`,
+    );
+  });
 }
 
 /**

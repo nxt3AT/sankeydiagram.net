@@ -132,6 +132,12 @@ target five [15] target six [lightgreen]
                 <br>
                 <label for="sankey-settings-font-size">Font Size (px) </label><input type="number" class="settings-input" id="sankey-settings-font-size" value="20" placeholder="20">
                 <br>
+                <div class="flex flex-row items-center gap-1.5">
+                    <label for="sankey-settings-flow-opacity">Flow Opacity (%) </label>
+                    <input type="number" class="settings-input sankey-settings-flow-opacity" id="sankey-settings-flow-opacity" value="50" placeholder="50" min="0" max="100">
+                    <input type="range" class="sankey-settings-flow-opacity" value="50" placeholder="50" min="0" max="100">
+                </div>
+                <br>
                 <div class="divider">Debug</div>
                 <button class="relative py-2 bg-dark text-white flex items-center justify-center w-full cursor-pointer anonymize-data-button"><span class="material-icons mr-1">shuffle</span> Anonymize Data</button>
             </div>

@@ -2,9 +2,14 @@ import * as saveSvg from 'save-svg-as-png';
 import * as d3 from 'd3';
 
 const modifyStyle = (value) => {
-  return value.replace(
+  return value
+    .replace(
       'var(--node-font-size)',
       window.getComputedStyle(document.documentElement).getPropertyValue('--node-font-size'),
+    )
+    .replace(
+      'var(--flow-opacity)',
+      window.getComputedStyle(document.documentElement).getPropertyValue('--flow-opacity'),
   );
 };
 
