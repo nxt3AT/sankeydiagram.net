@@ -15,6 +15,7 @@ const sankeyHideNumbersSetting = document.getElementById('sankey-settings-hidenu
 const sankeyCanvasWidthSetting = document.getElementById('sankey-settings-canvas-width');
 const sankeyCanvasHeightSetting = document.getElementById('sankey-settings-canvas-height');
 const sankeyFontSizeSetting = document.getElementById('sankey-settings-font-size');
+const sankeyNodeWidthSetting = document.getElementById('sankey-settings-node-width');
 
 import {lineRegex, sankeyInput} from './constants';
 import './gui';
@@ -68,6 +69,13 @@ sankeyFontSizeSetting.addEventListener('input', () => {
   document.documentElement.style.setProperty(
       '--node-font-size',
       `${sankeyFontSizeSetting.value.trim().length > 0 ? sankeyFontSizeSetting.value.trim() : '20'}px`,
+  );
+});
+
+sankeyNodeWidthSetting.addEventListener('input', () => {
+  document.documentElement.style.setProperty(
+      '--node-width',
+      `${(isNaN(sankeyNodeWidthSetting.value) || isNaN(parseFloat(sankeyNodeWidthSetting.value))) ? '3' : sankeyNodeWidthSetting.value.trim()}px`,
   );
 });
 

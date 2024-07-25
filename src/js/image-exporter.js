@@ -8,6 +8,10 @@ const modifyStyle = (value) => {
       window.getComputedStyle(document.documentElement).getPropertyValue('--node-font-size'),
     )
     .replace(
+      'var(--node-width)',
+      window.getComputedStyle(document.documentElement).getPropertyValue('--node-width'),
+    )
+    .replace(
       'var(--flow-opacity)',
       window.getComputedStyle(document.documentElement).getPropertyValue('--flow-opacity'),
   );

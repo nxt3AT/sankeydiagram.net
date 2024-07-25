@@ -1,6 +1,7 @@
 @import "core.css";
 
 :root {
+    --node-width: 3px;
     --node-font-size: 20px;
     --flow-opacity: 0.5;
 }
@@ -22,7 +23,7 @@
 }
 
 .nodes rect {
-    width: 2pt;
+    width: var(--node-width);
     opacity: 0.85;
 }
 
