@@ -17,6 +17,8 @@ export default function () {
         .attr('x2', 0)
       selection.append('rect')
         .attr('class', 'node-body')
+      selection.append('rect')
+        .attr('class', 'node-text-bg')
       selection.append('text')
         .attr('class', 'node-value')
         .attr('dy', '.35em')
@@ -41,6 +43,7 @@ export default function () {
       let title = select(this).select('title')
       let value = select(this).select('.node-value')
       let text = select(this).select('.node-title')
+      let textBackground = select(this).select('.node-text-bg')
       let line = select(this).select('line')
       let body = select(this).select('.node-body')
       let clickTarget = select(this).select('.node-click-target')
@@ -109,6 +112,16 @@ export default function () {
           return 'translate(' + (dx / 2) + ',' + (dy / 2) + ') rotate(' + theta + ')'
         })
 
+      const textBBox = text.node().getBBox();
+      const valueBBox = value.node().getBBox();
+      const textBackgroundPadding = 5;
+      textBackground
+        .attr('x', Math.min(textBBox.x, valueBBox.x)-textBackgroundPadding/2)
+        .attr('y', Math.min(textBBox.y, valueBBox.y)-textBackgroundPadding/2)
+        .attr('width', Math.max(textBBox.width, valueBBox.width)+textBackgroundPadding)
+        .attr('height', Math.max(textBBox.height, valueBBox.height)+textBackgroundPadding)
+        .attr('transform', textTransform)
+
       function textTransform (d) {
         const layout = layoutData
         const y = layout.titleAbove ? -10 : (d.y1 - d.y0) / 2
@@ -116,7 +129,8 @@ export default function () {
         if (layout.titleAbove) {
           x = (layout.right ? 4 : -4)
         } else {
-          x = (layout.right ? -4 : d.x1 - d.x0 + 4)
+          const paddingX = layout.showLabelBackground ? 8 : 4;
+          x = (layout.right ? -paddingX : d.x1 - d.x0 + paddingX)
         }
         return 'translate(' + x + ',' + y + ')'
       }
@@ -171,7 +185,11 @@ function nodeTransform (d) {
 }
 
 function titlePosition (d) {
-  return {titleAbove: document.getElementById("sankey-settings-labelabove").checked, right: d.incoming.length !== 0}
+  return {
+    titleAbove: document.getElementById('sankey-settings-labelabove').checked,
+    showLabelBackground: document.getElementById('sankey-settings-node-text-background-opacity').value > 0,
+    right: d.incoming.length !== 0
+  }
 }
 
 function wrap (d, width) {

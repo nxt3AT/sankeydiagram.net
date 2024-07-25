@@ -8,6 +8,7 @@ let sankeySvg;
 const sankeyPrecisionSetting = document.getElementById('sankey-settings-precision');
 const sankeyHideZerosSetting = document.getElementById('sankey-settings-hidezeros');
 const sankeySeparatorSetting = document.getElementById('sankey-settings-separators');
+const sankeyNodeTextBackgroundOpacitySettings = document.getElementsByClassName('sankey-settings-node-text-background-opacity');
 const sankeyColorpaletteSetting = document.getElementById('sankey-settings-colorscheme');
 const sankeySuffixSetting = document.getElementById('sankey-settings-suffix');
 
@@ -80,6 +81,22 @@ sankeyNodeWidthSetting.addEventListener('input', () => {
       `${(isNaN(sankeyNodeWidthSetting.value) || isNaN(parseFloat(sankeyNodeWidthSetting.value))) ? '3' : sankeyNodeWidthSetting.value.trim()}px`,
   );
 });
+
+for (let sankeyNodeTextBackgroundOpacitySetting of sankeyNodeTextBackgroundOpacitySettings) {
+  sankeyNodeTextBackgroundOpacitySetting.addEventListener('input', (evt) => {
+    // keep the slider and number input both in-sync
+    for (let sankeyNodeTextBackgroundOpacitySetting2 of sankeyNodeTextBackgroundOpacitySettings) {
+      if(sankeyNodeTextBackgroundOpacitySetting === sankeyNodeTextBackgroundOpacitySetting2) continue;
+      sankeyNodeTextBackgroundOpacitySetting2.value = evt.target.value;
+    }
+
+    document.documentElement.style.setProperty(
+      '--node-text-bg-opacity',
+      `${(isNaN(sankeyNodeTextBackgroundOpacitySetting.value) || isNaN(parseFloat(sankeyNodeTextBackgroundOpacitySetting.value))) ? '0' : sankeyNodeTextBackgroundOpacitySetting.value/100}`,
+    );
+    processInput();
+  });
+}
 
 sankeyDisableWatermarkSetting.addEventListener('change', () => {
   document.getElementById('disable-watermark-notice').style['display'] = sankeyDisableWatermarkSetting.checked ? 'inline-block' : 'none';

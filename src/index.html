@@ -110,7 +110,11 @@ target five [15] target six [lightgreen]
                 <label for="sankey-settings-separators">Add thousands separators (5.000.000) </label><input type="checkbox" class="settings-input" id="sankey-settings-separators">
                 <br>
                 <label for="sankey-settings-labelabove">Display label above nodes </label><input type="checkbox" class="settings-input" id="sankey-settings-labelabove">
-                <br>
+                <div class="flex flex-row items-center gap-1.5">
+                    <label for="sankey-settings-node-text-background-opacity">Node text background opacity (%) </label>
+                    <input class="settings-input sankey-settings-node-text-background-opacity" id="sankey-settings-node-text-background-opacity" max="100" min="0" placeholder="0" type="number" value="0">
+                    <input class="settings-input sankey-settings-node-text-background-opacity" max="100" min="0" type="range" value="0">
+                </div>
                 <label for="sankey-settings-colorscheme">Color scheme </label>
                 <select class="settings-input" id="sankey-settings-colorscheme" name="sankey-settings-colorscheme">
                     <option value="set2">default</option>

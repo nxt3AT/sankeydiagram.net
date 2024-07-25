@@ -3,6 +3,7 @@
 :root {
     --node-width: 3px;
     --node-font-size: 20px;
+    --node-text-background-opacity: 0;
     --flow-opacity: 0.5;
 }
 
@@ -22,9 +23,15 @@
     font-size: var(--node-font-size);
 }
 
-.nodes rect {
+.nodes .node-body {
     width: var(--node-width);
     opacity: 0.85;
+}
+
+.nodes .node-text-bg {
+    opacity: var(--node-text-background-opacity);
+    fill: white;
+    rx: 3;
 }
 
 .copy-link-button {
