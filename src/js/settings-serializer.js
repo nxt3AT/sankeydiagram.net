@@ -70,15 +70,12 @@ export function deserializeSettings() {
 
       if (element instanceof HTMLSelectElement) {
         element.selectedIndex = val;
-        return;
-      }
-
-      if (element.type === 'checkbox') {
+      } else if (element.type === 'checkbox') {
         element.checked = val === 'true';
-        return;
+      } else {
+        document.getElementById(key).value = val;
       }
 
-      document.getElementById(key).value = val;
       element.dispatchEvent(new Event('change'));
       element.dispatchEvent(new Event('input'));
     }
