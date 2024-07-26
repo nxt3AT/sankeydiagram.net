@@ -64,7 +64,7 @@ export function deserializeSettings() {
       const element = document.getElementById(key);
 
       // IMPORTANT: double check if the parameter really represents a setting we want to be modifiable
-      if (!element.classList.contains('settings-input')) {
+      if (!element?.classList.contains('settings-input')) {
         return;
       }
 
