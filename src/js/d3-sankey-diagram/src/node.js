@@ -114,7 +114,7 @@ export default function () {
 
       const textBBox = text.node().getBBox();
       const valueBBox = value.node().getBBox();
-      const textBackgroundPadding = 5;
+      const textBackgroundPadding = 10;
       textBackground
         .attr('x', Math.min(textBBox.x, valueBBox.x)-textBackgroundPadding/2)
         .attr('y', Math.min(textBBox.y, valueBBox.y)-textBackgroundPadding/2)
@@ -129,7 +129,7 @@ export default function () {
         if (layout.titleAbove) {
           x = (layout.right ? 4 : -4)
         } else {
-          const paddingX = layout.showLabelBackground ? 8 : 4;
+          const paddingX = layout.showLabelBackground ? 10 : 4;
           x = (layout.right ? -paddingX : d.x1 - d.x0 + paddingX)
         }
         return 'translate(' + x + ',' + y + ')'
