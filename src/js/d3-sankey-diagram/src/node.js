@@ -3,7 +3,7 @@ import { select } from 'd3-selection'
 export default function () {
   let nodeTitle = (d) => d.title !== undefined ? d.title : d.id
   let nodeTooltip = (d) => d.title !== undefined ? d.title : d.id
-  let nodeSuffix = (d) => "";
+  let nodeSuffix = (d) => '';
   let nodeValue = (d) => null
   let nodeVisible = (d) => !!nodeTitle(d)
 
@@ -129,8 +129,7 @@ export default function () {
         if (layout.titleAbove) {
           x = (layout.right ? 4 : -4)
         } else {
-          const paddingX = layout.showLabelBackground ? 10 : 4;
-          x = (layout.right ? -paddingX : d.x1 - d.x0 + paddingX)
+          x = layout.right ? -10 : d.x1 - d.x0 + 17.5
         }
         return 'translate(' + x + ',' + y + ')'
       }
