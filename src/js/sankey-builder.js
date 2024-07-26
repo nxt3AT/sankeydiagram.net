@@ -91,7 +91,7 @@ for (let sankeyNodeTextBackgroundOpacitySetting of sankeyNodeTextBackgroundOpaci
     }
 
     document.documentElement.style.setProperty(
-      '--node-text-bg-opacity',
+      '--node-text-background-opacity',
       `${(isNaN(sankeyNodeTextBackgroundOpacitySetting.value) || isNaN(parseFloat(sankeyNodeTextBackgroundOpacitySetting.value))) ? '0' : sankeyNodeTextBackgroundOpacitySetting.value/100}`,
     );
     processInput();
