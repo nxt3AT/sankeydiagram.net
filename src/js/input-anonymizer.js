@@ -69,8 +69,8 @@ document.querySelectorAll('.anonymize-data-confirmation-button').forEach((elemen
     anonymizeData();
   });
 });
-document.querySelectorAll("#anonymize-data-modal button").forEach((element) => {
-  element.addEventListener("click", function(){
+document.querySelectorAll('#anonymize-data-modal button').forEach((element) => {
+  element.addEventListener('click', function(){
     anonymizeDataWarningModal.close();
   })
 })
