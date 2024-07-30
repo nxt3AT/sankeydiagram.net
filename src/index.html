@@ -88,14 +88,13 @@
             <div class="hidden aria-expanded:flex flex-col is-tab py-2 flex-grow min-h-[30rem]" role="tabpanel" aria-expanded="true">
                 <textarea id="sankey-input-textarea" class="border flex-grow resize-none lg:resize-y p-2 rounded shadow text-neutral-600" placeholder="SOURCE [AMOUNT] TARGET ([COLOR])" >
 // SOURCE [VALUE (can be a '?')] TARGET ([COLOR])
-source [100] target
-source two [30] target
-target [?] target two
-target [80] follow me on twitter [pink]
-target two [5] target three
+another source [100] some target
+source [30] some target
+some target [?] target two
+some target [80] example [pink]
+target two [20] target three
 target two [25] target four
-target two [20] target five
-target five [15] target six [lightgreen]
+target four [15] target five [lightgreen]
 </textarea>
                 <label for="import-text-input">
                     <span class="py-2 flex flex-row items-center justify-center rounded bg-dark text-white w-full cursor-pointer import-txt-button"><span class="material-icons mr-1">file_upload</span> Import from Text File</span>
