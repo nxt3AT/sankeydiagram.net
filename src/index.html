@@ -102,19 +102,19 @@ target four [15] target five [lightgreen]
                 </label>
             </div>
             <div class="hidden aria-expanded:block is-tab py-2" role="tabpanel">
-                <div class="divider">General</div>
+                <div class="divider">Data</div>
                 <label for="sankey-settings-precision">Decimal Precision </label><input type="number" class="settings-input" id="sankey-settings-precision" min="0" max="15" value="1">
                 <br>
                 <label for="sankey-settings-hidezeros">Hide zero decimals </label><input type="checkbox" class="settings-input" id="sankey-settings-hidezeros" checked>
                 <br>
                 <label for="sankey-settings-separators">Add thousands separators (5.000.000) </label><input type="checkbox" class="settings-input" id="sankey-settings-separators">
                 <br>
-                <label for="sankey-settings-labelabove">Display label above nodes </label><input type="checkbox" class="settings-input" id="sankey-settings-labelabove">
-                <div class="flex flex-row items-center gap-1.5">
-                    <label for="sankey-settings-node-text-background-opacity">Node text background opacity (%) </label>
-                    <input class="settings-input sankey-settings-node-text-background-opacity" id="sankey-settings-node-text-background-opacity" max="100" min="0" placeholder="0" type="number" value="0">
-                    <input class="settings-input sankey-settings-node-text-background-opacity" max="100" min="0" type="range" value="0">
-                </div>
+                <label for="sankey-settings-suffix">Value Suffix </label><input class="settings-input" id="sankey-settings-suffix" placeholder="€, $, etc." type="text">
+                <br>
+                <label for="sankey-settings-hidenumbers">Hide numbers </label><input class="settings-input" id="sankey-settings-hidenumbers" type="checkbox">
+                <br>
+
+                <div class="divider">Flows</div>
                 <label for="sankey-settings-colorscheme">Color scheme </label>
                 <select class="settings-input" id="sankey-settings-colorscheme" name="sankey-settings-colorscheme">
                     <option value="default">default</option>
@@ -126,33 +126,38 @@ target four [15] target five [lightgreen]
                     <option value="pastel1">pastel</option>
                     <option value="nested">nested</option>
                 </select>
+                <div class="flex flex-row items-center gap-1.5">
+                    <label for="sankey-settings-flow-opacity">Flow Opacity (%) </label>
+                    <input class="settings-input sankey-settings-flow-opacity" id="sankey-settings-flow-opacity" max="100" min="0" placeholder="50" type="number" value="50">
+                    <input class="sankey-settings-flow-opacity" max="100" min="0" placeholder="50" type="range" value="50">
+                </div>
+
+                <div class="divider">Nodes</div>
+                <label for="sankey-settings-node-use-colors">Color Nodes </label><input class="settings-input" id="sankey-settings-node-use-colors" type="checkbox">
                 <br>
-                <label for="sankey-settings-suffix">Value Suffix </label><input type="text" class="settings-input" id="sankey-settings-suffix" placeholder="€, $, etc.">
-                <div class="divider">Specific</div>
-                <label for="sankey-settings-hidenumbers">Hide numbers </label><input type="checkbox" class="settings-input" id="sankey-settings-hidenumbers">
+                <label for="sankey-settings-node-width">Seperator Width (px) </label><input class="settings-input" id="sankey-settings-node-width" min="0" placeholder="4" type="number" value="4">
                 <br>
+                <div class="flex flex-row items-center gap-1.5">
+                    <label for="sankey-settings-node-text-background-opacity">Label Background Opacity (%) </label>
+                    <input class="settings-input sankey-settings-node-text-background-opacity" id="sankey-settings-node-text-background-opacity" max="100" min="0" placeholder="0" type="number" value="0">
+                    <input class="settings-input sankey-settings-node-text-background-opacity" max="100" min="0" type="range" value="0">
+                </div>
+                <label for="sankey-settings-labelabove">Labels Above Nodes </label><input class="settings-input" id="sankey-settings-labelabove" type="checkbox">
+
+                <div class="divider">Advanced</div>
                 <label for="sankey-settings-canvas-width">Canvas Width </label><input type="number" class="settings-input" id="sankey-settings-canvas-width" value="1920">
                 <br>
                 <label for="sankey-settings-canvas-height">Canvas Height </label><input type="number" class="settings-input" id="sankey-settings-canvas-height" value="1080">
                 <br>
                 <label for="sankey-settings-font-size">Font Size (px) </label><input type="number" class="settings-input" id="sankey-settings-font-size" value="20" placeholder="20">
                 <br>
-                <label for="sankey-settings-node-width">Node Width (px) </label><input class="settings-input" id="sankey-settings-node-width" min="0" placeholder="4" type="number" value="4">
-                <br>
-                <label for="sankey-settings-node-use-colors">Color Nodes </label><input type="checkbox" class="settings-input" id="sankey-settings-node-use-colors">
-                <br>
-                <div class="flex flex-row items-center gap-1.5">
-                    <label for="sankey-settings-flow-opacity">Flow Opacity (%) </label>
-                    <input type="number" class="settings-input sankey-settings-flow-opacity" id="sankey-settings-flow-opacity" value="50" placeholder="50" min="0" max="100">
-                    <input type="range" class="sankey-settings-flow-opacity" value="50" placeholder="50" min="0" max="100">
-                </div>
                 <label for="sankey-settings-disable-watermark">Disable Watermark </label><input type="checkbox" class="settings-input" id="sankey-settings-disable-watermark">
                 <br>
                 <p class="text-xs p-2 bg-orange-400/30 hidden" id="disable-watermark-notice">
                     enabling the optional watermark helps us spread the word for this free and open source tool, <br>
                     consider enabling it if you want :)
                 </p>
-                <br>
+
                 <div class="divider">Debug</div>
                 <button class="relative py-2 bg-dark text-white flex items-center justify-center w-full cursor-pointer anonymize-data-button"><span class="material-icons mr-1">shuffle</span> Anonymize Data</button>
             </div>
