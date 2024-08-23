@@ -13,8 +13,12 @@ const modifyStyle = (value) => {
     )
     .replace(
       'var(--flow-opacity)',
-      window.getComputedStyle(document.documentElement).getPropertyValue('--flow-opacity'),
-  );
+      window.getComputedStyle(document.documentElement).getPropertyValue('--flow-opacity')
+    )
+    .replace(
+      'var(--node-text-background-opacity)',
+      window.getComputedStyle(document.documentElement).getPropertyValue('--node-text-background-opacity')
+    );
 };
 
 const selectorRemap = (selector) => {
