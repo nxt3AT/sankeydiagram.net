@@ -207,6 +207,7 @@ export const paletteDefault = d3.scaleOrdinal([
 ]);
 
 let sankeyColorpaletteSetting = document.getElementById('sankey-settings-colorscheme');
+const sankeyColorFlowsBasedOnFirstWordSetting = document.getElementById('sankey-settings-flow-color-based-on-first-word');
 const sankeyFlowOpacitySettings = document.getElementsByClassName('sankey-settings-flow-opacity');
 
 let colorIndex = 0;
@@ -243,10 +244,10 @@ export function getColor(rawKey) {
     sankeyColorpaletteSetting = document.getElementById('sankey-settings-colorscheme');
   }
 
-  // cut the first non-empty word of the string out and use as key
-  // TODO: evaluate
-  //const key = (rawKey.match(/\b\w+\b/)[0]) ?? '';
-  const key = rawKey;
+  // cut the first non-empty word of the string out and use as key if enabled
+  const key = sankeyColorFlowsBasedOnFirstWordSetting?.checked
+    ? ((rawKey.match(/\b\w+\b/)[0]) ?? '')
+    : rawKey;
 
   switch (sankeyColorpaletteSetting.value) {
     case 'paired':

@@ -165,6 +165,31 @@ c [5] d</pre>
                 <a class="underline text-accent text-sm" target="_blank" href="/?content=PTAEGcEMDsGsFMCe5QFtKNAC0gN3qADYD2xADuAFCSgDaAjAAwC6oARpW3U6wMaW86AVlYdBtEaAAmQA&">Open Example Diagram</a>
             </div>
         </div>
+        <div>
+            <div>
+                <p class="font-bold text-3xl mb-2">5. Color Flows Based on Source's First Word</p>
+                <pre>
+source one [10] target one
+source two [10] target one
+source three [10] target one
+source three [5] middle
+middle [2.5] target two
+middle [2.5] end
+target one [10] target two
+target one [10] target three
+target one [10] target four
+target two [15] target five
+target three [10] target five
+target four [10] target five</pre>
+                <ul class="mt-2 list-disc list-inside">
+                    <li><b>If the setting "Pick color based on first word only" is checked, all flows where the source starts with the same word, will have the same color.</b></li>
+                </ul>
+            </div>
+            <div>
+                <img alt="example output sankey diagram with loops for the left-hand input" src="./create-a-sankey-diagram-example-pick-color-based-on-first-word-only.svg" />
+                <a class="underline text-accent text-sm" href="/?content=M4ewrgTgxgpgBCAdvA2gRgAwF04BcCGEA5jLgsgFCiSx4DuIc62ehJZSMV408uAFhBipMOAsVLku1XnkHCmAVhwBbAJYATDQBsu6rbqYAmAHTLWEsrgYV9O1KfMxEGiuPZSmoix+sg3bJKcXizukgJCXGEcyCFigWQAZjwBlvSM6ObRcIlqAG5RCXKRcT6SuQWpHsmQpdkVMEA==&sankey-settings-flow-color-based-on-first-word=true" target="_blank">Open Example Diagram</a>
+            </div>
+        </div>
     </div>
     <div class="px-4 mt-4">
         <p>

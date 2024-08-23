@@ -18,6 +18,7 @@ const sankeyCanvasHeightSetting = document.getElementById('sankey-settings-canva
 const sankeyFontSizeSetting = document.getElementById('sankey-settings-font-size');
 const sankeyNodeWidthSetting = document.getElementById('sankey-settings-node-width');
 const sankeyNodeUseColorsSetting = document.getElementById('sankey-settings-node-use-colors');
+const sankeyColorFlowsBasedOnFirstWordSetting = document.getElementById('sankey-settings-flow-color-based-on-first-word');
 const sankeyDisableWatermarkSetting = document.getElementById('sankey-settings-disable-watermark');
 
 import {lineRegex, sankeyInput} from './constants';
@@ -41,7 +42,7 @@ document.getElementById('sankey-input-box').addEventListener('resize', function(
   processInput();
 });
 
-[sankeyPrecisionSetting, sankeyHideZerosSetting, sankeySuffixSetting, sankeySeparatorSetting, sankeyHideNumbersSetting, sankeyNodeUseColorsSetting].forEach((setting) => {
+[sankeyPrecisionSetting, sankeyHideZerosSetting, sankeySuffixSetting, sankeySeparatorSetting, sankeyHideNumbersSetting, sankeyNodeUseColorsSetting, sankeyColorFlowsBasedOnFirstWordSetting].forEach((setting) => {
   setting.addEventListener('input', function() {
     processInput();
   });
