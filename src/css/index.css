@@ -1,7 +1,7 @@
 @import "core.css";
 
 :root {
-    --node-width: 3px;
+    --node-width: 10px;
     --node-font-size: 20px;
     --node-text-background-opacity: 0;
     --flow-opacity: 0.5;

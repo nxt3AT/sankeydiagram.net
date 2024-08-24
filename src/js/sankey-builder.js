@@ -79,7 +79,7 @@ sankeyFontSizeSetting.addEventListener('input', () => {
 sankeyNodeWidthSetting.addEventListener('input', () => {
   document.documentElement.style.setProperty(
       '--node-width',
-      `${(isNaN(sankeyNodeWidthSetting.value) || isNaN(parseFloat(sankeyNodeWidthSetting.value))) ? '4' : sankeyNodeWidthSetting.value.trim()}px`,
+      `${(isNaN(sankeyNodeWidthSetting.value) || isNaN(parseFloat(sankeyNodeWidthSetting.value))) ? '10' : sankeyNodeWidthSetting.value.trim()}px`,
   );
 });
 

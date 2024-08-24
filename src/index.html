@@ -94,7 +94,7 @@ some target [?] target two
 some target [80] example [pink]
 target two [20] target three
 target two [25] target four
-target four [15] target five [lightgreen]
+target three [15] target five
 </textarea>
                 <label for="import-text-input">
                     <span class="py-2 flex flex-row items-center justify-center rounded bg-dark text-white w-full cursor-pointer import-txt-button"><span class="material-icons mr-1">file_upload</span> Import from Text File</span>
@@ -134,9 +134,9 @@ target four [15] target five [lightgreen]
                 <label for="sankey-settings-flow-color-based-on-first-word">Pick color based on first word only </label><input class="settings-input" id="sankey-settings-flow-color-based-on-first-word" title="If checked the all flows where the source starts with the same word have the same color." type="checkbox">
 
                 <div class="divider">Nodes</div>
-                <label for="sankey-settings-node-use-colors">Color Nodes </label><input class="settings-input" id="sankey-settings-node-use-colors" type="checkbox">
+                <label for="sankey-settings-node-use-colors">Color Nodes </label><input checked class="settings-input" id="sankey-settings-node-use-colors" type="checkbox">
                 <br>
-                <label for="sankey-settings-node-width">Seperator Width (px) </label><input class="settings-input" id="sankey-settings-node-width" min="0" placeholder="4" type="number" value="4">
+                <label for="sankey-settings-node-width">Seperator Width (px) </label><input class="settings-input" id="sankey-settings-node-width" min="0" placeholder="10" type="number" value="10">
                 <br>
                 <div class="flex flex-row items-center gap-1.5">
                     <label for="sankey-settings-node-text-background-opacity">Label Background Opacity (%) </label>
