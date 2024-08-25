@@ -51,6 +51,7 @@
                 </div>
                 <div class="block md:hidden peer-hover:block hover:block relative md:absolute bg-white top-full left-0 rounded-b md:shadow md:border py-2.5 font-light text-sm">
                     <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full" href="https://github.com/nxt3AT/sankeydiagram.net" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full" href="https://github.com/nxt3AT/sankeydiagram.net/releases" rel="noopener noreferrer" target="_blank">Changelog</a>
                     <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full" href="https://jonasdoesthings.com/" target="_blank">@JonasDoesThings</a>
                     <hr class="navbar-divider hidden md:block">
                     <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full" href="mailto:jonas@jonasdoesthings.com">Report an issue</a>
@@ -87,14 +88,13 @@
             <div class="hidden aria-expanded:flex flex-col is-tab py-2 flex-grow min-h-[30rem]" role="tabpanel" aria-expanded="true">
                 <textarea id="sankey-input-textarea" class="border flex-grow resize-none lg:resize-y p-2 rounded shadow text-neutral-600" placeholder="SOURCE [AMOUNT] TARGET ([COLOR])" >
 // SOURCE [VALUE (can be a '?')] TARGET ([COLOR])
-source [100] target
-source two [30] target
-target [?] target two
-target [80] follow me on twitter [pink]
-target two [5] target three
+another source [100] some target
+source [30] some target
+some target [?] target two
+some target [80] example [pink]
+target two [20] target three
 target two [25] target four
-target two [20] target five
-target five [15] target six [lightgreen]
+target three [15] target five
 </textarea>
                 <label for="import-text-input">
                     <span class="py-2 flex flex-row items-center justify-center rounded bg-dark text-white w-full cursor-pointer import-txt-button"><span class="material-icons mr-1">file_upload</span> Import from Text File</span>
@@ -102,38 +102,68 @@ target five [15] target six [lightgreen]
                 </label>
             </div>
             <div class="hidden aria-expanded:block is-tab py-2" role="tabpanel">
-                <div class="divider">General</div>
+                <div class="divider">Data</div>
                 <label for="sankey-settings-precision">Decimal Precision </label><input type="number" class="settings-input" id="sankey-settings-precision" min="0" max="15" value="1">
                 <br>
                 <label for="sankey-settings-hidezeros">Hide zero decimals </label><input type="checkbox" class="settings-input" id="sankey-settings-hidezeros" checked>
                 <br>
                 <label for="sankey-settings-separators">Add thousands separators (5.000.000) </label><input type="checkbox" class="settings-input" id="sankey-settings-separators">
                 <br>
-                <label for="sankey-settings-labelabove">Display label above nodes </label><input type="checkbox" class="settings-input" id="sankey-settings-labelabove">
+                <label for="sankey-settings-suffix">Value Suffix </label><input class="settings-input" id="sankey-settings-suffix" placeholder="€, $, etc." type="text">
                 <br>
+                <label for="sankey-settings-hidenumbers">Hide numbers </label><input class="settings-input" id="sankey-settings-hidenumbers" type="checkbox">
+                <br>
+
+                <div class="divider">Flows</div>
                 <label for="sankey-settings-colorscheme">Color scheme </label>
                 <select class="settings-input" id="sankey-settings-colorscheme" name="sankey-settings-colorscheme">
-                    <option value="set2">default</option>
+                    <option value="default">default</option>
                     <option value="accent">accent</option>
                     <option value="paired">paired</option>
+                    <option value="set2">set2 (old default)</option>
                     <option value="set3">set3</option>
                     <option value="cat10">cat10</option>
                     <option value="pastel1">pastel</option>
                     <option value="nested">nested</option>
                 </select>
+                <div class="flex flex-row items-center gap-1.5">
+                    <label for="sankey-settings-flow-opacity">Flow Opacity (%) </label>
+                    <input class="settings-input sankey-settings-flow-opacity" id="sankey-settings-flow-opacity" max="100" min="0" placeholder="50" type="number" value="50">
+                    <input class="sankey-settings-flow-opacity" max="100" min="0" placeholder="50" type="range" value="50">
+                </div>
+                <label for="sankey-settings-flow-color-based-on-first-word">Pick color based on first word only </label><input class="settings-input" id="sankey-settings-flow-color-based-on-first-word" title="If checked the all flows where the source starts with the same word have the same color." type="checkbox">
+
+                <div class="divider">Nodes</div>
+                <label for="sankey-settings-node-use-colors">Color Nodes </label><input checked class="settings-input" id="sankey-settings-node-use-colors" type="checkbox">
                 <br>
-                <label for="sankey-settings-suffix">Value Suffix </label><input type="text" class="settings-input" id="sankey-settings-suffix" placeholder="€, $, etc.">
-                <div class="divider">Specific</div>
-                <label for="sankey-settings-hidenumbers">Hide numbers </label><input type="checkbox" class="settings-input" id="sankey-settings-hidenumbers">
+                <label for="sankey-settings-node-width">Seperator Width (px) </label><input class="settings-input" id="sankey-settings-node-width" min="0" placeholder="10" type="number" value="10">
                 <br>
+                <div class="flex flex-row items-center gap-1.5">
+                    <label for="sankey-settings-node-text-background-opacity">Label Background Opacity (%) </label>
+                    <input class="settings-input sankey-settings-node-text-background-opacity" id="sankey-settings-node-text-background-opacity" max="100" min="0" placeholder="0" type="number" value="0">
+                    <input class="settings-input sankey-settings-node-text-background-opacity" max="100" min="0" type="range" value="0">
+                </div>
+                <label for="sankey-settings-labelabove">Labels Above Nodes </label><input class="settings-input" id="sankey-settings-labelabove" type="checkbox">
+
+                <div class="divider">Advanced</div>
                 <label for="sankey-settings-canvas-width">Canvas Width </label><input type="number" class="settings-input" id="sankey-settings-canvas-width" value="1920">
                 <br>
                 <label for="sankey-settings-canvas-height">Canvas Height </label><input type="number" class="settings-input" id="sankey-settings-canvas-height" value="1080">
                 <br>
                 <label for="sankey-settings-font-size">Font Size (px) </label><input type="number" class="settings-input" id="sankey-settings-font-size" value="20" placeholder="20">
                 <br>
+                <label for="sankey-settings-disable-watermark">Disable Watermark </label><input type="checkbox" class="settings-input" id="sankey-settings-disable-watermark">
+                <br>
+                <p class="text-xs p-2 bg-orange-400/30 hidden" id="disable-watermark-notice">
+                    enabling the optional watermark helps us spread the word for this free and open source tool, <br>
+                    consider enabling it if you want :)
+                </p>
+
                 <div class="divider">Debug</div>
-                <button class="relative py-2 bg-dark text-white flex items-center justify-center w-full cursor-pointer anonymize-data-button"><span class="material-icons mr-1">shuffle</span> Anonymize Data</button>
+                <div class="space-y-1">
+                    <button class="relative py-2 bg-dark text-white flex items-center justify-center w-full cursor-pointer anonymize-data-button"><span class="material-icons mr-1">shuffle</span> Anonymize Data</button>
+                    <button class="relative py-2 bg-dark text-white flex items-center justify-center w-full cursor-pointer load-settings-preset-button" data-settings-preset="olddefault"><span class="material-icons mr-1">settings_backup_restore</span> Load Old Default Theme</button>
+                </div>
             </div>
             <div class="hidden aria-expanded:block is-tab py-2" role="tabpanel">
                 <div class="divider">Share</div>
@@ -174,7 +204,7 @@ target five [15] target six [lightgreen]
         </div>
         <div id="sankey-box" class="bg-white shadow rounded flex-grow w-full overflow-x-auto overflow-y-hidden relative">
             <svg id="sankey-svg" class="px-4 min-h-[70vh] lg:min-h-[50vh] lg:w-full lg:h-full" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
-                <text class="watermark" text-anchor="middle" x="50%" y="30" style="display: inline;">SankeyDiagram.net</text>
+                <text class="watermark" id="sankey-svg-watermark" text-anchor="middle" x="50%" y="30" style="display: inline;">SankeyDiagram.net</text>
             </svg>
         </div>
     </main>

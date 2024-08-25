@@ -153,10 +153,9 @@ export const CSS3_NAMES_TO_HEX = {
 export const palettePaired = d3.scaleOrdinal(d3.schemePaired);
 export const paletteCat10 = d3.scaleOrdinal(d3.schemeCategory10);
 export const palettePastel1 = d3.scaleOrdinal(d3.schemePastel1);
-export const paletteSet3 = d3.scaleOrdinal(d3.schemeSet3);
-
-export const paletteAccent = d3.scaleOrdinal(d3.schemeAccent);
 export const paletteSet2 = d3.scaleOrdinal(d3.schemeSet2);
+export const paletteSet3 = d3.scaleOrdinal(d3.schemeSet3);
+export const paletteAccent = d3.scaleOrdinal(d3.schemeAccent);
 
 export const paletteNested = [
   '#3182bd',
@@ -194,7 +193,23 @@ export const paletteNested = [
   '#d9d9d9',
 ];
 
+export const paletteDefault = d3.scaleOrdinal([
+  '#17becf',
+  '#1f77b4',
+  '#ff7f0e',
+  '#2ca02c',
+  '#d62728',
+  '#9467bd',
+  '#8c564b',
+  '#e377c2',
+  '#7f7f7f',
+  '#bcbd22'
+]);
+
 let sankeyColorpaletteSetting = document.getElementById('sankey-settings-colorscheme');
+const sankeyColorFlowsBasedOnFirstWordSetting = document.getElementById('sankey-settings-flow-color-based-on-first-word');
+const sankeyFlowOpacitySettings = document.getElementsByClassName('sankey-settings-flow-opacity');
+
 let colorIndex = 0;
 
 /**
@@ -204,15 +219,35 @@ export function resetColorIndex() {
   colorIndex = 0;
 }
 
+for (const sankeyFlowOpacitySetting of sankeyFlowOpacitySettings) {
+  sankeyFlowOpacitySetting.addEventListener('input', (evt) => {
+    // keep the slider and number input both in-sync
+    for (let sankeyFlowOpacitySettings2 of sankeyFlowOpacitySettings) {
+      if(sankeyFlowOpacitySetting === sankeyFlowOpacitySettings2) continue;
+      sankeyFlowOpacitySettings2.value = evt.target.value;
+    }
+
+    document.documentElement.style.setProperty(
+      '--flow-opacity',
+      `${(isNaN(evt.target.value) || isNaN(parseFloat(evt.target.value))) ? '0.5' : evt.target.value/100}`,
+    );
+  });
+}
+
 /**
  * returns the palette with the given name
  * @param {string} key
  * @return {any}
  */
-export function getColor(key) {
+export function getColor(rawKey) {
   if (sankeyColorpaletteSetting === undefined) {
     sankeyColorpaletteSetting = document.getElementById('sankey-settings-colorscheme');
   }
+
+  // cut the first non-empty word of the string out and use as key if enabled
+  const key = sankeyColorFlowsBasedOnFirstWordSetting?.checked
+    ? ((rawKey.match(/\b\w+\b/)[0]) ?? '')
+    : rawKey;
 
   switch (sankeyColorpaletteSetting.value) {
     case 'paired':
@@ -229,7 +264,8 @@ export function getColor(key) {
       return paletteSet2(key);
     case 'nested':
       return paletteNested[++colorIndex];
+    case 'default':
     default:
-      return paletteSet2(key);
+      return paletteDefault(key);
   }
 }

@@ -1,4 +1,4 @@
-import js from "@eslint/js";
+import js from '@eslint/js';
 import globals from 'globals';
 
 /** @type {import('eslint').Linter.FlatConfig[]} */
@@ -10,6 +10,7 @@ export default [
             globals: globals.browser,
         },
         rules: {
+            "quotes": ["error", "single"],
         }
     }
 ]

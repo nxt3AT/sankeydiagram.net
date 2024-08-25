@@ -1,7 +1,10 @@
 @import "core.css";
 
 :root {
+    --node-width: 10px;
     --node-font-size: 20px;
+    --node-text-background-opacity: 0;
+    --flow-opacity: 0.5;
 }
 
 .watermark {
@@ -11,7 +14,7 @@
 }
 
 .links path {
-    opacity: 0.8;
+    opacity: var(--flow-opacity);
 }
 
 .nodes text {
@@ -20,9 +23,15 @@
     font-size: var(--node-font-size);
 }
 
-.nodes rect {
-    width: 2pt;
+.nodes .node-body {
+    width: var(--node-width);
     opacity: 0.85;
+}
+
+.nodes .node-text-bg {
+    opacity: var(--node-text-background-opacity);
+    fill: white;
+    rx: 3;
 }
 
 .copy-link-button {

@@ -8,6 +8,7 @@ let sankeySvg;
 const sankeyPrecisionSetting = document.getElementById('sankey-settings-precision');
 const sankeyHideZerosSetting = document.getElementById('sankey-settings-hidezeros');
 const sankeySeparatorSetting = document.getElementById('sankey-settings-separators');
+const sankeyNodeTextBackgroundOpacitySettings = document.getElementsByClassName('sankey-settings-node-text-background-opacity');
 const sankeyColorpaletteSetting = document.getElementById('sankey-settings-colorscheme');
 const sankeySuffixSetting = document.getElementById('sankey-settings-suffix');
 
@@ -15,6 +16,10 @@ const sankeyHideNumbersSetting = document.getElementById('sankey-settings-hidenu
 const sankeyCanvasWidthSetting = document.getElementById('sankey-settings-canvas-width');
 const sankeyCanvasHeightSetting = document.getElementById('sankey-settings-canvas-height');
 const sankeyFontSizeSetting = document.getElementById('sankey-settings-font-size');
+const sankeyNodeWidthSetting = document.getElementById('sankey-settings-node-width');
+const sankeyNodeUseColorsSetting = document.getElementById('sankey-settings-node-use-colors');
+const sankeyColorFlowsBasedOnFirstWordSetting = document.getElementById('sankey-settings-flow-color-based-on-first-word');
+const sankeyDisableWatermarkSetting = document.getElementById('sankey-settings-disable-watermark');
 
 import {lineRegex, sankeyInput} from './constants';
 import './gui';
@@ -37,7 +42,7 @@ document.getElementById('sankey-input-box').addEventListener('resize', function(
   processInput();
 });
 
-[sankeyPrecisionSetting, sankeyHideZerosSetting, sankeySuffixSetting, sankeySeparatorSetting, sankeyHideNumbersSetting].forEach((setting) => {
+[sankeyPrecisionSetting, sankeyHideZerosSetting, sankeySuffixSetting, sankeySeparatorSetting, sankeyHideNumbersSetting, sankeyNodeUseColorsSetting, sankeyColorFlowsBasedOnFirstWordSetting].forEach((setting) => {
   setting.addEventListener('input', function() {
     processInput();
   });
@@ -70,6 +75,34 @@ sankeyFontSizeSetting.addEventListener('input', () => {
       `${sankeyFontSizeSetting.value.trim().length > 0 ? sankeyFontSizeSetting.value.trim() : '20'}px`,
   );
 });
+
+sankeyNodeWidthSetting.addEventListener('input', () => {
+  document.documentElement.style.setProperty(
+      '--node-width',
+      `${(isNaN(sankeyNodeWidthSetting.value) || isNaN(parseFloat(sankeyNodeWidthSetting.value))) ? '10' : sankeyNodeWidthSetting.value.trim()}px`,
+  );
+});
+
+for (let sankeyNodeTextBackgroundOpacitySetting of sankeyNodeTextBackgroundOpacitySettings) {
+  sankeyNodeTextBackgroundOpacitySetting.addEventListener('input', (evt) => {
+    // keep the slider and number input both in-sync
+    for (let sankeyNodeTextBackgroundOpacitySetting2 of sankeyNodeTextBackgroundOpacitySettings) {
+      if(sankeyNodeTextBackgroundOpacitySetting === sankeyNodeTextBackgroundOpacitySetting2) continue;
+      sankeyNodeTextBackgroundOpacitySetting2.value = evt.target.value;
+    }
+
+    document.documentElement.style.setProperty(
+      '--node-text-background-opacity',
+      `${(isNaN(sankeyNodeTextBackgroundOpacitySetting.value) || isNaN(parseFloat(sankeyNodeTextBackgroundOpacitySetting.value))) ? '0' : sankeyNodeTextBackgroundOpacitySetting.value/100}`,
+    );
+    processInput();
+  });
+}
+
+sankeyDisableWatermarkSetting.addEventListener('change', () => {
+  document.getElementById('disable-watermark-notice').style['display'] = sankeyDisableWatermarkSetting.checked ? 'inline-block' : 'none';
+  document.getElementById('sankey-svg-watermark').style['display'] = sankeyDisableWatermarkSetting.checked ? 'none' : 'inline';
+})
 
 /**
  * recursively generates the value of an auto-sum connection
@@ -150,12 +183,12 @@ function parseInputToSankey(input) {
 
     if (!nodeKeys.includes(source)) {
       nodeKeys.push(source);
-      nodesList.push({'id': source});
+      nodesList.push({'id': source, 'color': sankeyNodeUseColorsSetting.checked ? getColor(source) : undefined});
     }
 
     if (!nodeKeys.includes(target)) {
       nodeKeys.push(target);
-      nodesList.push({'id': target});
+      nodesList.push({'id': target, 'color': sankeyNodeUseColorsSetting.checked ? getColor(target) : undefined});
     }
 
     if (value === '?') {
