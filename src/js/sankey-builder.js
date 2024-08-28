@@ -188,7 +188,10 @@ function parseInputToSankey(input) {
 
     if (!nodeKeys.includes(target)) {
       nodeKeys.push(target);
-      nodesList.push({'id': target, 'color': sankeyNodeUseColorsSetting.checked ? getColor(target) : undefined});
+      nodesList.push({
+        'id': target,
+        'color': color in CSS3_NAMES_TO_HEX ? CSS3_NAMES_TO_HEX[color] : (color !== undefined && color.startsWith('#')) ? color : sankeyNodeUseColorsSetting.checked ? getColor(source) : undefined
+      });
     }
 
     if (value === '?') {
