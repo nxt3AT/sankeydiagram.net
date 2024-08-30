@@ -3,7 +3,7 @@
 
 import { sum } from 'd3-array'
 import assignRanks from './assignRanks/index.js'
-import sortNodes from './sortNodes/index.js'
+import defaultSortNodes from './sortNodes/index.js'
 import { addDummyNodes, removeDummyNodes } from './sortNodes/dummy-nodes.js'
 import nestGraph from './sankeyLayout/nest-graph.js'
 import positionHorizontally from './sankeyLayout/horizontal.js'
@@ -69,6 +69,7 @@ export default function sankeyLayout () {
   var maxIterations = 25 // XXX setter/getter
   var nodePosition = null
   var sortPorts = defaultSortPorts
+  var sortNodes = defaultSortNodes
 
   // extent
   var x0 = 0
@@ -240,6 +241,18 @@ export default function sankeyLayout () {
     return sortPorts
   }
 
+  sankey.sortNodes = function (x) {
+    if(arguments.length) {
+      if(x == null) {
+        sortNodes = defaultSortNodes;
+      } else {
+        sortNodes = required(x);
+      }
+      return sankey;
+    }
+    return sortNodes;
+  }
+
   // sankey.scaleToFit = function (graph) {
   function maybeScaleToFit (G, nested) {
     if (scale !== null) return
@@ -369,13 +382,13 @@ function setWidths (G, scale) {
     node.toElsewhere = (node.toElsewhere || [])
     node.fromElsewhere.forEach(link => {
       link.dy = link.value * scale
-      link.source = { id: "__from_elsewhere_" + u }
+      link.source = { id: '__from_elsewhere_' + u }
       link.target = node.data
     })
     node.toElsewhere.forEach(link => {
       link.dy = link.value * scale
       link.source = node.data
-      link.target = { id: "__to_elsewhere_" + u }
+      link.target = { id: '__to_elsewhere_' + u }
     })
   })
 }
@@ -395,10 +408,10 @@ function addLinkEndpoints (G) {
   G.nodes().forEach(u => {
     const node = G.node(u)
     node.fromElsewhere.forEach(link => {
-      link.points = [{x: link.x1, y: link.y1, ri: link.r1, d: link.d1, style: "down-right"}]
+      link.points = [{x: link.x1, y: link.y1, ri: link.r1, d: link.d1, style: 'down-right'}]
     })
     node.toElsewhere.forEach(link => {
-      link.points = [{x: link.x0, y: link.y0, ri: link.r0, d: link.d0, style: "right-down"}]
+      link.points = [{x: link.x0, y: link.y0, ri: link.r0, d: link.d0, style: 'right-down'}]
     })
   })
 }
