@@ -20,6 +20,7 @@ const sankeyNodeWidthSetting = document.getElementById('sankey-settings-node-wid
 const sankeyNodeUseColorsSetting = document.getElementById('sankey-settings-node-use-colors');
 const sankeyColorFlowsBasedOnFirstWordSetting = document.getElementById('sankey-settings-flow-color-based-on-first-word');
 const sankeyDisableWatermarkSetting = document.getElementById('sankey-settings-disable-watermark');
+const sankeySortNodesByLineNumberSetting = document.getElementById('sankey-settings-sort-nodes-by-linenumber');
 
 import {lineRegex, sankeyInput} from './constants';
 import './gui';
@@ -47,6 +48,12 @@ document.getElementById('sankey-input-box').addEventListener('resize', function(
     processInput();
   });
 });
+
+[sankeySortNodesByLineNumberSetting].forEach((setting) => {
+  setting.addEventListener('change', function() {
+    processInput();
+  })
+})
 
 sankeyColorpaletteSetting.addEventListener('change', function() {
   resetColorIndex();
@@ -183,12 +190,20 @@ function parseInputToSankey(input) {
 
     if (!nodeKeys.includes(source)) {
       nodeKeys.push(source);
-      nodesList.push({'id': source, 'color': sankeyNodeUseColorsSetting.checked ? getColor(source) : undefined});
+      nodesList.push({
+        'id': source,
+        'lineNumber': i,
+        'color': sankeyNodeUseColorsSetting.checked ? getColor(source) : undefined
+      });
     }
 
     if (!nodeKeys.includes(target)) {
       nodeKeys.push(target);
-      nodesList.push({'id': target, 'color': sankeyNodeUseColorsSetting.checked ? getColor(target) : undefined});
+      nodesList.push({
+        'id': target,
+        'lineNumber': i,
+        'color': color in CSS3_NAMES_TO_HEX ? CSS3_NAMES_TO_HEX[color] : (color !== undefined && color.startsWith('#')) ? color : sankeyNodeUseColorsSetting.checked ? getColor(source) : undefined
+      });
     }
 
     if (value === '?') {
@@ -209,6 +224,17 @@ function parseInputToSankey(input) {
     }
   } else {
     layout.ordering(null);
+
+    if(sankeySortNodesByLineNumberSetting?.checked) {
+      layout.sortNodes(function(G /** @param {Graph} G */) {
+        const nodes = G.nodes();
+        nodes.forEach((u) => {
+          G.node(u).depth = G.node(u).data.lineNumber;
+        })
+      });
+    } else {
+      layout.sortNodes(null);
+    }
   }
 
   return {
