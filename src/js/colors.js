@@ -148,6 +148,7 @@ export const CSS3_NAMES_TO_HEX = {
   'whitesmoke': '#f5f5f5',
   'yellow': '#ffff00',
   'yellowgreen': '#9acd32',
+  'rebeccapurple': '#663399' // non-standard
 };
 
 export const palettePaired = d3.scaleOrdinal(d3.schemePaired);
