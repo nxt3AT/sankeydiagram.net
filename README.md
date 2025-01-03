@@ -40,7 +40,7 @@ If you have any questions, need help, a special license, or something else, you 
 ## License
 (See [LICENSE.md](LICENSE.md))
 
-This piece of software is licensed under the MIT with a Common Clause. That basically means, that you are allowed to view, edit, fork, this project, but not sell it.
+This piece of software is licensed under the MIT with a Common Clause. That basically means, that you are allowed to use, view, edit, and fork this project, but not sell it.
 (No legal advice)
 
-If you want to use this project and need special licensing, contact me.
+**If you want to use this project and need special licensing, contact me (email: [jonas@jonasdoesthings.com](mailto:jonas@jonasdoesthings.com))**
