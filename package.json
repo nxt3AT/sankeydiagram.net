@@ -1,6 +1,6 @@
 {
   "name": "sankeydiagram.net",
-  "version": "1.5.4",
+  "version": "1.6.0",
   "private": true,
   "browserslist": [
     "defaults"
@@ -22,18 +22,19 @@
     "lint:fix": "eslint --fix src/**/*.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.7",
-    "@parcel/packager-raw-url": "2.12.0",
-    "@parcel/transformer-sass": "2.12.0",
-    "@parcel/transformer-webmanifest": "2.12.0",
-    "eslint": "^8.57.0",
-    "globals": "^15.0.0",
+    "@babel/core": "^7.26.9",
+    "@parcel/packager-raw-url": "2.13.3",
+    "@parcel/transformer-sass": "2.13.3",
+    "@parcel/transformer-webmanifest": "2.13.3",
+    "eslint": "^8.57.1",
+    "globals": "^16.0.0",
     "graphlib": "^2.1.8",
-    "parcel": "2.12.0",
+    "parcel": "2.13.3",
     "parcel-reporter-static-files-copy": "^1.5.3",
-    "postcss": "^8.4.38",
-    "sharp": "0.31.1",
-    "tailwindcss": "^3.4.4"
+    "postcss": "^8.5.3",
+    "sharp": "0.33.5",
+    "svgo": "^3.3.2",
+    "tailwindcss": "^3.4.17"
   },
   "dependencies": {
     "clipboard": "^2.0.11",
