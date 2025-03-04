@@ -1,0 +1,52 @@
+# SankeyDiagram.net
+
+> WebApp to easily create Sankey Diagrams from plaintext input-data. No-Signup required, Open Source, Free, 100% local & private.
+
+Important notes:
+
+- The basic syntax for a flow is `SOURCE [AMOUNT] TARGET`, with one flow per line.
+- There cannot be multiple flows with the exact same source and target.
+- The color of a flow can optionally be specified with the syntax `SOURCE [AMOUNT] TARGET [#COLOR_HEX_CODE]`.
+- Using the `[?]` operator as amount, all outgoing flows are summed-up for a value
+- A concrete example flow would look like this: `salary [20] budget`
+- Flows going back to previous nodes are allowed
+- Amounts cannot be negative
+- Lines starting with `// ` are treated as comments
+
+## Docs
+
+- [How To Create a Sankey Diagram](https://sankeydiagram.net/how-to/create-a-sankey-diagram): An example-based guide on creating Sankey Diagrams using SankeyDiagram.net
+
+## Examples
+
+### Basic Budget Sankey Diagram Example
+```
+salary [20] budget
+// the "?" operator automatically sums-up all outgoing values
+budget [?] groceries
+groceries [3] vegetables
+groceries [?] fruits
+fruits [10] apples
+fruits [5] bananas
+```
+
+### USA Federal Budget Sankey Visualisation Example
+```
+Individual Income Taxes [2200] Federal Budget 2023 [#65a30d]
+Payroll Taxes [1600] Federal Budget 2023 [#65a30d]
+Corporate Income Taxes [420] Federal Budget 2023 [#65a30d]
+Other [229] Federal Budget 2023 [#65a30d]
+
+Federal Budget 2023 [?] Mandatory Spending [#ef4444]
+Mandatory Spending [1300] Social Security
+Mandatory Spending [839] Medicare
+Mandatory Spending [616] Medicaid
+Mandatory Spending [448] Income Security Programs
+Mandatory Spending [502] Other Mandatory
+
+Federal Budget 2023 [?] Discretionary Spending [#ef4444]
+Discretionary Spending [917] Nondefense
+Discretionary Spending [805] Defense
+
+Federal Budget 2023 [659] Net Interest [#ef4444]
+```
