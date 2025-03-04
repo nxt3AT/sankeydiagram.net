@@ -66,7 +66,10 @@ export default function () {
         .style('display', separateValue ? 'inline' : 'none')
 
       text
-        .attr('text-anchor', layoutData.right ? 'end' : 'start')
+        .attr('text-anchor',  layoutData.titlePlacement === 'outside'
+          ? layoutData.isEnd ? 'start' : layoutData.isBeginning ? 'end' : 'middle'
+          : layoutData.right ? 'end' : 'start'
+        )
         .text(titleText)
         .each(wrap, 100)
 
@@ -83,7 +86,7 @@ export default function () {
         .attr('transform', nodeTransform)
 
       line
-        .attr('y1', function (d) { return layoutData.titleAbove ? -5 : 0 })
+        .attr('y1', function (d) { return layoutData.titlePlacement === 'above' ? -5 : 0 })
         .attr('y2', function (d) { return layoutData.dy })
         .style('display', function (d) {
           return (d.y0 === d.y1 || !nodeVisible(d)) ? 'none' : 'inline'
@@ -124,12 +127,16 @@ export default function () {
 
       function textTransform (d) {
         const layout = layoutData
-        const y = layout.titleAbove ? -10 : (d.y1 - d.y0) / 2
+        const y = layout.titlePlacement === 'above' ? -10 : (d.y1 - d.y0) / 2
         let x
-        if (layout.titleAbove) {
+        if (layout.titlePlacement === 'above') {
           x = (layout.right ? 4 : -4)
         } else {
           x = layout.right ? -10 : d.x1 - d.x0 + 17.5
+        }
+        if(layout.titlePlacement === 'outside') {
+          if (layoutData.isEnd) x = 15;
+          if (layoutData.isBeginning) x = -5;
         }
         return 'translate(' + x + ',' + y + ')'
       }
@@ -185,9 +192,12 @@ function nodeTransform (d) {
 
 function titlePosition (d) {
   return {
-    titleAbove: document.getElementById('sankey-settings-labelabove').checked,
+    /** @type {'inside'|'outside'|'above'} */
+    titlePlacement: document.getElementById('sankey-settings-node-text-placement').value,
     showLabelBackground: document.getElementById('sankey-settings-node-text-background-opacity').value > 0,
-    right: d.incoming.length !== 0
+    right: d.incoming.length !== 0,
+    isBeginning: d.incoming.length === 0,
+    isEnd: d.outgoing.length === 0,
   }
 }
 

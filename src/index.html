@@ -144,7 +144,12 @@ target three [15] target five
                     <input class="settings-input sankey-settings-node-text-background-opacity" id="sankey-settings-node-text-background-opacity" max="100" min="0" placeholder="0" type="number" value="0">
                     <input class="settings-input sankey-settings-node-text-background-opacity" max="100" min="0" type="range" value="0">
                 </div>
-                <label for="sankey-settings-labelabove">Labels Above Nodes </label><input class="settings-input" id="sankey-settings-labelabove" type="checkbox">
+                <label for="sankey-settings-node-text-placement">Node-Label Placement</label>
+                <select class="settings-input" id="sankey-settings-node-text-placement">
+                    <option value="inside">Inside</option>
+                    <option value="outside">Outside</option>
+                    <option value="above">Above Node</option>
+                </select>
                 <br>
                 <label for="sankey-settings-sort-nodes-by-linenumber">Sort Nodes by Line Number </label><input class="settings-input" id="sankey-settings-sort-nodes-by-linenumber" type="checkbox">
 

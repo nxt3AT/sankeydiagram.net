@@ -44,3 +44,21 @@ function idAndPort (x) {
   if (typeof x === 'object') return x
   return {id: x, port: undefined}
 }
+
+/**
+ *
+ * @param text text to measure
+ * @param element element to use as a context for determining font-size
+ * @returns {number} the text width in pixels
+ */
+export function measureTextWidth(text, element) {
+  const computedStyle = window.getComputedStyle(element ?? document.getElementById('sankey-svg'));
+  const font = computedStyle.font
+    || `${computedStyle.fontStyle} ${computedStyle.fontWeight} ${computedStyle.fontSize} ${computedStyle.fontFamily}`;
+  const canvas = measureTextWidth.canvas || (measureTextWidth.canvas = document.createElement('canvas'));
+  const context = canvas.getContext('2d');
+  context.font = font;
+
+  const metrics = context.measureText(text);
+  return metrics.width;
+}

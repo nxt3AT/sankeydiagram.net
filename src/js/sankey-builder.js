@@ -9,6 +9,7 @@ const sankeyPrecisionSetting = document.getElementById('sankey-settings-precisio
 const sankeyHideZerosSetting = document.getElementById('sankey-settings-hidezeros');
 const sankeySeparatorSetting = document.getElementById('sankey-settings-separators');
 const sankeyNodeTextBackgroundOpacitySettings = document.getElementsByClassName('sankey-settings-node-text-background-opacity');
+const sankeyNodeTextPlacementSetting = document.getElementById('sankey-settings-node-text-placement');
 const sankeyColorpaletteSetting = document.getElementById('sankey-settings-colorscheme');
 const sankeySuffixSetting = document.getElementById('sankey-settings-suffix');
 
@@ -49,7 +50,7 @@ document.getElementById('sankey-input-box').addEventListener('resize', function(
   });
 });
 
-[sankeySortNodesByLineNumberSetting].forEach((setting) => {
+[sankeySortNodesByLineNumberSetting, sankeyNodeTextPlacementSetting].forEach((setting) => {
   setting.addEventListener('change', function() {
     processInput();
   })
@@ -57,10 +58,6 @@ document.getElementById('sankey-input-box').addEventListener('resize', function(
 
 sankeyColorpaletteSetting.addEventListener('change', function() {
   resetColorIndex();
-  processInput();
-});
-
-document.getElementById('sankey-settings-labelabove').addEventListener('change', function() {
   processInput();
 });
 
@@ -81,6 +78,10 @@ sankeyFontSizeSetting.addEventListener('input', () => {
       '--node-font-size',
       `${sankeyFontSizeSetting.value.trim().length > 0 ? sankeyFontSizeSetting.value.trim() : '20'}px`,
   );
+
+  if(sankeyNodeTextPlacementSetting.value === 'outside') {
+    processInput();
+  }
 });
 
 sankeyNodeWidthSetting.addEventListener('input', () => {
@@ -260,43 +261,58 @@ export function processInput() {
       .call(diagram);
 }
 
+function nodeValue(d) {
+  const precision = sankeyPrecisionSetting.value;
+  let nodeValue;
+
+  if (sankeyHideNumbersSetting.checked) {
+    return '';
+  }
+
+  if (!d.incoming) return 0;
+  if (d.incoming.length > 0) {
+    let incomingValue = 0.0;
+    d.incoming.forEach((incomingNode) => {
+      incomingValue += parseFloat(incomingNode.value);
+    });
+    nodeValue = parseFloatWithPrecision(incomingValue, precision, sankeyHideZerosSetting.checked);
+  } else {
+    nodeValue = parseFloatWithPrecision(d.value, precision, sankeyHideZerosSetting.checked);
+  }
+
+  return sankeySeparatorSetting.checked ? Number(nodeValue).toLocaleString(undefined, {
+    minimumFractionDigits: sankeyHideZerosSetting.checked ? undefined : precision,
+    minimumSignificantDigits: sankeyHideZerosSetting.ch ? precision : undefined,
+  }) : nodeValue;
+}
+
+function nodeTitle(d) {
+  return d.id;
+}
+
+function nodeSuffix() {
+  return sankeySuffixSetting.value;
+}
+
 document.getElementById('sankey-svg').setAttribute('viewBox', '0 0 ' + sankeyCanvasWidthSetting.value + ' ' + sankeyCanvasHeightSetting.value);
-const layout = sankey.sankey()
+const layout = sankey.sankey({
+  /**
+   * @param node
+   * @param node.data
+   */
+  nodeTitleWithSuffix: (node) => {
+    return nodeTitle(node.data) + ' ' + nodeValue(node.data) + nodeSuffix(node);
+  },
+})
     .size([sankeyCanvasWidthSetting.value-60, sankeyCanvasHeightSetting.value])
     .linkValue(function(d) {
       return d.value;
     });
 
-const diagram = sankey.sankeyDiagram()
-    .nodeValue(function(d) {
-      const precision = sankeyPrecisionSetting.value;
-      let nodeValue;
-
-      if (sankeyHideNumbersSetting.checked) {
-        return '';
-      }
-
-      if (d.incoming.length > 0) {
-        let incomingValue = 0.0;
-        d.incoming.forEach((incomingNode) => {
-          incomingValue += parseFloat(incomingNode.value);
-        });
-        nodeValue = parseFloatWithPrecision(incomingValue, precision, sankeyHideZerosSetting.checked);
-      } else {
-        nodeValue = parseFloatWithPrecision(d.value, precision, sankeyHideZerosSetting.checked);
-      }
-
-      return sankeySeparatorSetting.checked ? Number(nodeValue).toLocaleString(undefined, {
-        minimumFractionDigits: sankeyHideZerosSetting.checked ? undefined : precision,
-        minimumSignificantDigits: sankeyHideZerosSetting.ch ? precision : undefined,
-      }) : nodeValue;
-    })
-    .nodeTitle(function(d) {
-      return d.id;
-    })
-    .nodeSuffix(function() {
-      return sankeySuffixSetting.value;
-    })
+export const diagram = sankey.sankeyDiagram()
+    .nodeValue(nodeValue)
+    .nodeTitle(nodeTitle)
+    .nodeSuffix(nodeSuffix)
     .nodeTooltip(function(d) {
       const precision = sankeyPrecisionSetting.value;
       let outgoingValue = 0.0; let incomingValue = 0.0;
