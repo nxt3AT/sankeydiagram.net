@@ -3,6 +3,7 @@ import { select } from 'd3-selection'
 export default function () {
   let nodeTitle = (d) => d.title !== undefined ? d.title : d.id
   let nodeTooltip = (d) => d.title !== undefined ? d.title : d.id
+  let nodePrefix = (d) => '';
   let nodeSuffix = (d) => '';
   let nodeValue = (d) => null
   let nodeVisible = (d) => !!nodeTitle(d)
@@ -54,7 +55,7 @@ export default function () {
 
       const separateValue = (d.x1 - d.x0) > 2
       const titleText = nodeTitle(d) + ((!separateValue && nodeValue(d))
-          ? ' ' + nodeValue(d) : '') + nodeSuffix(d);
+          ? ' ' + nodePrefix(d) + nodeValue(d) : nodePrefix(d)) + nodeSuffix(d);
       const tooltipText = nodeTooltip(d);
 
       // Update un-transitioned
@@ -158,6 +159,14 @@ export default function () {
     }
     return nodeTitle
   }
+
+  sankeyNode.nodePrefix = function (x) {
+    if (arguments.length) {
+      nodePrefix = required(x);
+      return sankeyNode
+    }
+    return nodePrefix
+  };
 
   sankeyNode.nodeSuffix = function (x) {
     if (arguments.length) {

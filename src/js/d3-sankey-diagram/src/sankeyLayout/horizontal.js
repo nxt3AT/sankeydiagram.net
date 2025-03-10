@@ -10,7 +10,7 @@ import {measureTextWidth} from '../util';
 //   return dx
 // }
 
-export default function positionHorizontally (G, width, nodeWidth, nodeTitleWithSuffix) {
+export default function positionHorizontally (G, width, nodeWidth, nodeTitleWithPreAndSuffix) {
   // const minWidths = new Array(maxRank).fill(0)
   // G.edges().forEach(e => {
   //   const r0 = G.node(e.v).rank || 0
@@ -42,8 +42,8 @@ export default function positionHorizontally (G, width, nodeWidth, nodeTitleWith
   const sankeyNodeTextPlacementSetting = document.getElementById('sankey-settings-node-text-placement').value;
   const sankeySvg = document.querySelector('.nodes text');
   const maxLabelWidthInRank = {
-    0: 50 + Math.max(...Object.values(G._nodes).filter(n => n.rank === 0).map(n => measureTextWidth(nodeTitleWithSuffix ? nodeTitleWithSuffix(n) : n.data.id, sankeySvg))),
-    [maxRank]: Math.max(...Object.values(G._nodes).filter(n => n.rank === maxRank).map(n => measureTextWidth(nodeTitleWithSuffix ? nodeTitleWithSuffix(n) : n.data.id, sankeySvg))),
+    0: 50 + Math.max(...Object.values(G._nodes).filter(n => n.rank === 0).map(n => measureTextWidth(nodeTitleWithPreAndSuffix ? nodeTitleWithPreAndSuffix(n) : n.data.id, sankeySvg))),
+    [maxRank]: Math.max(...Object.values(G._nodes).filter(n => n.rank === maxRank).map(n => measureTextWidth(nodeTitleWithPreAndSuffix ? nodeTitleWithPreAndSuffix(n) : n.data.id, sankeySvg))),
   };
   const scaleFactor =  sankeyNodeTextPlacementSetting === 'outside' ? 1 - (maxLabelWidthInRank[0] + maxLabelWidthInRank[maxRank])/width : 1;
   let dx = ((width - nodeWidth) / (maxRank)) * scaleFactor;
