@@ -34,7 +34,6 @@ If you have any questions, need help, a special license, or something else, you 
 * The Sankey Diagram D3 extension is based on https://github.com/ricklupton/d3-sankey-diagram
 * D3 - https://github.com/d3/d3
 * For exporting images - https://github.com/exupero/saveSvgAsPng
-* For copying to the user's clipboard - https://github.com/zenorocha/clipboard.js
 * For compressing the sharing URL - https://github.com/pieroxy/lz-string
 
 ## License
