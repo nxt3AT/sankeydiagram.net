@@ -59,7 +59,7 @@ function defaultSortPorts (a, b) {
 /**
  *
  * @param [settings]
- * @param {(({data}) => string)} settings.nodeTitleWithSuffix
+ * @param {(({data}) => string)} settings.nodeTitleWithPreAndSuffix
  * @returns {{nodes, links}}
  */
 export default function sankeyLayout (settings) {
@@ -131,7 +131,7 @@ export default function sankeyLayout (settings) {
 
       // position nodes
       verticalLayout(nested, y1 - y0, whitespace)
-      positionHorizontally(G, x1 - x0, dx, settings.nodeTitleWithSuffix)
+      positionHorizontally(G, x1 - x0, dx, settings.nodeTitleWithPreAndSuffix)
 
       // adjust origin
       G.nodes().forEach(u => {

@@ -11,6 +11,7 @@ const sankeySeparatorSetting = document.getElementById('sankey-settings-separato
 const sankeyNodeTextBackgroundOpacitySettings = document.getElementsByClassName('sankey-settings-node-text-background-opacity');
 const sankeyNodeTextPlacementSetting = document.getElementById('sankey-settings-node-text-placement');
 const sankeyColorpaletteSetting = document.getElementById('sankey-settings-colorscheme');
+const sankeyPrefixSetting = document.getElementById('sankey-settings-prefix');
 const sankeySuffixSetting = document.getElementById('sankey-settings-suffix');
 
 const sankeyHideNumbersSetting = document.getElementById('sankey-settings-hidenumbers');
@@ -44,7 +45,7 @@ document.getElementById('sankey-input-box').addEventListener('resize', function(
   processInput();
 });
 
-[sankeyPrecisionSetting, sankeyHideZerosSetting, sankeySuffixSetting, sankeySeparatorSetting, sankeyHideNumbersSetting, sankeyNodeUseColorsSetting, sankeyColorFlowsBasedOnFirstWordSetting].forEach((setting) => {
+[sankeyPrecisionSetting, sankeyHideZerosSetting, sankeyPrefixSetting, sankeySuffixSetting, sankeySeparatorSetting, sankeyHideNumbersSetting, sankeyNodeUseColorsSetting, sankeyColorFlowsBasedOnFirstWordSetting].forEach((setting) => {
   setting.addEventListener('input', function() {
     processInput();
   });
@@ -294,14 +295,18 @@ function nodeSuffix() {
   return sankeySuffixSetting.value;
 }
 
+function nodePrefix() {
+  return sankeyPrefixSetting.value;
+}
+
 document.getElementById('sankey-svg').setAttribute('viewBox', '0 0 ' + sankeyCanvasWidthSetting.value + ' ' + sankeyCanvasHeightSetting.value);
 const layout = sankey.sankey({
   /**
    * @param node
    * @param node.data
    */
-  nodeTitleWithSuffix: (node) => {
-    return nodeTitle(node.data) + ' ' + nodeValue(node.data) + nodeSuffix(node);
+  nodeTitleWithPreAndSuffix: (node) => {
+    return nodeTitle(node.data) + ' ' + nodePrefix(node) + nodeValue(node.data) + nodeSuffix(node);
   },
 })
     .size([sankeyCanvasWidthSetting.value-60, sankeyCanvasHeightSetting.value])
@@ -312,6 +317,7 @@ const layout = sankey.sankey({
 export const diagram = sankey.sankeyDiagram()
     .nodeValue(nodeValue)
     .nodeTitle(nodeTitle)
+    .nodePrefix(nodePrefix)
     .nodeSuffix(nodeSuffix)
     .nodeTooltip(function(d) {
       const precision = sankeyPrecisionSetting.value;

@@ -1,4 +1,3 @@
-import ClipboardJS from 'clipboard';
 import LZString from 'lz-string';
 
 import {sankeyInput} from './constants';
@@ -58,13 +57,17 @@ function deserializeData(rawData) {
   return decompressedData;
 }
 
-new ClipboardJS('.copy-link-button', {
-  text: function(trigger) {
-    trigger.classList.add('is-clicked');
-    setTimeout(() => trigger.classList.remove('is-clicked'), 700);
-    return location.protocol + '//' + location.host + location.pathname + '?content=' + serializeData() + '&' + serializeSettings().toString();
-  },
-});
+document.querySelectorAll('.copy-link-button').forEach((button) => (
+  button.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(location.protocol + '//' + location.host + location.pathname + '?content=' + serializeData() + '&' + serializeSettings().toString());
+      button.classList.add('is-clicked');
+      setTimeout(() => button.classList.remove('is-clicked'), 700);
+    } catch (err) {
+      console.error('failed copying to clipboard ', err);
+    }
+  })
+));
 
 document.addEventListener('DOMContentLoaded', () => {
   if (findGetParameter('content') !== null) {
