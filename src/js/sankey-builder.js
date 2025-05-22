@@ -39,6 +39,10 @@ sankeyInput.addEventListener('keyup', function() {
   inputTimer = setTimeout(processInput, 300);
 });
 
+document.getElementById('sankey-force-reprocess-button').addEventListener('click', function() {
+  processInput();
+})
+
 window.addEventListener('resize', processInput);
 
 document.getElementById('sankey-input-box').addEventListener('resize', function() {
