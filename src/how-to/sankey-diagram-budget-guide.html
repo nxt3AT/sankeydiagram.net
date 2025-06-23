@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <title>How To Create a Sankey Diagram Budget | SankeyDiagram.net</title>
+    <meta content="Visualize your income and expenses with a Sankey Diagram Budget. Learn how to create a Personal Finance Sankey Diagram to track spending, optimize your budget, and improve financial planning." name="description">
+    <meta content="Visualize your income and expenses with a Sankey Diagram Budget. Learn how to create a Personal Finance Sankey Diagram to track spending, optimize your budget, and improve financial planning." property="og:description">
+    <meta content="How To Create a Sankey Diagram Budget | SankeyDiagram.net" property="og:title" />
+    <meta content="article" property="og:type" />
+    <meta content="2024-06-27" property="article:published_time" />
+    <meta content="https://sankeydiagram.net/how-to/sankey-diagram-budget-guide" property="og:url" />
+    <meta content="https://sankeydiagram.net/banner.png" property="og:image" />
+    <meta content="en_US" property="og:locale" />
+    <meta content="summary" property="twitter:card" />
+    <meta content="How To Create a Sankey Diagram Budget | SankeyDiagram.net" property="twitter:title" />
+    <meta content="Visualize your income and expenses with a Sankey Diagram Budget. Learn how to create a Personal Finance Sankey Diagram to track spending, optimize your budget, and improve financial planning." property="twitter:description" />
+    <meta content="@JonasDoesThings" property="twitter:creator" />
+    <meta content="https://sankeydiagram.net/banner_square.png" property="twitter:image" />
+
+    <link href="https://sankeydiagram.net/how-to/sankey-diagram-budget-guide" rel="canonical" />
+
+    <meta content="index, follow" name="robots">
+    <meta charset="UTF-8">
+
+    <link href="../manifest.json" rel="manifest">
+    <link href="../css/index.css" rel="stylesheet">
+    <link href="../static/favicon.png" rel="icon" type="image/png">
+</head>
+<body class="min-w-full bg-neutral-100">
+<nav aria-label="main navigation" class="bg-white flex flex-row items-stretch px-6 gap-5 min-w-full relative drop-shadow z-10" role="navigation">
+    <a class="flex flex-row flex-nowrap items-center py-1.5" href="/">
+        <picture class="h-7 aspect-square mr-1">
+            <source srcset="../logo.png?as=webp" type="image/webp">
+            <img alt="sankeydiagram.net logo" height="32" src="../logo.png" width="32">
+        </picture>
+        <h1 class="font-semibold">SankeyDiagram.net</h1>
+    </a>
+    <button aria-controls="navbar-default" aria-expanded="false" class="navbar-burger peer group -mr-6 ml-auto inline-flex w-11 items-center justify-center text-sm text-gray-500 md:hidden aria-expanded:bg-neutral-200" type="button">
+        <span class="sr-only">Open main menu</span>
+        <svg aria-hidden="true" class="w-5 h-5 group-aria-expanded:hidden" fill="none" viewBox="0 0 17 14" xmlns="http://www.w3.org/2000/svg"><path d="M1 1h15M1 7h15M1 13h15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+        <svg class="w-6 h-6 hidden group-aria-expanded:block" fill="none" mlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </button>
+    <div class="hidden peer-aria-expanded:block md:flex flex-col md:flex-row absolute top-full left-0 md:relative bg-white w-full shadow md:shadow-none">
+        <div class="relative cursor-pointer flex flex-col md:flex-row md:items-center">
+            <div class="peer hover:bg-gray-100 h-full flex items-center px-4">
+                    <span class="cursor-pointer py-1.5">
+                        About
+                    </span>
+                <svg class="size-5 ml-1.5 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </div>
+            <div class="block md:hidden peer-hover:block hover:block relative md:absolute bg-white top-full left-0 rounded-b md:shadow md:border py-2.5 font-light text-sm">
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full" href="https://github.com/nxt3AT/sankeydiagram.net" rel="noopener noreferrer" target="_blank">GitHub</a>
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full" href="https://github.com/nxt3AT/sankeydiagram.net/releases" rel="noopener noreferrer" target="_blank">Changelog</a>
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full" href="https://jonasdoesthings.com/" target="_blank">@JonasDoesThings</a>
+                <hr class="navbar-divider hidden md:block">
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full" href="mailto:jonas@jonasdoesthings.com">E-Mail</a>
+                <a class="text-gray-400 p-2 px-6 hover:bg-gray-100 inline-block w-full" href="../privacypolicy.html" rel="nofollow" target="_blank">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="relative cursor-pointer flex flex-col md:flex-row md:items-center">
+            <div class="peer hover:bg-gray-100 h-full flex items-center px-4">
+                    <span class="cursor-pointer py-1.5">
+                        How To
+                    </span>
+                <svg class="size-5 ml-1.5 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </div>
+            <div class="block md:hidden peer-hover:block hover:block relative md:absolute bg-white top-full left-0 rounded-b md:shadow md:border py-2.5 font-light text-sm">
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full text-nowrap" href="./what-is-a-sankey-diagram">What is a Sankey Diagram?</a>
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full text-nowrap" href="./create-a-sankey-diagram">How To create a Sankey Diagram</a>
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full text-nowrap" href="./example-sankey-diagrams">Example Sankey Diagram Visualisations</a>
+                <a class="p-2 px-6 hover:bg-gray-100 inline-block w-full text-nowrap" href="./sankey-diagram-budget-guide">Sankey Budget Guide for Personal Finance</a>
+            </div>
+        </div>
+        <div class="py-1.5 px-3 flex items-center">
+            <button
+                class="border border-transparent hover:border-black rounded py-1.5 px-3 transition-all duration-300 flex items-center"
+                data-tinydialog-openwidget="019561c6-c9da-7b1c-b1a4-d96e99694a64"
+            >
+                <span class="mr-1">
+                    <svg class="mt-0.5" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </span>
+                Feedback
+            </button>
+        </div>
+        <div class="py-1.5 px-3 flex items-center">
+            <a class="py-1.5 px-3 rounded buy-me-a-coffee-button font-bold" href="https://www.buymeacoffee.com/jonasdoesthings" rel="nofollow" target="_blank" title="Support my Work">
+                <span class="mr-2">🍵</span>Buy Me A Coffee
+            </a>
+        </div>
+    </div>
+</nav>
+<main class="m-0 flex flex-col w-full p-3 gap-3 min-h-[90vh] lg:max-w-screen-lg lg:mx-auto">
+    <h2 class="font-bold text-3xl mt-6" id="what-are-sankey-diagram-budgets">1. What Is a Sankey Diagram Budget?</h2>
+    <p>
+        <b>A Sankey Diagram Budget is a powerful way to visualize the flow of your income and expenses, making it easier to understand where your money goes and how you can optimize your personal finances.</b> Whether you’re managing a household budget, tracking business expenses, or simply looking to gain better financial insight, a Sankey Budget diagram offers clarity that traditional spreadsheets can’t match
+        <br /><br />
+        A Sankey Diagram Budget uses nodes and flows to represent financial categories and the movement of money between them. The width of each flow is proportional to the amount, making it easy to spot your biggest expenses or sources of income at a glance. This approach is ideal for personal finance because it provides an intuitive, visual summary of complex budget data
+    </p>
+    <hr class="border border-black mt-4" />
+    <h2 class="font-bold text-3xl" id="why-use-a-sankeydiagram">2. Why Use a Sankey Budget Diagram for Personal Finance?</h2>
+    <ul class="list-disc list-inside pl-2">
+        <li><b>Immediate Clarity:</b> Instantly see where your income is allocated-essentials, savings, discretionary spending, and more.</li>
+        <li><b>Identify Patterns:</b> Spot trends, bottlenecks, or areas of overspending that might be hidden in tables or lists.</li>
+        <li><b>Engage Others:</b> Great for sharing with family members, household members, or friends to discuss budgeting decisions and ask for help.</li>
+        <li><b>Scenario Planning:</b> Easily visualize how changes in income or expenses affect your overall financial health.</li>
+    </ul>
+    <hr class="border border-black mt-4" />
+    <h2 class="font-bold text-3xl" id="how-to-create-a-sankey-budget">3. How to Create a Sankey Diagram Budget</h2>
+    <h3 class="font-bold">1. Gather and Organize Your Financial Data</h3>
+    <p>
+        Start by listing all sources of income and all categories of expenses. For a Personal Finance Sankey Diagram, typical nodes might include:<br />
+        <b>- Income:</b> Salary, freelance work, investments<br />
+        <b>- Expenses:</b> Rent, groceries, utilities, entertainment, savings, debt payments
+    </p>
+    <h3 class="font-bold">2. Structure Your Data for the Diagram</h3>
+    <p>
+        Each flow in a Sankey diagram connects a source (e.g., “Salary”) to a target (e.g., “Monthly Budget”), and then from the budget pool to various expenses. The amount determines the thickness of the flow.
+
+        Example Data Format:</p>
+    <div class="flex flex-col md:flex-row items-center gap-2">
+                <pre>Salary [3000] Monthly Budget
+Freelance [500] Monthly Budget
+Monthly Budget [1200] Rent
+Monthly Budget [400] Groceries
+Monthly Budget [300] Utilities
+Monthly Budget [600] Savings
+Monthly Budget [1000] Discretionary</pre>
+        <div>
+            <img alt="example output of a personal finance budget sankey-plot created with SankeyDiagram.net" class="max-w-screen md:max-w-2xl" src="./example-sankey-simple-sankey-budget-plot-example.png">
+            <a class="text-sm underline text-accent" href="/?content=MoQwNiBOCeAEDaBmADKgurAsgewHYBcALMOAIQFcATAcwFN8AoAMUltolwGNaEBWdLHiIlYFGvQY4CxMlTr4EARgBMAgEq0CkoTNFz6CACwCA4pGzdIAS1oBnbdJFj5CFMgwBVfFbBXvdh2FZcQV4ADYBUAA3K1xqeykgvRClVHdYABErW05WbzwoaCA&sankey-settings-colorscheme=1" target="_blank">Edit this Diagram</a>
+        </div>
+    </div>
+    <p>
+        See <a class="underline text-accent" href="./create-a-sankey-diagram">How To Create a Sankey Diagram</a> to find get more details on how you can use sankeydiagram.net to create financial diagrams to your specifications.
+    </p>
+
+    <h3 class="font-bold">3. Analyze and Optimize</h3>
+    <ul class="list-disc list-inside pl-2">
+        <li><b>Review Flows:</b> Look for oversized flows (e.g., high rent or entertainment costs) and consider where you can adjust spending.</li>
+        <li><b>Scenario Testing:</b> Modify the data to see how changes (like a raise or new expense) impact your budget.</li>
+        <li><b>Share & Discuss:</b> Use the Export function to share your Sankey Budget with friends or on reddit to get improvement suggestions.</li>
+    </ul>
+
+    <hr class="border border-black mt-4" />
+    <h2 class="font-bold text-3xl" id="best-practices-for-personal-finance-sankeys">4. Best Practices for Creating a Personal Finance Sankey Diagram</h2>
+    <ul class="list-disc list-inside pl-2">
+        <li><b>Be Accurate:</b> Use real financial data for the most useful insights.</li>
+        <li><b>Keep It Simple:</b> Don’t overcrowd the diagram-group small expenses if necessary for readability.</li>
+        <li><b>Use Consistent Colors:</b> Assign colors to categories (e.g., red for debt, green for savings) to make the diagram easy to interpret.</li>
+        <li><b>Update Regularly:</b> Refresh your diagram monthly or quarterly to track progress and adjust your budget.</li>
+    </ul>
+
+    <hr class="border border-black mt-4" />
+    <h2 class="font-bold text-3xl" id="do-i-need-to-sign-up">5. Do I need to sign-up to create a Budget Visualisation with the SankeyDiagram tool?</h2>
+    <p>
+        <b>No, you don't need to sign-up.</b> You can use everything for free, directly in your browser. No Sign-Up, no Ads.<br />
+        The tool is Open-Source and we do not store your data.
+    </p>
+</main>
+
+<footer class="text-center mt-6">
+    <p>
+        <strong>Sankey Diagram Generator</strong> provided for free by <a class="text-accent" href="https://jonasdoesthings.com/" target="_blank"><strong>JonasDoesThings</strong></a> and <a class="text-accent" href="https://github.com/nxt3AT/sankeydiagram.net/" rel="nofollow" target="_blank">Open Source contributions</a>.
+    </p>
+</footer>
+
+<script src="../js/gui.js" type="module"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@tinydialog/sdk-js@latest/dist/browser.js" type="module"></script>
+</body>
+</html>
