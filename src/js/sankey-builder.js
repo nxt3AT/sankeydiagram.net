@@ -30,7 +30,7 @@ import './settings-serializer';
 import './input-anonymizer';
 import './input-sharing';
 import './image-exporter';
-import {parseFloatWithPrecision} from './utils';
+import {evaluateMathExpression, parseFloatWithPrecision} from './utils';
 
 
 let inputTimer;
@@ -135,21 +135,21 @@ function calculateValue(lines, originalTarget) {
     }
 
     const regexGroups = lineRegex.exec(line);
-    const source = regexGroups[1].trim();
-    const value = regexGroups[2];
-    const target = regexGroups[3].trim();
+    const source = regexGroups.groups['source'].trim();
+    const value = regexGroups.groups['value'];
+    const target = regexGroups.groups['target'].trim();
 
     if (source === originalTarget) {
       if (value === '?') {
         totalValue += parseFloat(calculateValue(lines, target));
       } else {
-        totalValue += parseFloat(value);
+        totalValue += parseSankeyLineValue(value);
       }
     } else if (target === originalTarget) {
       if (value === '?') {
         // todo, we should probably handle this as well.
       } else {
-        totalValue -= parseFloat(value);
+        totalValue -= parseSankeyLineValue(value);
       }
     }
   });
@@ -189,10 +189,10 @@ function parseInputToSankey(input) {
     }
 
     const regexGroups = lineRegex.exec(line);
-    const source = regexGroups[1].trim();
-    let value = regexGroups[2];
-    const target = regexGroups[3].trim();
-    const color = regexGroups[4];
+    const source = regexGroups.groups['source'].trim();
+    let value = regexGroups.groups['value'];
+    const target = regexGroups.groups['target'].trim();
+    const color = regexGroups.groups['color']?.trim();
 
     if (!nodeKeys.includes(source)) {
       nodeKeys.push(source);
@@ -214,6 +214,8 @@ function parseInputToSankey(input) {
 
     if (value === '?') {
       value = calculateValue(lines, target);
+    } else {
+      value = parseSankeyLineValue(value);
     }
 
     linksList.push({
@@ -347,3 +349,14 @@ export const diagram = sankey.sankeyDiagram()
       return d.value != 0 ? d.color : '#FFFFFF';
     })
     .margins({top: 0, right: 0, bottom: 0, left: 10});
+
+/**
+ * @param {string} val
+ */
+export function parseSankeyLineValue(val) {
+  if(val.startsWith('(') && val.endsWith(')')) {
+    return evaluateMathExpression(val)
+  }
+
+  return parseFloat(val)
+}
