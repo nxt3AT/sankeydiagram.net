@@ -1,5 +1,5 @@
 import {lineRegex, sankeyInput} from './constants';
-import {processInput} from './sankey-builder';
+import {parseSankeyLineValue, processInput} from './sankey-builder';
 
 const anonymizeDataWarningModal = document.getElementById('anonymize-data-modal');
 
@@ -35,16 +35,16 @@ function anonymizeData() {
     }
 
     const regexGroups = lineRegex.exec(line);
-    const source = regexGroups[1].trim();
-    let value = regexGroups[2];
-    const target = regexGroups[3].trim();
+    const source = regexGroups.groups['source'].trim();
+    let value = regexGroups.groups['value'];
+    const target = regexGroups.groups['target'].trim();
 
     if (replacedKeyDict[source] == null) {
       replacedKeyDict[source] = generateRandomString(source.length);
     }
 
     if (value !== '?') {
-      value = (value*scrubbingFactor).toFixed(0);
+      value = (parseSankeyLineValue(value)*scrubbingFactor).toFixed(0);
     }
 
     if (replacedKeyDict[target] == null) {

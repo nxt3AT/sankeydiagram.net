@@ -105,7 +105,7 @@
 // "SOURCE [AMOUNT] TARGET"
 source [100] target
 source two [30] target
-target [65] target two</pre>
+target [(32.5*2)] target two</pre>
                 <ul class="mt-2 list-disc list-inside">
                     <li><b>You can specify one flow per line.</b></li>
                     <li><b>SOURCE_NODE [AMOUNT] TARGET_NODE</b> is the basic syntax for a flow / link.</li>
@@ -115,7 +115,7 @@ target [65] target two</pre>
             </div>
             <div>
                 <img alt="example output sankey diagram for the left-hand input" src="./create-a-sankey-diagram-example-general-0.png" />
-                <a class="underline text-accent text-sm" target="_blank" href="/?content=PTAEBcAsEsGdTqAhqAxgewLaYKYDtxk8ATNLABwBsdwdKBPBAcz3QCcdTo8JIdR0AV3DlhAKBCgcSVJFDFoSJmySYAtJW4BrBPFjkcqaADNonBDyj9j7TEkIAiAMoB5AKoAlAMIBRUAG0AQQBZdwA5ABUAXVAIwI8AcR8IhzFYITZUfn8ARgAGPJjwJDYmGjSMrIgAd3QAgGZCiBKy8DFi0poAgDYAViKWrvBaoA&">Open Example Diagram</a>
+                <a class="underline text-accent text-sm" href="/?content=PTAEBcAsEsGdTqAhqAxgewLaYKYDtxk8ATNLABwBsdwdKBPBAcz3QCcdTo8JIdR0AV3DlhAKBCgcSVJFDFoSJmySYAtJW4BrBPFjkcqaADNonBDyj9j7TEkIAiAMoB5AKoAlAMIBRUAG0AQQBZdwA5ABUAXVAIwI8AcR8IhzFYITZUfn8ARgAGPJjwJDYmGjSMrIgAd3QAgGZCiBKy8DFi0poAgAp6gCYAOgBWACo+gEoilq7wWqA===&" target="_blank">Open Example Diagram</a>
             </div>
         </div>
         <div id="auto-calculating-flow-amounts">
@@ -139,9 +139,29 @@ fruits [5] bananas</pre>
                 <a class="underline text-accent text-sm" target="_blank" href="/?content=M4QwNiBOCeAEDaAmADAXVgIwK4BMDmApgC4BQA9GbEQBYGwBEA/PbAPYAOBkIRrksILLwC2PAJYBjcGDjAsw4AFos7AWDBsheVmIB2eWADdwWAsBLZ8xBI3R5IrCVzFmS9x87MIAzOkMFCIhAMMFd3J0gXYBt0ADNILDEic3jE5IQARjQBdnZQlISk6PgAVnQMEF1KkGAgA=&">Open Example Diagram</a>
             </div>
         </div>
+        <div id="math-expressions">
+            <div>
+                <p class="font-bold text-3xl mb-2">3. Sankey Diagram with Math Expressions</p>
+                <pre>
+salary [(10000/12)] budget
+budget [500] rent
+
+budget [?] subscriptions
+subscriptions [(250/12)] gym
+subscriptions [(50/12)] library</pre>
+                <ul class="mt-2 list-disc list-inside">
+                    <li><b>Math Expressions must be wrapped in () parantheses, e.g. [(1+1)].</b></li>
+                    <li>Basic Operators +-*/ and (nested) parentheses are supported.</li>
+                </ul>
+            </div>
+            <div>
+                <img alt="example colored output sankey diagram for the left-hand input" src="./create-a-sankey-diagram-example-math-expressions.png" />
+                <a class="underline text-accent text-sm" href="/?content=M4QwNiBOCeAEDaAKAjABnag9MgTASgF1YAjAVwBMBzAUwBcAoMquhAVnSMmoDsHGKatBAH4iwUsWABjSAEsADrVkB7bsHrjJMhUtXAEiHO2z4ilaAFsNE6XMUq1B47kKwws4pCjQgA==&sankey-settings-colorscheme=2" target="_blank">Open Example Diagram</a>
+            </div>
+        </div>
         <div id="custom-colors">
             <div>
-                <p class="font-bold text-3xl mb-2">3. Sankey Diagram with Custom Colors</p>
+                <p class="font-bold text-3xl mb-2">4. Sankey Diagram with Custom Colors</p>
                 <pre>
 source red1 [100] target [red]
 source red2 [10] target [red]
@@ -158,12 +178,12 @@ target [20] target pink [#f1337f]</pre>
             </div>
             <div>
                 <img alt="example colored output sankey diagram for the left-hand input" src="./create-a-sankey-diagram-example-colors.png" />
-                <a class="underline text-accent text-sm" target="_blank" href="/?content=M4ewrgTgxgpgBBGATAjHA2igDFgunAFwEMIBzGAjRJXAKFElgWQCYNt9iyKrk6Ho8agGZ2eQiXKV01fuEFxSiGADsMw8VykYlMVXS090ANgCsnSTxAQiK8hmu3yBy9JabXcAA4BLFQGsMAGIAMxRhYQB2ENwgA==&">Open Example Diagram</a>
+                <a class="underline text-accent text-sm" href="/?content=M4ewrgTgxgpgBBGATAjHA2igDFgunAFwEMIBzGAjRJXAKFElgWQCYNt9iyKrk6Ho8agGZ2eQiXKV01fuEFxSiGADsMw8VykYlMVXS090ANgCsnSTxAQiK8hmu3yBy9JabXcAA4BLFQGsMAGIAMxRhYQB2ENwgA==&" target="_blank">Open Example Diagram</a>
             </div>
         </div>
         <div>
             <div>
-                <p class="font-bold text-3xl mb-2">4. Sankey Diagram with Loops</p>
+                <p class="font-bold text-3xl mb-2">5. Sankey Diagram with Loops</p>
                 <pre>
 // sankeys may have loops
 a [10] b
@@ -181,7 +201,7 @@ c [5] d</pre>
         </div>
         <div>
             <div>
-                <p class="font-bold text-3xl mb-2">5. Color Flows Based on Source's First Word</p>
+                <p class="font-bold text-3xl mb-2">6. Color Flows Based on Source's First Word</p>
                 <pre>
 source one [10] target one
 source two [10] target one

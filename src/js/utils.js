@@ -40,3 +40,64 @@ export function parseFloatWithPrecision(value, precision, hideZeroDecimals) {
 
   return parsedValue;
 }
+
+/**
+ * @param {string} expr
+ * @returns {number}
+ */
+export function evaluateMathExpression(expr) {
+  let pos = 0;
+
+  const peek = () => expr[pos];
+  const next = () => expr[pos++];
+  const skipSpaces = () => { while (peek() === ' ') next(); };
+
+  const parseNumber = () => {
+    skipSpaces();
+    let num = '';
+    while (peek() && /[0-9.]/.test(peek())) num += next();
+    return parseFloat(num);
+  };
+
+  const parseFactor = () => {
+    skipSpaces();
+    if (peek() === '(') {
+      next(); // consume '('
+      const result = parseExpression();
+      skipSpaces();
+      if (peek() === ')') next(); // consume ')'
+      return result;
+    }
+    return parseNumber();
+  };
+
+  const parseTerm = () => {
+    let result = parseFactor();
+    skipSpaces();
+    while (peek() && /[*/]/.test(peek())) {
+      const op = next();
+      const right = parseFactor();
+      result = op === '*' ? result * right : result / right;
+      skipSpaces();
+    }
+    return result;
+  };
+
+  const parseExpression = () => {
+    let result = parseTerm();
+    skipSpaces();
+    while (peek() && /[+-]/.test(peek())) {
+      const op = next();
+      const right = parseTerm();
+      result = op === '+' ? result + right : result - right;
+      skipSpaces();
+    }
+    return result;
+  };
+
+  if (!/^[0-9.+\-*/()\s]*$/.test(expr)) {
+    throw new Error('Invalid characters in math expression');
+  }
+
+  return parseExpression();
+}
