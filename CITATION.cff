@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata from this file."
+title: "SankeyDiagram.net"
+
+type: software
+
+authors:
+  - family-names: "Lorenz"
+    given-names: "Jonas"
+    alias: "JonasDoesThings"
+    orcid: "https://orcid.org/0009-0004-6569-2770"
+
+date-released: "2021-12-09"
+doi: "10.5281/zenodo.22033733"
+
+repository-code: "https://github.com/nxt3AT/sankeydiagram.net"
+url: "https://sankeydiagram.net/"
+license-url: "https://github.com/nxt3AT/sankeydiagram.net/blob/main/LICENSE.md"

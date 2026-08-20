@@ -1,4 +1,6 @@
 # SankeyDiagram.net
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22033733.svg)](https://doi.org/10.5281/zenodo.22033733)
+
 ![sankeydiagram.net screenshot](./assets/screenshot.png)
 
 ## About
@@ -28,6 +30,14 @@ Use `docker build -t sankeydiagramnet . && docker run -p 80:80 sankeydiagramnet`
 If you have any questions, need help, a special license, or something else, you can contact me via GitHub Issues, or using the following methods:
 * mail: [jonas@jonasdoesthings.com](mailto:jonas@jonasdoesthings.com)
 * web: [jonasdoesthings.com](https://jonasdoesthings.com/)
+
+## Citation
+
+Citation metadata is available in [CITATION.cff](CITATION.cff).
+
+General Citation Recommendation:
+> Lorenz, J. (2021). SankeyDiagram.net [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22033733
+
 
 ## Credits
 ### Major Libraries Used
